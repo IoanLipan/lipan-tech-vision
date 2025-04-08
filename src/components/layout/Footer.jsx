@@ -6,8 +6,8 @@ import { motion } from 'framer-motion'
 
 const Footer = () => {
 	// Brand colors from logo
-	const brandMagenta = '#D617B7'
-	const brandCyan = '#00D4E0'
+	const brandMagenta = 'var(--secondary)'
+	const brandCyan = 'var(--primary)'
 
 	const socialLinks = [
 		{
@@ -79,7 +79,7 @@ const Footer = () => {
 										className="object-contain"
 									/>
 								</div>
-								<span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#D617B7] to-[#00D4E0]">
+								<span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]">
 									Lipan Tech Vision
 								</span>
 							</div>

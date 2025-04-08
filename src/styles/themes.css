@@ -1,0 +1,77 @@
+/* src/styles/themes.css */
+
+/* Default Theme: Magenta-Cyan */
+:root {
+  /* Brand colors */
+  --primary: #D617B7;
+  /* Magenta - Primary brand color */
+  --secondary: #00D4E0;
+  /* Cyan - Secondary brand color */
+  --primary-light: #FF3FE0;
+  /* Lighter magenta for hover states */
+  --secondary-light: #7FEAEF;
+  /* Lighter cyan for hover states */
+
+  /* Background colors */
+  --bg-primary: #111827;
+  /* gray-900 - Main background */
+  --bg-secondary: #1F2937;
+  /* gray-800 - Secondary background */
+  --bg-tertiary: #374151;
+  /* gray-700 - Cards, form fields, etc. */
+
+  /* Text colors */
+  --text-primary: #FFFFFF;
+  /* White - Main text */
+  --text-secondary: #E5E7EB;
+  /* gray-200 - Secondary text */
+  --text-muted: #9CA3AF;
+  /* gray-400 - Muted text */
+
+  /* Border colors */
+  --border-primary: #374151;
+  /* gray-700 - Primary borders */
+  --border-secondary: #4B5563;
+  /* gray-600 - Secondary borders */
+
+  /* Gradient */
+  --gradient: linear-gradient(to right, var(--primary), var(--secondary));
+}
+
+/* Teal Theme */
+[data-theme="teal"] {
+  /* Brand colors */
+  --primary: #0F766E;
+  /* Teal - Primary brand color */
+  --secondary: #D97706;
+  /* Amber - Secondary brand color */
+  --primary-light: #14B8A6;
+  /* Lighter teal for hover states */
+  --secondary-light: #F59E0B;
+  /* Lighter amber for hover states */
+
+  /* Background colors */
+  --bg-primary: #0F172A;
+  /* slate-900 - Main background */
+  --bg-secondary: #1E293B;
+  /* slate-800 - Secondary background */
+  --bg-tertiary: #334155;
+  /* slate-700 - Cards, form fields, etc. */
+
+  /* Text colors */
+  --text-primary: #FFFFFF;
+  /* White - Main text */
+  --text-secondary: #E2E8F0;
+  /* slate-200 - Secondary text */
+  --text-muted: #94A3B8;
+  /* slate-400 - Muted text */
+
+  /* Border colors */
+  --border-primary: #334155;
+  /* slate-700 - Primary borders */
+  --border-secondary: #475569;
+  /* slate-600 - Secondary borders */
+
+  /* Gradient */
+  --gradient: linear-gradient(to right, var(--primary), var(--secondary));
+}

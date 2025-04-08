@@ -63,7 +63,7 @@ export default function ContactPage() {
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					className="h-6 w-6 text-[#00D4E0]"
+					className="h-6 w-6 text-[var(--primary)]"
 					fill="none"
 					viewBox="0 0 24 24"
 					stroke="currentColor"
@@ -83,7 +83,7 @@ export default function ContactPage() {
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					className="h-6 w-6 text-[#D617B7]"
+					className="h-6 w-6 text-[var(--secondary)]"
 					fill="none"
 					viewBox="0 0 24 24"
 					stroke="currentColor"
@@ -109,7 +109,7 @@ export default function ContactPage() {
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					className="h-6 w-6 text-[#00D4E0]"
+					className="h-6 w-6 text-[var(--primary)]"
 					fill="none"
 					viewBox="0 0 24 24"
 					stroke="currentColor"
@@ -152,7 +152,7 @@ export default function ContactPage() {
 						transition={{ duration: 0.6 }}
 						className="max-w-4xl mx-auto text-center"
 					>
-						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#D617B7] to-[#00D4E0]">
+						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]">
 							Get In Touch
 						</h1>
 						<p className="text-xl text-gray-300 mb-8">
@@ -163,8 +163,8 @@ export default function ContactPage() {
 				</div>
 
 				{/* Background decoration */}
-				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[#D617B7] rounded-full filter blur-3xl opacity-10"></div>
-				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#00D4E0] rounded-full filter blur-3xl opacity-10"></div>
+				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[var(--secondary)] rounded-full filter blur-3xl opacity-10"></div>
+				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[var(--primary)] rounded-full filter blur-3xl opacity-10"></div>
 			</section>
 
 			{/* Contact Form and Info */}
@@ -290,7 +290,7 @@ export default function ContactPage() {
 											id="name"
 											value={formData.name}
 											onChange={handleChange}
-											className="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[#D617B7]"
+											className="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)]"
 											placeholder="Your name"
 											required
 										/>
@@ -307,7 +307,7 @@ export default function ContactPage() {
 											id="email"
 											value={formData.email}
 											onChange={handleChange}
-											className="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[#00D4E0]"
+											className="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
 											placeholder="Your email"
 											required
 										/>
@@ -326,7 +326,7 @@ export default function ContactPage() {
 										id="subject"
 										value={formData.subject}
 										onChange={handleChange}
-										className="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[#D617B7]"
+										className="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)]"
 										placeholder="Subject"
 										required
 									/>
@@ -344,7 +344,7 @@ export default function ContactPage() {
 										rows={6}
 										value={formData.message}
 										onChange={handleChange}
-										className="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[#00D4E0]"
+										className="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
 										placeholder="Your message"
 										required
 									></textarea>
@@ -352,7 +352,7 @@ export default function ContactPage() {
 
 								<motion.button
 									type="submit"
-									className="px-8 py-3 rounded-md bg-gradient-to-r from-[#D617B7] to-[#00D4E0] text-white font-medium hover:opacity-90 transition-opacity w-full"
+									className="px-8 py-3 rounded-md bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)] text-white font-medium hover:opacity-90 transition-opacity w-full"
 									whileHover={{ scale: 1.02 }}
 									whileTap={{ scale: 0.98 }}
 									disabled={isSubmitting}
@@ -420,7 +420,7 @@ export default function ContactPage() {
 						transition={{ duration: 0.6, delay: 0.6 }}
 					>
 						<Link href="/">
-							<div className="inline-flex items-center text-[#00D4E0] hover:text-[#7FEAEF] transition-colors">
+							<div className="inline-flex items-center text-[var(--primary)] hover:text-[#7FEAEF] transition-colors">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									className="h-5 w-5 mr-2"

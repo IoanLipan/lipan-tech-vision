@@ -92,7 +92,7 @@ export default function TechKnowledgePage() {
 						transition={{ duration: 0.6 }}
 						className="max-w-4xl mx-auto text-center"
 					>
-						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#D617B7] to-[#00D4E0]">
+						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]">
 							Tech Knowledge
 						</h1>
 						<p className="text-xl text-gray-300 mb-8">
@@ -103,8 +103,8 @@ export default function TechKnowledgePage() {
 				</div>
 
 				{/* Background decoration */}
-				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[#D617B7] rounded-full filter blur-3xl opacity-10"></div>
-				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#00D4E0] rounded-full filter blur-3xl opacity-10"></div>
+				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[var(--secondary)] rounded-full filter blur-3xl opacity-10"></div>
+				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[var(--primary)] rounded-full filter blur-3xl opacity-10"></div>
 			</section>
 
 			{/* Skills Section */}
@@ -123,7 +123,7 @@ export default function TechKnowledgePage() {
 									variants={skillVariants}
 								>
 									{category.name}
-									<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#D617B7] to-[#00D4E0]"></span>
+									<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
 								</motion.h2>
 
 								<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -148,7 +148,7 @@ export default function TechKnowledgePage() {
 
 											<div className="w-full bg-gray-700 rounded-full h-2.5">
 												<motion.div
-													className="h-2.5 rounded-full bg-gradient-to-r from-[#D617B7] to-[#00D4E0]"
+													className="h-2.5 rounded-full bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"
 													initial={{ width: 0 }}
 													animate={{ width: `${skill.level}%` }}
 													transition={{
@@ -209,7 +209,7 @@ export default function TechKnowledgePage() {
 						transition={{ duration: 0.6, delay: 0.6 }}
 					>
 						<Link href="/">
-							<div className="inline-flex items-center text-[#00D4E0] hover:text-[#7FEAEF] transition-colors">
+							<div className="inline-flex items-center text-[var(--primary)] hover:text-[#7FEAEF] transition-colors">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									className="h-5 w-5 mr-2"

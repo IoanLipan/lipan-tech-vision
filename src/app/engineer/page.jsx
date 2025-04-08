@@ -78,7 +78,6 @@ export default function EngineerPage() {
 		threshold: 0.1,
 	})
 
-	// Animation variants
 	const containerVariants = {
 		hidden: { opacity: 0 },
 		visible: {
@@ -116,7 +115,7 @@ export default function EngineerPage() {
 						transition={{ duration: 0.6 }}
 						className="max-w-4xl mx-auto text-center"
 					>
-						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#D617B7] to-[#00D4E0]">
+						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]">
 							Engineering Expertise
 						</h1>
 						<p className="text-xl text-gray-300 mb-8">
@@ -127,8 +126,8 @@ export default function EngineerPage() {
 				</div>
 
 				{/* Background decoration */}
-				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[#D617B7] rounded-full filter blur-3xl opacity-10"></div>
-				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#00D4E0] rounded-full filter blur-3xl opacity-10"></div>
+				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[var(--secondary)] rounded-full filter blur-3xl opacity-10"></div>
+				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[var(--primary)] rounded-full filter blur-3xl opacity-10"></div>
 			</section>
 
 			{/* Engineering Projects */}
@@ -144,7 +143,7 @@ export default function EngineerPage() {
 					>
 						<h2 className="text-3xl font-bold relative inline-block">
 							Key Engineering Projects
-							<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#D617B7] to-[#00D4E0]"></span>
+							<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
 						</h2>
 					</motion.div>
 
@@ -158,7 +157,7 @@ export default function EngineerPage() {
 							<motion.div
 								key={index}
 								variants={itemVariants}
-								className="bg-gray-900 p-6 rounded-lg border border-gray-700 hover:border-[#00D4E0] transition-all"
+								className="bg-gray-900 p-6 rounded-lg border border-gray-700 hover:border-[var(--primary)] transition-all"
 								whileHover={{ y: -5, transition: { duration: 0.2 } }}
 							>
 								<div className="flex flex-wrap justify-between items-start gap-4 mb-3">
@@ -204,7 +203,7 @@ export default function EngineerPage() {
 					>
 						<h2 className="text-3xl font-bold relative inline-block">
 							Engineering Principles
-							<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#D617B7] to-[#00D4E0]"></span>
+							<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
 						</h2>
 					</motion.div>
 
@@ -219,7 +218,7 @@ export default function EngineerPage() {
 										: { opacity: 0, y: 20 }
 								}
 								transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-								className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-[#D617B7] transition-all"
+								className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-[var(--secondary)] transition-all"
 								whileHover={{ y: -5, transition: { duration: 0.2 } }}
 							>
 								<div className="text-3xl mb-4">{principle.icon}</div>
@@ -240,7 +239,7 @@ export default function EngineerPage() {
 						transition={{ duration: 0.6, delay: 0.6 }}
 					>
 						<Link href="/">
-							<div className="inline-flex items-center text-[#00D4E0] hover:text-[#7FEAEF] transition-colors">
+							<div className="inline-flex items-center text-[var(--primary)] hover:text-[#7FEAEF] transition-colors">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									className="h-5 w-5 mr-2"

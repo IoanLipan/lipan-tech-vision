@@ -54,7 +54,7 @@ const Hero = () => {
 					animate="show"
 				>
 					<motion.h1
-						className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#D617B7] to-[#00D4E0]"
+						className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"
 						variants={itemVariants}
 					>
 						Lipan Tech Vision
@@ -70,7 +70,7 @@ const Hero = () => {
 					<motion.div className="flex flex-wrap gap-4" variants={itemVariants}>
 						<Link href="/projects">
 							<motion.div
-								className="px-8 py-3 rounded-md bg-gradient-to-r from-[#D617B7] to-[#00D4E0] text-white font-medium hover:opacity-90 transition-opacity"
+								className="px-8 py-3 rounded-md bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)] text-white font-medium hover:opacity-90 transition-opacity"
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.98 }}
 							>
@@ -79,7 +79,7 @@ const Hero = () => {
 						</Link>
 						<Link href="/contact">
 							<motion.div
-								className="px-8 py-3 rounded-md border border-[#D617B7] text-white font-medium hover:bg-gray-800 transition-colors"
+								className="px-8 py-3 rounded-md border border-[var(--secondary)] text-white font-medium hover:bg-gray-800 transition-colors"
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.98 }}
 							>
@@ -93,14 +93,14 @@ const Hero = () => {
 			{/* Abstract shapes in background */}
 			<div className="absolute top-0 right-0 w-full h-full overflow-hidden">
 				<motion.div
-					className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-[#D617B7] filter blur-3xl"
+					className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-[var(--secondary)] filter blur-3xl"
 					variants={blobVariants}
 					initial="initial"
 					animate="animate"
 					custom={1}
 				/>
 				<motion.div
-					className="absolute bottom-1/4 right-1/3 w-80 h-80 rounded-full bg-[#00D4E0] filter blur-3xl"
+					className="absolute bottom-1/4 right-1/3 w-80 h-80 rounded-full bg-[var(--primary)] filter blur-3xl"
 					variants={blobVariants}
 					initial="initial"
 					animate="animate"

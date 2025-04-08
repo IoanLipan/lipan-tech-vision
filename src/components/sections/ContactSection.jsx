@@ -81,7 +81,7 @@ const ContactSection = () => {
 				>
 					<h2 className="text-3xl font-bold mb-12 relative inline-block">
 						Get In Touch
-						<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#D617B7] to-[#00D4E0]"></span>
+						<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
 					</h2>
 				</motion.div>
 
@@ -103,7 +103,7 @@ const ContactSection = () => {
 							<div className="flex items-start space-x-4">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									className="h-6 w-6 text-[#00D4E0]"
+									className="h-6 w-6 text-[var(--primary)]"
 									fill="none"
 									viewBox="0 0 24 24"
 									stroke="currentColor"
@@ -124,7 +124,7 @@ const ContactSection = () => {
 							<div className="flex items-start space-x-4">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									className="h-6 w-6 text-[#D617B7]"
+									className="h-6 w-6 text-[var(--secondary)]"
 									fill="none"
 									viewBox="0 0 24 24"
 									stroke="currentColor"
@@ -165,7 +165,7 @@ const ContactSection = () => {
 										id="name"
 										value={formData.name}
 										onChange={handleChange}
-										className="w-full bg-gray-800 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[#D617B7]"
+										className="w-full bg-gray-800 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)]"
 										placeholder="Your name"
 										required
 									/>
@@ -182,7 +182,7 @@ const ContactSection = () => {
 										id="email"
 										value={formData.email}
 										onChange={handleChange}
-										className="w-full bg-gray-800 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[#00D4E0]"
+										className="w-full bg-gray-800 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
 										placeholder="Your email"
 										required
 									/>
@@ -201,7 +201,7 @@ const ContactSection = () => {
 									id="subject"
 									value={formData.subject}
 									onChange={handleChange}
-									className="w-full bg-gray-800 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[#D617B7]"
+									className="w-full bg-gray-800 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)]"
 									placeholder="Subject"
 									required
 								/>
@@ -219,7 +219,7 @@ const ContactSection = () => {
 									rows={5}
 									value={formData.message}
 									onChange={handleChange}
-									className="w-full bg-gray-800 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[#00D4E0]"
+									className="w-full bg-gray-800 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
 									placeholder="Your message"
 									required
 								></textarea>
@@ -227,7 +227,7 @@ const ContactSection = () => {
 
 							<motion.button
 								type="submit"
-								className="px-8 py-3 rounded-md bg-gradient-to-r from-[#D617B7] to-[#00D4E0] text-white font-medium hover:opacity-90 transition-opacity w-full md:w-auto"
+								className="px-8 py-3 rounded-md bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)] text-white font-medium hover:opacity-90 transition-opacity w-full md:w-auto"
 								whileHover={{ scale: 1.02 }}
 								whileTap={{ scale: 0.98 }}
 								disabled={isSubmitting}

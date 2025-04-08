@@ -115,7 +115,7 @@ export default function ProblemSolverPage() {
 						transition={{ duration: 0.6 }}
 						className="max-w-4xl mx-auto text-center"
 					>
-						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#D617B7] to-[#00D4E0]">
+						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]">
 							Problem Solver
 						</h1>
 						<p className="text-xl text-gray-300 mb-8">
@@ -126,8 +126,8 @@ export default function ProblemSolverPage() {
 				</div>
 
 				{/* Background decoration */}
-				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[#D617B7] rounded-full filter blur-3xl opacity-10"></div>
-				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#00D4E0] rounded-full filter blur-3xl opacity-10"></div>
+				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[var(--secondary)] rounded-full filter blur-3xl opacity-10"></div>
+				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[var(--primary)] rounded-full filter blur-3xl opacity-10"></div>
 			</section>
 
 			{/* Methodology Section */}
@@ -143,7 +143,7 @@ export default function ProblemSolverPage() {
 					>
 						<h2 className="text-3xl font-bold relative inline-block">
 							My Problem-Solving Methodology
-							<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#D617B7] to-[#00D4E0]"></span>
+							<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
 						</h2>
 					</motion.div>
 
@@ -158,7 +158,7 @@ export default function ProblemSolverPage() {
 										: { opacity: 0, y: 20 }
 								}
 								transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-								className="bg-gray-900 p-6 rounded-lg border border-gray-700 hover:border-[#D617B7] transition-all"
+								className="bg-gray-900 p-6 rounded-lg border border-gray-700 hover:border-[var(--secondary)] transition-all"
 								whileHover={{ y: -5, transition: { duration: 0.2 } }}
 							>
 								<div className="flex items-center mb-4">
@@ -187,7 +187,7 @@ export default function ProblemSolverPage() {
 					>
 						<h2 className="text-3xl font-bold relative inline-block">
 							Case Studies
-							<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#D617B7] to-[#00D4E0]"></span>
+							<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
 						</h2>
 					</motion.div>
 
@@ -204,30 +204,36 @@ export default function ProblemSolverPage() {
 								transition={{ duration: 0.5, delay: 0.2 + index * 0.2 }}
 								className="bg-gray-800 p-8 rounded-lg border border-gray-700"
 							>
-								<h3 className="text-2xl font-bold mb-6 text-[#00D4E0]">
+								<h3 className="text-2xl font-bold mb-6 text-[var(--primary)]">
 									{study.title}
 								</h3>
 
 								<div className="space-y-4">
 									<div>
-										<h4 className="font-bold text-[#D617B7] mb-1">
+										<h4 className="font-bold text-[var(--secondary)] mb-1">
 											Challenge:
 										</h4>
 										<p className="text-gray-300">{study.challenge}</p>
 									</div>
 
 									<div>
-										<h4 className="font-bold text-[#D617B7] mb-1">Approach:</h4>
+										<h4 className="font-bold text-[var(--secondary)] mb-1">
+											Approach:
+										</h4>
 										<p className="text-gray-300">{study.approach}</p>
 									</div>
 
 									<div>
-										<h4 className="font-bold text-[#D617B7] mb-1">Solution:</h4>
+										<h4 className="font-bold text-[var(--secondary)] mb-1">
+											Solution:
+										</h4>
 										<p className="text-gray-300">{study.solution}</p>
 									</div>
 
 									<div>
-										<h4 className="font-bold text-[#D617B7] mb-1">Result:</h4>
+										<h4 className="font-bold text-[var(--secondary)] mb-1">
+											Result:
+										</h4>
 										<p className="text-gray-300">{study.result}</p>
 									</div>
 								</div>
@@ -246,7 +252,7 @@ export default function ProblemSolverPage() {
 						transition={{ duration: 0.6, delay: 0.6 }}
 					>
 						<Link href="/">
-							<div className="inline-flex items-center text-[#00D4E0] hover:text-[#7FEAEF] transition-colors">
+							<div className="inline-flex items-center text-[var(--primary)] hover:text-[#7FEAEF] transition-colors">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									className="h-5 w-5 mr-2"

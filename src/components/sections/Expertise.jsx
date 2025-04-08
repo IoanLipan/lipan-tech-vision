@@ -30,8 +30,8 @@ const Expertise = () => {
 							x2="100%"
 							y2="0%"
 						>
-							<stop offset="0%" stopColor="#D617B7" />
-							<stop offset="100%" stopColor="#00D4E0" />
+							<stop offset="0%" stopColor="var(--secondary)" />
+							<stop offset="100%" stopColor="var(--primary)" />
 						</linearGradient>
 					</defs>
 					<path
@@ -61,8 +61,8 @@ const Expertise = () => {
 							x2="100%"
 							y2="0%"
 						>
-							<stop offset="0%" stopColor="#D617B7" />
-							<stop offset="100%" stopColor="#00D4E0" />
+							<stop offset="0%" stopColor="var(--secondary)" />
+							<stop offset="100%" stopColor="var(--primary)" />
 						</linearGradient>
 					</defs>
 					<path
@@ -92,8 +92,8 @@ const Expertise = () => {
 							x2="100%"
 							y2="0%"
 						>
-							<stop offset="0%" stopColor="#D617B7" />
-							<stop offset="100%" stopColor="#00D4E0" />
+							<stop offset="0%" stopColor="var(--secondary)" />
+							<stop offset="100%" stopColor="var(--primary)" />
 						</linearGradient>
 					</defs>
 					<path
@@ -123,8 +123,8 @@ const Expertise = () => {
 							x2="100%"
 							y2="0%"
 						>
-							<stop offset="0%" stopColor="#D617B7" />
-							<stop offset="100%" stopColor="#00D4E0" />
+							<stop offset="0%" stopColor="var(--secondary)" />
+							<stop offset="100%" stopColor="var(--primary)" />
 						</linearGradient>
 					</defs>
 					<path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
@@ -149,8 +149,8 @@ const Expertise = () => {
 							x2="100%"
 							y2="0%"
 						>
-							<stop offset="0%" stopColor="#D617B7" />
-							<stop offset="100%" stopColor="#00D4E0" />
+							<stop offset="0%" stopColor="var(--secondary)" />
+							<stop offset="100%" stopColor="var(--primary)" />
 						</linearGradient>
 					</defs>
 					<path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
@@ -176,8 +176,8 @@ const Expertise = () => {
 							x2="100%"
 							y2="0%"
 						>
-							<stop offset="0%" stopColor="#D617B7" />
-							<stop offset="100%" stopColor="#00D4E0" />
+							<stop offset="0%" stopColor="var(--secondary)" />
+							<stop offset="100%" stopColor="var(--primary)" />
 						</linearGradient>
 					</defs>
 					<path
@@ -221,7 +221,7 @@ const Expertise = () => {
 				>
 					<h2 className="text-3xl font-bold mb-12 relative inline-block">
 						My Expertise
-						<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#D617B7] to-[#00D4E0]"></span>
+						<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
 					</h2>
 				</motion.div>
 
@@ -234,7 +234,7 @@ const Expertise = () => {
 					{expertiseAreas.map((expertise, index) => (
 						<motion.div
 							key={index}
-							className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-lg border border-gray-700 hover:border-[#D617B7] transform hover:-translate-y-2 transition-all"
+							className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-lg border border-gray-700 hover:border-[var(--secondary)] transform hover:-translate-y-2 transition-all"
 							variants={itemVariants}
 							whileHover={{ scale: 1.03 }}
 							transition={{ type: 'spring', stiffness: 30 }}

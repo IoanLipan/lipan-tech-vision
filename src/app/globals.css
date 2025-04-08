@@ -1,9 +1,5 @@
 @import "tailwindcss";
-
-:root {
-  --brand-magenta: #D617B7;
-  --brand-cyan: #00D4E0;
-}
+@import '../styles/themes.css';
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -11,22 +7,21 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #1f2937;
-  /* gray-800 */
+  background: var(--bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #D617B7, #00D4E0);
+  background: var(--gradient);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #FF3FE0, #00F5FF);
+  background: linear-gradient(to bottom, var(--primary-light), var(--secondary-light));
 }
 
 /* Enhanced focus styles */
 *:focus-visible {
-  outline: 2px solid var(--brand-cyan);
+  outline: 2px solid var(--secondary);
   outline-offset: 2px;
 }
 
@@ -39,16 +34,56 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #111827;
-  /* gray-900 */
-  color: #fff;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 @layer utilities {
 
+  /* Theme background utilities */
+  .bg-primary {
+    background-color: var(--bg-primary);
+  }
+
+  .bg-secondary {
+    background-color: var(--bg-secondary);
+  }
+
+  .bg-tertiary {
+    background-color: var(--bg-tertiary);
+  }
+
+  /* Theme text utilities */
+  .text-primary {
+    color: var(--text-primary);
+  }
+
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+
+  .text-muted {
+    color: var(--text-muted);
+  }
+
+  /* Border utilities */
+  .border-primary {
+    border-color: var(--border-primary);
+  }
+
+  .border-secondary {
+    border-color: var(--border-secondary);
+  }
+
+  /* Gradient background */
+  .bg-gradient {
+    background-image: var(--gradient);
+  }
+
   /* Custom gradient text utility */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#D617B7] to-[#00D4E0];
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient);
   }
 
   /* Custom hover effects */
@@ -73,7 +108,7 @@ body {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background: linear-gradient(to right, var(--brand-magenta), var(--brand-cyan));
+  background: var(--gradient);
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.3s ease-out;
@@ -114,5 +149,5 @@ body {
   z-index: -1;
   margin: -1px;
   border-radius: inherit;
-  background: linear-gradient(to right, var(--brand-magenta), var(--brand-cyan));
+  background: var(--gradient);
 }

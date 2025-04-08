@@ -4,78 +4,35 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
+import Image from 'next/image'
+import { projects, getProjectCategories } from '@/data/projects'
+import ProjectModal from '@/components/ui/ProjectModal'
 
 export default function ProjectsPage() {
-	// All projects - add your real projects here
-	const projects = [
-		{
-			id: 1,
-			title: 'E-Commerce Platform',
-			description:
-				'A fully responsive e-commerce platform built with Next.js and integrated with Stripe payments.',
-			technologies: ['Next.js', 'Stripe', 'MongoDB', 'Tailwind CSS'],
-			category: 'Web Development',
-			image: '/images/project-placeholder.jpg',
-		},
-		{
-			id: 2,
-			title: 'AI Content Assistant',
-			description:
-				'AI-powered content generator that helps create marketing copy based on user prompts.',
-			technologies: ['React', 'OpenAI API', 'Node.js', 'Express'],
-			category: 'AI',
-			image: '/images/project-placeholder.jpg',
-		},
-		{
-			id: 3,
-			title: 'Fitness Tracking App',
-			description:
-				'Mobile application for tracking workouts and nutrition with personalized recommendations.',
-			technologies: ['React Native', 'Firebase', 'Redux', 'Chart.js'],
-			category: 'Mobile App',
-			image: '/images/project-placeholder.jpg',
-		},
-		{
-			id: 4,
-			title: 'Real-time Analytics Dashboard',
-			description:
-				'Interactive dashboard for visualizing business metrics in real-time.',
-			technologies: ['Vue.js', 'D3.js', 'Socket.IO', 'Express'],
-			category: 'Web Development',
-			image: '/images/project-placeholder.jpg',
-		},
-		{
-			id: 5,
-			title: 'Smart Home Control System',
-			description:
-				'IoT system for controlling and automating home devices through a central interface.',
-			technologies: ['React', 'Node.js', 'MQTT', 'WebSockets'],
-			category: 'IoT',
-			image: '/images/project-placeholder.jpg',
-		},
-		{
-			id: 6,
-			title: 'Blockchain Voting Platform',
-			description:
-				'Secure, transparent voting platform built on blockchain technology.',
-			technologies: ['Solidity', 'Ethereum', 'Web3.js', 'React'],
-			category: 'Blockchain',
-			image: '/images/project-placeholder.jpg',
-		},
-	]
-
-	// Categories for filtering
-	const categories = [
-		'All',
-		'Web Development',
-		'Mobile App',
-		'AI',
-		'IoT',
-		'Blockchain',
-	]
+	// Get categories from our data file
+	const categories = getProjectCategories()
 
 	const [activeCategory, setActiveCategory] = useState('All')
 	const [filteredProjects, setFilteredProjects] = useState(projects)
+
+	// State for modal
+	const [selectedProject, setSelectedProject] = useState(null)
+	const [isModalOpen, setIsModalOpen] = useState(false)
+
+	// Open modal with selected project
+	const openProjectModal = (project) => {
+		setSelectedProject(project)
+		setIsModalOpen(true)
+	}
+
+	// Close modal
+	const closeProjectModal = () => {
+		setIsModalOpen(false)
+		// Reset selected project after animation completes
+		setTimeout(() => {
+			setSelectedProject(null)
+		}, 300)
+	}
 
 	// Filter projects when category changes
 	useEffect(() => {
@@ -127,11 +84,18 @@ export default function ProjectsPage() {
 	})
 
 	return (
-		<div className="min-h-screen bg-gray-900">
+		<div className="min-h-screen bg-primary">
+			{/* Modal */}
+			<ProjectModal
+				project={selectedProject}
+				isOpen={isModalOpen}
+				onClose={closeProjectModal}
+			/>
+
 			{/* Hero Section */}
 			<section
 				ref={headerRef}
-				className="py-20 bg-gray-900 relative overflow-hidden"
+				className="py-20 bg-primary relative overflow-hidden"
 			>
 				<div className="container mx-auto px-4">
 					<motion.div
@@ -142,23 +106,23 @@ export default function ProjectsPage() {
 						transition={{ duration: 0.6 }}
 						className="max-w-4xl mx-auto text-center"
 					>
-						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#D617B7] to-[#00D4E0]">
+						<h1 className="text-4xl md:text-6xl font-bold mb-6 text-gradient">
 							My Projects
 						</h1>
-						<p className="text-xl text-gray-300 mb-8">
+						<p className="text-xl text-secondary mb-8">
 							Explore my portfolio of innovative solutions across various
-							domains and technologies.
+							technologies and domains.
 						</p>
 					</motion.div>
 				</div>
 
 				{/* Background decoration */}
-				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[#D617B7] rounded-full filter blur-3xl opacity-10"></div>
-				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#00D4E0] rounded-full filter blur-3xl opacity-10"></div>
+				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[var(--primary)] rounded-full filter blur-3xl opacity-10"></div>
+				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[var(--secondary)] rounded-full filter blur-3xl opacity-10"></div>
 			</section>
 
 			{/* Filters */}
-			<section ref={filtersRef} className="py-8 bg-gray-800">
+			<section ref={filtersRef} className="py-8 bg-secondary">
 				<div className="container mx-auto px-4">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
@@ -174,8 +138,8 @@ export default function ProjectsPage() {
 								onClick={() => setActiveCategory(category)}
 								className={`px-6 py-2 rounded-full transition-all ${
 									activeCategory === category
-										? 'bg-gradient-to-r from-[#D617B7] to-[#00D4E0] text-white'
-										: 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+										? 'bg-gradient text-primary'
+										: 'bg-tertiary text-secondary hover:bg-[var(--bg-tertiary)]'
 								}`}
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}
@@ -188,7 +152,7 @@ export default function ProjectsPage() {
 			</section>
 
 			{/* Projects Grid */}
-			<section ref={projectsRef} className="py-20">
+			<section ref={projectsRef} className="py-20 bg-primary">
 				<div className="container mx-auto px-4">
 					<motion.div
 						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -199,38 +163,51 @@ export default function ProjectsPage() {
 						{filteredProjects.map((project) => (
 							<motion.div
 								key={project.id}
-								className="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-[#00D4E0] transition-all group"
+								className="bg-secondary rounded-lg overflow-hidden border border-primary hover:border-[var(--secondary)] transition-all group cursor-pointer"
 								variants={itemVariants}
-								whileHover={{
-									y: -10,
-									transition: { duration: 0.3 },
-								}}
+								onClick={() => openProjectModal(project)}
+								layoutId={`project-container-${project.id}`}
 							>
-								<div className="aspect-video bg-gray-700 relative overflow-hidden">
-									<div className="absolute inset-0 bg-gradient-to-br from-[#D617B7]/20 to-[#00D4E0]/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+								<div className="aspect-video relative overflow-hidden bg-tertiary">
+									<Image
+										src={project.image}
+										alt={project.title}
+										width={400}
+										height={225}
+										className="object-cover w-full h-full transition-transform group-hover:scale-105"
+									/>
+									<div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/20 to-[var(--secondary)]/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
 								</div>
 								<div className="p-6">
-									<span className="inline-block px-3 py-1 text-xs rounded-full bg-gray-700 text-gray-300 mb-4">
-										{project.category}
-									</span>
-									<h3 className="text-xl font-semibold mb-2">
-										{project.title}
-									</h3>
-									<p className="text-gray-400 mb-4 line-clamp-2">
+									<div className="flex justify-between items-start mb-3">
+										<h3 className="text-xl font-semibold">{project.title}</h3>
+										{project.workRelated && (
+											<span className="px-2 py-1 text-xs bg-[var(--primary)]/20 border border-[var(--primary)] rounded-full text-[var(--primary)]">
+												Work Related
+											</span>
+										)}
+									</div>
+									<p className="text-muted mb-4 line-clamp-2">
 										{project.description}
 									</p>
 									<div className="flex flex-wrap gap-2 mb-6">
 										{project.technologies.map((tech, index) => (
 											<span
 												key={index}
-												className="px-2 py-1 bg-gray-700 rounded-md text-xs"
+												className="px-2 py-1 bg-tertiary rounded-md text-xs"
 											>
 												{tech}
 											</span>
 										))}
 									</div>
 									<div className="flex justify-end">
-										<button className="text-[#00D4E0] hover:text-[#7FEAEF] inline-flex items-center">
+										<button
+											onClick={(e) => {
+												e.stopPropagation()
+												openProjectModal(project)
+											}}
+											className="text-[var(--secondary)] hover:text-[var(--secondary-light)] inline-flex items-center"
+										>
 											View details
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
@@ -260,12 +237,12 @@ export default function ProjectsPage() {
 							className="text-center py-20"
 						>
 							<h3 className="text-2xl font-semibold mb-4">No projects found</h3>
-							<p className="text-gray-400 mb-8">
+							<p className="text-muted mb-8">
 								No projects match the selected category.
 							</p>
 							<button
 								onClick={() => setActiveCategory('All')}
-								className="px-6 py-2 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors"
+								className="px-6 py-2 rounded-md bg-secondary hover:bg-tertiary transition-colors"
 							>
 								Show all projects
 							</button>
@@ -275,7 +252,7 @@ export default function ProjectsPage() {
 			</section>
 
 			{/* Back To Home Button */}
-			<section className="py-12 bg-gray-900">
+			<section className="py-12 bg-primary">
 				<div className="container mx-auto px-4 text-center">
 					<motion.div
 						initial={{ opacity: 0 }}
@@ -283,7 +260,7 @@ export default function ProjectsPage() {
 						transition={{ duration: 0.6, delay: 0.6 }}
 					>
 						<Link href="/">
-							<div className="inline-flex items-center text-[#00D4E0] hover:text-[#7FEAEF] transition-colors">
+							<div className="inline-flex items-center text-[var(--secondary)] hover:text-[var(--secondary-light)] transition-colors">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									className="h-5 w-5 mr-2"

@@ -10,11 +10,29 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				'brand-magenta': '#D617B7',
-				'brand-cyan': '#00D4E0',
+				brand: {
+					primary: 'var(--primary)',
+					secondary: 'var(--secondary)',
+					'primary-light': 'var(--primary-light)',
+					'secondary-light': 'var(--secondary-light)',
+				},
+			},
+			backgroundColor: {
+				primary: 'var(--bg-primary)',
+				secondary: 'var(--bg-secondary)',
+				tertiary: 'var(--bg-tertiary)',
+			},
+			textColor: {
+				primary: 'var(--text-primary)',
+				secondary: 'var(--text-secondary)',
+				muted: 'var(--text-muted)',
+			},
+			borderColor: {
+				primary: 'var(--border-primary)',
+				secondary: 'var(--border-secondary)',
 			},
 			fontFamily: {
-				sans: ['var(--font-inter)'],
+				sans: ['var(--font-inter)', ...fontFamily.sans],
 			},
 			animation: {
 				blob: 'blob 7s infinite',
@@ -32,6 +50,6 @@ module.exports = {
 				},
 			},
 		},
-		plugins: [forms],
 	},
+	plugins: [forms],
 }

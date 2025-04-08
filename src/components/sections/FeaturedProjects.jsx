@@ -1,8 +1,10 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { getFeaturedProjects } from '@/data/projects'
 
 const FeaturedProjects = () => {
 	const [ref, inView] = useInView({
@@ -10,33 +12,7 @@ const FeaturedProjects = () => {
 		threshold: 0.1,
 	})
 
-	// Sample projects - replace with your real projects
-	const projects = [
-		{
-			id: 1,
-			title: 'E-Commerce Platform',
-			description:
-				'A fully responsive e-commerce platform built with Next.js and integrated with Stripe payments.',
-			technologies: ['Next.js', 'Stripe', 'MongoDB'],
-			image: '/images/project-placeholder.jpg',
-		},
-		{
-			id: 2,
-			title: 'AI Content Assistant',
-			description:
-				'AI-powered content generator that helps create marketing copy based on user prompts.',
-			technologies: ['React', 'OpenAI API', 'Node.js'],
-			image: '/images/project-placeholder.jpg',
-		},
-		{
-			id: 3,
-			title: 'Fitness Tracking App',
-			description:
-				'Mobile application for tracking workouts and nutrition with personalized recommendations.',
-			technologies: ['React Native', 'Firebase', 'Redux'],
-			image: '/images/project-placeholder.jpg',
-		},
-	]
+	const projects = getFeaturedProjects()
 
 	const containerVariants = {
 		hidden: { opacity: 0 },
@@ -60,7 +36,7 @@ const FeaturedProjects = () => {
 	}
 
 	return (
-		<section ref={ref} className="py-20 bg-gray-900">
+		<section ref={ref} className="py-20 bg-primary">
 			<div className="container mx-auto px-4">
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
@@ -69,7 +45,7 @@ const FeaturedProjects = () => {
 				>
 					<h2 className="text-3xl font-bold mb-12 relative inline-block">
 						Featured Projects
-						<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#D617B7] to-[#00D4E0]"></span>
+						<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient"></span>
 					</h2>
 				</motion.div>
 
@@ -82,25 +58,61 @@ const FeaturedProjects = () => {
 					{projects.map((project) => (
 						<motion.div
 							key={project.id}
-							className="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-[#00D4E0] transition-all group"
+							className="bg-secondary rounded-lg overflow-hidden border border-primary hover:border-[var(--secondary)] transition-all group"
 							variants={itemVariants}
 							whileHover={{ y: -10 }}
 						>
-							<div className="aspect-video bg-gray-700 relative overflow-hidden">
-								<div className="absolute inset-0 bg-gradient-to-br from-[#D617B7]/20 to-[#00D4E0]/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+							<div className="aspect-video relative overflow-hidden bg-tertiary">
+								<Image
+									src={project.image}
+									alt={project.title}
+									width={400}
+									height={225}
+									className="object-cover w-full h-full transition-transform group-hover:scale-105"
+								/>
+								<div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/20 to-[var(--secondary)]/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
 							</div>
 							<div className="p-6">
-								<h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-								<p className="text-gray-300 mb-4">{project.description}</p>
-								<div className="flex flex-wrap gap-2">
+								<div className="flex justify-between items-start mb-3">
+									<h3 className="text-xl font-semibold">{project.title}</h3>
+									{project.workRelated && (
+										<span className="px-2 py-1 text-xs bg-[var(--primary)]/20 border border-[var(--primary)] rounded-full text-[var(--primary)]">
+											Work Related
+										</span>
+									)}
+								</div>
+								<p className="text-muted mb-4">{project.description}</p>
+								<div className="flex flex-wrap gap-2 mb-6">
 									{project.technologies.map((tech, index) => (
 										<span
 											key={index}
-											className="px-2 py-1 bg-gray-700 rounded-md text-xs"
+											className="px-2 py-1 bg-tertiary rounded-md text-xs"
 										>
 											{tech}
 										</span>
 									))}
+								</div>
+								<div className="flex justify-end">
+									<a
+										href={project.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-[var(--secondary)] hover:text-[var(--secondary-light)] inline-flex items-center"
+									>
+										View project
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											className="h-4 w-4 ml-1"
+											viewBox="0 0 20 20"
+											fill="currentColor"
+										>
+											<path
+												fillRule="evenodd"
+												d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+												clipRule="evenodd"
+											/>
+										</svg>
+									</a>
 								</div>
 							</div>
 						</motion.div>
@@ -114,11 +126,11 @@ const FeaturedProjects = () => {
 					transition={{ duration: 0.6, delay: 0.6 }}
 				>
 					<Link href="/projects">
-						<div className="inline-flex items-center text-[#00D4E0] hover:text-[#7FEAEF]">
+						<div className="inline-flex items-center text-[var(--secondary)] hover:text-[var(--secondary-light)] group">
 							View all projects
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								className="h-5 w-5 ml-1"
+								className="h-5 w-5 ml-1 transform group-hover:translate-x-1 transition-transform"
 								viewBox="0 0 20 20"
 								fill="currentColor"
 							>

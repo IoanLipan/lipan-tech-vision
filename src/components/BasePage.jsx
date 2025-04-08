@@ -8,7 +8,7 @@ export default function SectionPage({
 	title,
 	description,
 	content,
-	colorAccent = 'from-[#D617B7] to-[#00D4E0]',
+	colorAccent = 'from-[var(--secondary)] to-[var(--primary)]',
 }) {
 	return (
 		<div className="min-h-screen bg-gray-900">
@@ -31,8 +31,8 @@ export default function SectionPage({
 				</div>
 
 				{/* Background decoration */}
-				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[#D617B7] rounded-full filter blur-3xl opacity-10"></div>
-				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#00D4E0] rounded-full filter blur-3xl opacity-10"></div>
+				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[var(--secondary)] rounded-full filter blur-3xl opacity-10"></div>
+				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[var(--primary)] rounded-full filter blur-3xl opacity-10"></div>
 			</section>
 
 			{/* Content Section */}
@@ -58,7 +58,7 @@ export default function SectionPage({
 						transition={{ duration: 0.6, delay: 0.6 }}
 					>
 						<Link href="/">
-							<div className="inline-flex items-center text-[#00D4E0] hover:text-[#7FEAEF] transition-colors">
+							<div className="inline-flex items-center text-[var(--primary)] hover:text-[#7FEAEF] transition-colors">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									className="h-5 w-5 mr-2"
