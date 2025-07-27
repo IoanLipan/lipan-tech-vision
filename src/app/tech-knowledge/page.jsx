@@ -31,10 +31,10 @@ import {
 	KonvaTechIcon,
 	CMSPayloadTechIcon,
 	LivekitTechIcon,
+	TanstackTechIcon,
 } from '@/components/ui/TechIcons'
 
 export default function TechKnowledgePage() {
-	// Tech categories with real icons
 	const categories = [
 		{
 			name: 'Frontend',
@@ -62,6 +62,10 @@ export default function TechKnowledgePage() {
 				{
 					name: 'TailwindCSS',
 					icon: <TailwindTechIcon />,
+				},
+				{
+					name: 'Tanstack Query',
+					icon: <TanstackTechIcon />,
 				},
 				{
 					name: 'Framer Motion',

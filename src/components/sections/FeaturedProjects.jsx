@@ -80,6 +80,11 @@ const FeaturedProjects = () => {
 											Work Related
 										</span>
 									)}
+									{project.freelance && (
+										<span className="px-2 py-1 text-xs bg-[var(--secondary)]/20 border border-[var(--secondary)] rounded-full text-[var(--secondary)]">
+											Freelance
+										</span>
+									)}
 								</div>
 								<p className="text-muted mb-4">{project.description}</p>
 								<div className="flex flex-wrap gap-2 mb-6">

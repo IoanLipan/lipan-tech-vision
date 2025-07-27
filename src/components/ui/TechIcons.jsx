@@ -26,6 +26,7 @@ import LivekitIcon from '../../assets/icons/livekit.svg'
 import MaplibreIcon from '../../assets/icons/maplibre.svg'
 import PageflyIcon from '../../assets/icons/pagefly.svg'
 import StorybookIcon from '../../assets/icons/storybook.svg'
+import Tanstack from '../../assets/icons/tanstack.svg'
 
 const TechIcon = ({ src, alt, className = 'h-16 w-16' }) => {
 	return (
@@ -84,4 +85,7 @@ export const PageflyTechIcon = () => (
 )
 export const StorybookTechIcon = () => (
 	<TechIcon src={StorybookIcon} alt="Storybook" />
+)
+export const TanstackTechIcon = () => (
+  <TechIcon src={Tanstack} alt="Tanstack" />
 )
