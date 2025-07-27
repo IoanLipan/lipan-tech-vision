@@ -1,0 +1,65 @@
+<svg version="1.1" id="Layer_1" xmlns:x="ns_extend;" xmlns:i="ns_ai;" xmlns:graph="ns_graphs;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+ <style type="text/css">
+  .st0{fill:#5555FF;}
+ </style>
+ <metadata>
+  <sfw xmlns="ns_sfw;">
+   <slices>
+   </slices>
+   <sliceSourceBounds bottomLeftOrigin="true" height="50" width="50" x="-60" y="21.8">
+   </sliceSourceBounds>
+  </sfw>
+ </metadata>
+ <g>
+  <path class="st0" d="M4.2,20.8L0,25l4.2,4.2L8.3,25L4.2,20.8z">
+  </path>
+  <path class="st0" d="M9.4,15.6l-4.2,4.2L9.4,24l4.2-4.2L9.4,15.6z">
+  </path>
+  <path class="st0" d="M14.6,10.4l-4.2,4.2l4.2,4.2l4.2-4.2L14.6,10.4z">
+  </path>
+  <path class="st0" d="M25,0l-4.2,4.2L25,8.3l4.2-4.2L25,0z">
+  </path>
+  <path class="st0" d="M19.8,5.2l-4.2,4.2l4.2,4.2L24,9.4L19.8,5.2z">
+  </path>
+  <path class="st0" d="M41.7,25l4.2,4.2L50,25l-4.2-4.2L41.7,25z">
+  </path>
+  <path class="st0" d="M36.5,19.8l4.2,4.2l4.2-4.2l-4.2-4.2L36.5,19.8z">
+  </path>
+  <path class="st0" d="M31.3,14.6l4.2,4.2l4.2-4.2l-4.2-4.2L31.3,14.6z">
+  </path>
+  <path class="st0" d="M26,9.4l4.2,4.2l4.2-4.2l-4.2-4.2L26,9.4z">
+  </path>
+  <path class="st0" d="M25,10.8l-4,4l4,4l4-4L25,10.8z">
+  </path>
+  <path class="st0" d="M19.8,16.5L16,20.2l3.8,3.8l3.8-3.8L19.8,16.5z">
+  </path>
+  <path class="st0" d="M30.2,16.5l-3.8,3.8l3.8,3.8l3.8-3.8L30.2,16.5z">
+  </path>
+  <path class="st0" d="M14.6,22.1L11,25.6l3.5,3.5l3.5-3.5L14.6,22.1z">
+  </path>
+  <path class="st0" d="M25,22.1l-3.5,3.5l3.5,3.5l3.5-3.5L25,22.1z">
+  </path>
+  <path class="st0" d="M35.4,22.1l-3.5,3.5l3.5,3.5l3.5-3.5L35.4,22.1z">
+  </path>
+  <path class="st0" d="M9.4,27.7L6,31l3.3,3.3l3.3-3.3L9.4,27.7z">
+  </path>
+  <path class="st0" d="M19.8,27.7L16.5,31l3.3,3.3l3.3-3.3L19.8,27.7z">
+  </path>
+  <path class="st0" d="M30.2,27.7L26.9,31l3.3,3.3l3.3-3.3L30.2,27.7z">
+  </path>
+  <path class="st0" d="M40.6,27.7L37.3,31l3.3,3.3L44,31L40.6,27.7z">
+  </path>
+  <path class="st0" d="M14.6,33.8l-2.9,2.9l2.9,2.9l2.9-2.9L14.6,33.8z">
+  </path>
+  <path class="st0" d="M25,33.8l-2.9,2.9l2.9,2.9l2.9-2.9L25,33.8z">
+  </path>
+  <path class="st0" d="M35.4,33.8l-2.9,2.9l2.9,2.9l2.9-2.9L35.4,33.8z">
+  </path>
+  <path class="st0" d="M19.8,39.8l-2.5,2.5l2.5,2.5l2.5-2.5L19.8,39.8z">
+  </path>
+  <path class="st0" d="M30.2,39.8l-2.5,2.5l2.5,2.5l2.5-2.5L30.2,39.8z">
+  </path>
+  <path class="st0" d="M25,45.8l-2.1,2.1L25,50l2.1-2.1L25,45.8z">
+  </path>
+ </g>
+</svg>

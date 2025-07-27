@@ -4,41 +4,155 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
+import {
+	ReactTechIcon,
+	NextTechIcon,
+	VueTechIcon,
+	JavaScriptTechIcon,
+	TypeScriptTechIcon,
+	TailwindTechIcon,
+	FramerTechIcon,
+	NodeTechIcon,
+	ExpressTechIcon,
+	MongoTechIcon,
+	SQLTechIcon,
+	FirebaseTechIcon,
+	GraphQLTechIcon,
+	GitTechIcon,
+	DockerTechIcon,
+	CICDTechIcon,
+	AWSTechIcon,
+	VercelTechIcon,
+	StorybookTechIcon,
+	ShopifyTechIcon,
+	PageflyTechIcon,
+	LiquidTechIcon,
+	MaplibreTechIcon,
+	KonvaTechIcon,
+	CMSPayloadTechIcon,
+	LivekitTechIcon,
+} from '@/components/ui/TechIcons'
 
 export default function TechKnowledgePage() {
-	// Tech categories
+	// Tech categories with real icons
 	const categories = [
 		{
 			name: 'Frontend',
 			skills: [
-				{ name: 'React', level: 90, icon: '⚛️' },
-				{ name: 'Next.js', level: 85, icon: '▲' },
-				{ name: 'Vue.js', level: 80, icon: '🖖' },
-				{ name: 'JavaScript', level: 95, icon: '🟨' },
-				{ name: 'TypeScript', level: 85, icon: '🔷' },
-				{ name: 'Tailwind CSS', level: 90, icon: '🌊' },
-				{ name: 'Framer Motion', level: 75, icon: '🎭' },
+				{
+					name: 'React',
+					icon: <ReactTechIcon />,
+				},
+				{
+					name: 'Next.js',
+					icon: <NextTechIcon />,
+				},
+				{
+					name: 'Vue.js',
+					icon: <VueTechIcon />,
+				},
+				{
+					name: 'JavaScript',
+					icon: <JavaScriptTechIcon />,
+				},
+				{
+					name: 'TypeScript',
+					icon: <TypeScriptTechIcon />,
+				},
+				{
+					name: 'TailwindCSS',
+					icon: <TailwindTechIcon />,
+				},
+				{
+					name: 'Framer Motion',
+					icon: <FramerTechIcon />,
+				},
+				{
+					name: 'Storybook',
+					icon: <StorybookTechIcon />,
+				},
+				{
+					name: 'MapLibre',
+					icon: <MaplibreTechIcon />,
+				},
+				{
+					name: 'Konva',
+					icon: <KonvaTechIcon />,
+				},
+				{
+					name: 'Livekit',
+					icon: <LivekitTechIcon />,
+				},
+				{
+					name: 'Shopify',
+					icon: <ShopifyTechIcon />,
+				},
+				{
+					name: 'Pagefly (Shopify)',
+					icon: <PageflyTechIcon />,
+				},
+				{
+					name: 'Liquid (Shopify)',
+					icon: <LiquidTechIcon />,
+				},
 			],
 		},
 		{
 			name: 'Backend',
 			skills: [
-				{ name: 'Node.js', level: 85, icon: '🟢' },
-				{ name: 'Express', level: 80, icon: '🚂' },
-				{ name: 'MongoDB', level: 75, icon: '🍃' },
-				{ name: 'SQL', level: 70, icon: '📊' },
-				{ name: 'Firebase', level: 80, icon: '🔥' },
-				{ name: 'GraphQL', level: 65, icon: '⬢' },
+				{
+					name: 'Node.js',
+					icon: <NodeTechIcon />,
+				},
+				{
+					name: 'Express.js',
+					icon: <ExpressTechIcon />,
+				},
+				{
+					name: 'MongoDB',
+					icon: <MongoTechIcon />,
+				},
+				{
+					name: 'SQL',
+					icon: <SQLTechIcon />,
+				},
+				{
+					name: 'Firebase',
+					icon: <FirebaseTechIcon />,
+				},
+				{
+					name: 'CMS Payload',
+					icon: <CMSPayloadTechIcon />,
+				},
+				{
+					name: 'GraphQL',
+					icon: <GraphQLTechIcon />,
+				},
 			],
 		},
 		{
 			name: 'DevOps & Tools',
 			skills: [
-				{ name: 'Git', level: 90, icon: '📝' },
-				{ name: 'Docker', level: 70, icon: '🐳' },
-				{ name: 'CI/CD', level: 75, icon: '🔄' },
-				{ name: 'AWS', level: 60, icon: '☁️' },
-				{ name: 'Vercel', level: 85, icon: '▲' },
+				{
+					name: 'Git',
+					icon: <GitTechIcon />,
+				},
+				{
+					name: 'Docker',
+					icon: <DockerTechIcon />,
+				},
+				{
+					name: 'CI/CD',
+					icon: <CICDTechIcon />,
+				},
+				{
+					name: 'AWS',
+					icon: <AWSTechIcon />,
+				},
+				{
+					name: 'Vercel',
+					icon: <VercelTechIcon />,
+				},
 			],
 		},
 	]
@@ -96,8 +210,8 @@ export default function TechKnowledgePage() {
 							Tech Knowledge
 						</h1>
 						<p className="text-xl text-gray-300 mb-8">
-							An overview of my technical skills, expertise, and proficiency in
-							various technologies.
+							An overview of my technical skills and expertise in various
+							technologies.
 						</p>
 					</motion.div>
 				</div>
@@ -126,76 +240,21 @@ export default function TechKnowledgePage() {
 									<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
 								</motion.h2>
 
-								<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+								<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 									{category.skills.map((skill, skillIndex) => (
 										<motion.div
 											key={skillIndex}
-											className="bg-gray-900 p-6 rounded-lg border border-gray-700"
+											className="bg-gray-900 p-6 rounded-lg border border-gray-700 flex flex-col items-center text-center hover:border-[var(--secondary)] transition-colors"
 											variants={skillVariants}
 											whileHover={{ y: -5, transition: { duration: 0.2 } }}
 										>
-											<div className="flex items-center justify-between mb-3">
-												<div className="flex items-center">
-													<span className="text-2xl mr-3">{skill.icon}</span>
-													<h3 className="text-xl font-semibold">
-														{skill.name}
-													</h3>
-												</div>
-												<span className="text-sm text-gray-400">
-													{skill.level}%
-												</span>
-											</div>
-
-											<div className="w-full bg-gray-700 rounded-full h-2.5">
-												<motion.div
-													className="h-2.5 rounded-full bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"
-													initial={{ width: 0 }}
-													animate={{ width: `${skill.level}%` }}
-													transition={{
-														duration: 1,
-														delay: 0.3 + skillIndex * 0.1,
-													}}
-												/>
-											</div>
+											<div className="mb-3">{skill.icon}</div>
+											<h3 className="text-lg font-semibold">{skill.name}</h3>
 										</motion.div>
 									))}
 								</div>
 							</div>
 						))}
-					</motion.div>
-
-					{/* Optional: Learning Journey */}
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						animate={
-							skillsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-						}
-						transition={{ duration: 0.6, delay: 0.6 }}
-						className="max-w-4xl mx-auto mt-20 p-8 bg-gray-900 rounded-lg border border-gray-700"
-					>
-						<h2 className="text-2xl font-bold mb-6 text-center">
-							Current Learning Journey
-						</h2>
-						<p className="text-gray-300 mb-6 text-center">
-							I'm always expanding my knowledge. Here's what I'm currently
-							focusing on:
-						</p>
-
-						<div className="flex flex-wrap justify-center gap-4">
-							{[
-								'AI & Machine Learning',
-								'Web3',
-								'Mobile App Development',
-								'UI/UX Design',
-							].map((item, index) => (
-								<span
-									key={index}
-									className="px-4 py-2 bg-gray-800 rounded-full text-gray-300 border border-gray-700"
-								>
-									{item}
-								</span>
-							))}
-						</div>
 					</motion.div>
 				</div>
 			</section>
