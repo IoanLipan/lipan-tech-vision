@@ -232,6 +232,22 @@ export default function ContactPage() {
 												d="M5 13l4 4L19 7"
 											/>
 										</svg>
+										Front-End Web Development
+									</li>
+									<li className="flex items-center">
+										<svg
+											className="h-5 w-5 mr-2 text-green-400"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+										>
+											<path
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												strokeWidth={2}
+												d="M5 13l4 4L19 7"
+											/>
+										</svg>
 										Technical Consulting
 									</li>
 									<li className="flex items-center">

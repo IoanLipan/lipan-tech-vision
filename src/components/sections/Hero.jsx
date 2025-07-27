@@ -61,10 +61,18 @@ const Hero = () => {
 					</motion.h1>
 
 					<motion.p
-						className="text-xl md:text-2xl text-gray-300 mb-8"
+						className="text-lg md:text-xl text-gray-300 mb-8"
 						variants={itemVariants}
 					>
 						Engineering the future through innovation and problem-solving
+					</motion.p>
+
+					<motion.p
+						className="text-xl md:text-2xl text-gray-300 mb-8"
+						variants={itemVariants}
+					>
+						I have <strong className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]">4+ years</strong> of working experience with international teams on
+						all kinds of projects.
 					</motion.p>
 
 					<motion.div className="flex flex-wrap gap-4" variants={itemVariants}>

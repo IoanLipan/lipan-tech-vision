@@ -43,19 +43,19 @@ const Expertise = () => {
 			),
 		},
 		{
-			title: 'Athletic Performance',
+			title: 'Performance',
 			description:
-				'Dedicated to physical excellence and pushing personal boundaries.',
+				'Dedicated to excellence and pushing technical boundaries.',
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					className="h-10 w-10"
 					viewBox="0 0 20 20"
-					fill="url(#athleteGradient)"
+					fill="url(#performanceGradient)"
 				>
 					<defs>
 						<linearGradient
-							id="athleteGradient"
+							id="performanceGradient"
 							x1="0%"
 							y1="0%"
 							x2="100%"
