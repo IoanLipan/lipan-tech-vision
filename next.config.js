@@ -1,6 +1,6 @@
-import type { NextConfig } from 'next'
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+	// Enable SVG imports as React components
 	webpack(config) {
 		config.module.rules.push({
 			test: /\.svg$/,
@@ -12,14 +12,12 @@ const nextConfig: NextConfig = {
 	// Image optimization
 	images: {
 		formats: ['image/webp', 'image/avif'],
-		deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-		imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
 	},
 
-	// Performance optimizations
-	experimental: {
-		optimizeCss: true,
-	},
+	// Remove experimental optimizeCss as it may cause issues
+	// experimental: {
+	//   optimizeCss: true,
+	// },
 
 	// Security headers
 	async headers() {
@@ -43,17 +41,6 @@ const nextConfig: NextConfig = {
 			},
 		]
 	},
-
-	// Redirects for SEO
-	async redirects() {
-		return [
-			{
-				source: '/home',
-				destination: '/',
-				permanent: true,
-			},
-		]
-	},
 }
 
-export default nextConfig
+module.exports = nextConfig
