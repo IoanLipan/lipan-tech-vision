@@ -20,7 +20,7 @@ export const projects = [
 		technologies: ['Shopify', 'Liquid', 'PageFly'],
 		category: 'E-commerce',
 		image: '/images/projects/comarom.webp',
-		url: '#',
+		url: 'https://www.comaromtrade.ro/',
 		freelance: true,
 	},
 	{
@@ -44,7 +44,7 @@ export const projects = [
 		technologies: ['React', 'TailwindCSS', 'Vercel'],
 		category: 'Web Development',
 		image: '/images/projects/calculator_srl.webp',
-		url: '#',
+		url: 'https://www.calculator-srl.com/',
 		freelance: true,
 	},
 	{
@@ -76,7 +76,7 @@ export const projects = [
 		technologies: ['Vue.js', 'TailwindCSS', 'AWS S3', 'Docker'],
 		category: 'Web Development',
 		image: '/images/projects/nolas.webp',
-		url: '#',
+		url: 'https://www.nolasworkspace.com/',
 		workRelated: true,
 	},
 	{
