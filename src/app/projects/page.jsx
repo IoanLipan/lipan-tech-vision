@@ -45,6 +45,31 @@ export default function ProjectsPage() {
 		}
 	}, [activeCategory])
 
+	// Preload images on component mount
+	useEffect(() => {
+		// Preload the first 6 project images for faster initial loading
+		const imagesToPreload = projects.slice(0, 6)
+		imagesToPreload.forEach((project) => {
+			const link = document.createElement('link')
+			link.rel = 'preload'
+			link.as = 'image'
+			link.href = project.image
+			document.head.appendChild(link)
+		})
+
+		// Cleanup function to remove preload links
+		return () => {
+			const preloadLinks = document.querySelectorAll(
+				'link[rel="preload"][as="image"]'
+			)
+			preloadLinks.forEach((link) => {
+				if (imagesToPreload.some((project) => project.image === link.href)) {
+					document.head.removeChild(link)
+				}
+			})
+		}
+	}, [])
+
 	// Animation variants
 	const containerVariants = {
 		hidden: { opacity: 0 },
@@ -160,7 +185,7 @@ export default function ProjectsPage() {
 						initial="hidden"
 						animate={projectsInView ? 'visible' : 'hidden'}
 					>
-						{filteredProjects.map((project) => (
+						{filteredProjects.map((project, index) => (
 							<motion.div
 								key={project.id}
 								className="bg-secondary rounded-lg overflow-hidden border border-primary hover:border-[var(--secondary)] transition-all group cursor-pointer"
@@ -175,6 +200,15 @@ export default function ProjectsPage() {
 										width={400}
 										height={225}
 										className="object-cover w-full h-full transition-transform group-hover:scale-105"
+										// Prioritize loading for first 6 images
+										priority={index < 6}
+										// Add responsive sizes for better performance
+										sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+										// Enable eager loading for above-the-fold images
+										loading={index < 6 ? 'eager' : 'lazy'}
+										// Add placeholder for better UX
+										placeholder="blur"
+										blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
 									/>
 									<div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/20 to-[var(--secondary)]/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
 								</div>
