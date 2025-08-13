@@ -1,7 +1,7 @@
 export const projects = [
 	{
 		id: 1,
-		title: 'Dustbusters',
+		title: 'GPS Car Tracking App',
 		description: 'Professional cleaning service management platform',
 		descriptionExpanded:
 			'A comprehensive cleaning service management platform built with React and MapLibre for interactive location mapping. Features include real-time scheduling, route optimization for cleaning teams, customer management with service history, and automated billing. Implemented Docker containerization for consistent deployment across environments and used TailwindCSS for responsive design.',
@@ -25,7 +25,7 @@ export const projects = [
 	},
 	{
 		id: 3,
-		title: 'EcoSteel',
+		title: 'MetalFrameHouses',
 		description: 'Sustainable steel construction company website',
 		descriptionExpanded:
 			'Modern corporate website for sustainable steel construction company built with React and Payload CMS for content management. Features include project portfolio showcase, real-time project tracking for clients, environmental impact calculator, and automated quote generation. Deployed on Vercel with Docker containerization for scalable performance.',
@@ -69,14 +69,14 @@ export const projects = [
 	},
 	{
 		id: 6,
-		title: 'Nolas',
+		title: 'Post&Mail App',
 		description: 'Document management and storage platform',
 		descriptionExpanded:
 			'Comprehensive document management platform built with Vue.js for efficient file organization and sharing. Integrated AWS S3 for secure cloud storage with automated backup systems. Features include document versioning, access control, search functionality, and collaboration tools. Dockerized for consistent deployment and scalability.',
 		technologies: ['Vue.js', 'TailwindCSS', 'AWS S3', 'Docker'],
 		category: 'Web Development',
 		image: '/images/projects/nolas.webp',
-		url: 'https://www.nolasworkspace.com/',
+		url: '#',
 		workRelated: true,
 	},
 	{
