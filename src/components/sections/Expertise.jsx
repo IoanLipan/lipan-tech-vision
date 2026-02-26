@@ -44,8 +44,7 @@ const Expertise = () => {
 		},
 		{
 			title: 'Performance',
-			description:
-				'Dedicated to excellence and pushing technical boundaries.',
+			description: 'Dedicated to excellence and pushing technical boundaries.',
 			icon: (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -212,21 +211,22 @@ const Expertise = () => {
 	}
 
 	return (
-		<section ref={ref} className="py-20 bg-secondary">
-			<div className="container mx-auto px-4">
+		<section ref={ref} className="py-20 lg:py-28 bg-secondary">
+			<div className="container mx-auto px-4 lg:px-8">
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
 					transition={{ duration: 0.6 }}
+					className="mb-14"
 				>
-					<h2 className="text-3xl font-bold mb-12 relative inline-block">
-						My Expertise
-						<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
+					<h2 className="text-3xl lg:text-5xl xl:text-6xl font-black leading-tight">
+						<span className="font-light text-muted">My </span>
+						<span style={{ color: 'var(--secondary)' }}>Expertise</span>
 					</h2>
 				</motion.div>
 
 				<motion.div
-					className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+					className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
 					variants={containerVariants}
 					initial="hidden"
 					animate={inView ? 'visible' : 'hidden'}
@@ -234,9 +234,9 @@ const Expertise = () => {
 					{expertiseAreas.map((expertise, index) => (
 						<motion.div
 							key={index}
-							className="expertise-card glass p-6 rounded-lg border border-primary hover:border-[var(--secondary)] transform hover:-translate-y-2 transition-all relative overflow-hidden"
+							className="expertise-card glass p-7 lg:p-8 rounded-xl border border-primary hover:border-[var(--secondary)] transform hover:-translate-y-2 transition-all relative overflow-hidden"
 							variants={itemVariants}
-							whileHover={{ scale: 1.03 }}
+							whileHover={{ scale: 1.02 }}
 							transition={{ type: 'spring', stiffness: 30 }}
 							onMouseMove={(e) => {
 								const rect = e.currentTarget.getBoundingClientRect()
@@ -246,11 +246,24 @@ const Expertise = () => {
 								e.currentTarget.style.setProperty('--mouse-y', `${y}px`)
 							}}
 						>
-							{/* Spotlight glow that follows cursor */}
+							{/* Spotlight glow */}
 							<div className="card-spotlight" />
-							<div className="mb-4">{expertise.icon}</div>
-							<h3 className="text-xl font-semibold mb-2">{expertise.title}</h3>
-							<p className="text-secondary">{expertise.description}</p>
+
+							{/* Large decorative index number */}
+							<span
+								className="absolute top-4 right-5 text-7xl font-black leading-none select-none pointer-events-none"
+								style={{ color: 'var(--border-secondary)', opacity: 0.6 }}
+							>
+								{String(index + 1).padStart(2, '0')}
+							</span>
+
+							<div className="mb-5">{expertise.icon}</div>
+							<h3 className="text-xl lg:text-2xl font-bold mb-2">
+								{expertise.title}
+							</h3>
+							<p className="text-secondary text-sm lg:text-base leading-relaxed">
+								{expertise.description}
+							</p>
 						</motion.div>
 					))}
 				</motion.div>

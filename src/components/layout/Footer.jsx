@@ -79,8 +79,9 @@ const Footer = () => {
 										className="object-contain"
 									/>
 								</div>
-								<span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]">
-									Lipan Tech Vision
+								<span className="text-lg font-black">
+									<span style={{ color: 'var(--primary)' }}>Lipan</span>{' '}
+									<span className="text-gradient">Tech Vision</span>
 								</span>
 							</div>
 						</Link>

@@ -161,10 +161,10 @@ export default function ProjectsPage() {
 							<motion.button
 								key={category}
 								onClick={() => setActiveCategory(category)}
-								className={`px-6 py-2 rounded-full transition-all ${
+								className={`px-5 py-1.5 rounded-full border font-bold uppercase tracking-widest text-xs transition-all ${
 									activeCategory === category
-										? 'bg-gradient text-primary'
-										: 'bg-tertiary text-secondary hover:bg-[var(--bg-tertiary)]'
+										? 'border-[var(--secondary)] bg-[var(--secondary)]/10 text-[var(--secondary)]'
+										: 'border-primary text-muted hover:border-[var(--secondary)] hover:text-[var(--secondary)]'
 								}`}
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}

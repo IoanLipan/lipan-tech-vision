@@ -237,11 +237,11 @@ export default function TechKnowledgePage() {
 						{categories.map((category, categoryIndex) => (
 							<div key={categoryIndex} className="space-y-6">
 								<motion.h2
-									className="text-2xl font-bold relative inline-block"
+									className="text-2xl font-bold"
+									style={{ color: 'var(--secondary)' }}
 									variants={skillVariants}
 								>
 									{category.name}
-									<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
 								</motion.h2>
 
 								<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

@@ -135,7 +135,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 										href={project.url}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-gradient text-white font-medium hover:opacity-90 transition-opacity"
+										className="inline-flex items-center justify-center px-6 py-3 rounded-sm border-2 border-[var(--secondary)] bg-transparent text-[var(--secondary)] font-bold uppercase tracking-widest text-xs hover:bg-[var(--secondary)] hover:text-[var(--bg-primary)] transition-all duration-200"
 									>
 										Visit Project
 										<svg

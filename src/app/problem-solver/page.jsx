@@ -141,10 +141,9 @@ export default function ProblemSolverPage() {
 						transition={{ duration: 0.6 }}
 						className="max-w-4xl mx-auto mb-12"
 					>
-						<h2 className="text-3xl font-bold relative inline-block">
-							My Problem-Solving Methodology
-							<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
-						</h2>
+						<h2 className="text-3xl font-bold">
+							<span className="font-light text-muted">My </span><span style={{ color: 'var(--secondary)' }}>Problem-Solving Methodology</span>
+							</h2>
 					</motion.div>
 
 					<div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -185,10 +184,9 @@ export default function ProblemSolverPage() {
 						transition={{ duration: 0.6 }}
 						className="max-w-4xl mx-auto mb-12"
 					>
-						<h2 className="text-3xl font-bold relative inline-block">
-							Case Studies
-							<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
-						</h2>
+						<h2 className="text-3xl font-bold">
+							<span className="font-light text-muted">Case </span><span style={{ color: 'var(--secondary)' }}>Studies</span>
+							</h2>
 					</motion.div>
 
 					<div className="max-w-4xl mx-auto space-y-12">

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Inter, Space_Grotesk } from 'next/font/google'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Script from 'next/script'
@@ -8,6 +8,11 @@ import { ThemeProvider } from '@/context/ThemeContext'
 import ScrollProgress from '@/components/ui/ScrollProgress'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const spaceGrotesk = Space_Grotesk({
+	subsets: ['latin'],
+	variable: '--font-display',
+	weight: ['300', '400', '500', '600', '700'],
+})
 
 export const metadata = {
 	title: 'Ioan Lipan - Full Stack Developer & Engineer',
@@ -17,7 +22,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
-		<html lang="en" className={`${inter.variable} scroll-smooth`}>
+		<html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} scroll-smooth`}>
 			<head>
 				{/* Google Analytics - Simple Setup */}
 				{process.env.NEXT_PUBLIC_GA_ID && (

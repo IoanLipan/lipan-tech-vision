@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
 const stats = [
-	{ value: 4, suffix: '+', label: 'Years Experience' },
+	{ value: 5, suffix: '+', label: 'Years Experience' },
 	{ value: 18, suffix: '+', label: 'Projects Built' },
 	{ value: 24, suffix: '+', label: 'Technologies' },
 	{ value: 3, suffix: '', label: 'Continents Worked' },
@@ -50,10 +50,10 @@ export default function Stats() {
 	const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 })
 
 	return (
-		<section ref={ref} className="py-16 bg-secondary border-y border-primary">
-			<div className="container mx-auto px-4">
+		<section ref={ref} className="py-16 lg:py-24 bg-secondary border-y border-primary">
+			<div className="container mx-auto px-4 lg:px-8">
 				<motion.div
-					className="grid grid-cols-2 md:grid-cols-4 gap-8"
+					className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-0 divide-x-0 md:divide-x md:divide-[var(--border-primary)]"
 					initial={{ opacity: 0, y: 20 }}
 					animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
 					transition={{ duration: 0.6 }}
@@ -61,25 +61,25 @@ export default function Stats() {
 					{stats.map((stat, index) => (
 						<motion.div
 							key={stat.label}
-							className="text-center"
+							className="text-center px-4 lg:px-8"
 							initial={{ opacity: 0, y: 20 }}
 							animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-							transition={{ duration: 0.5, delay: index * 0.1 }}
+							transition={{ duration: 0.5, delay: index * 0.12 }}
 						>
-							<div className="text-4xl md:text-5xl font-bold text-gradient mb-2">
+							{/* Big number */}
+							<div
+								className="font-black text-gradient leading-none mb-3"
+								style={{ fontSize: 'clamp(3rem, 6vw, 6rem)' }}
+							>
 								<AnimatedCounter
 									target={stat.value}
 									suffix={stat.suffix}
 									isVisible={inView}
 								/>
 							</div>
-							<p className="text-muted text-sm uppercase tracking-widest font-medium">
+							<p className="text-muted text-xs lg:text-sm uppercase tracking-[0.2em] font-semibold">
 								{stat.label}
 							</p>
-							{/* Separator line except last */}
-							{index < stats.length - 1 && (
-								<div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px bg-[var(--border-primary)]" />
-							)}
 						</motion.div>
 					))}
 				</motion.div>

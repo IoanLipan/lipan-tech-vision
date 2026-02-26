@@ -60,9 +60,9 @@ const ContactSection = () => {
 					animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
 					transition={{ duration: 0.6 }}
 				>
-					<h2 className="text-3xl font-bold mb-12 relative inline-block">
-						Get In Touch
-						<span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]"></span>
+					<h2 className="text-3xl lg:text-5xl xl:text-6xl font-black mb-14 leading-tight">
+						<span className="font-light text-muted">Get In </span>
+						<span style={{ color: 'var(--secondary)' }}>Touch</span>
 					</h2>
 				</motion.div>
 
@@ -84,7 +84,8 @@ const ContactSection = () => {
 							<div className="flex items-start space-x-4">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									className="h-6 w-6 text-[var(--primary)]"
+									className="h-6 w-6"
+									style={{ color: "var(--secondary)" }}
 									fill="none"
 									viewBox="0 0 24 24"
 									stroke="currentColor"
@@ -100,7 +101,7 @@ const ContactSection = () => {
 									<h4 className="font-medium">Email</h4>
 									<a
 										href="mailto:ioanlipan1@gmail.com"
-										className="text-muted hover:text-[var(--primary)] transition-colors"
+										className="text-muted hover:text-[var(--secondary)] transition-colors"
 									>
 										ioanlipan1@gmail.com
 									</a>
@@ -110,7 +111,8 @@ const ContactSection = () => {
 							<div className="flex items-start space-x-4">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									className="h-6 w-6 text-[var(--secondary)]"
+									className="h-6 w-6"
+									style={{ color: "var(--secondary)" }}
 									fill="none"
 									viewBox="0 0 24 24"
 									stroke="currentColor"
@@ -137,7 +139,8 @@ const ContactSection = () => {
 							<div className="flex items-start space-x-4">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									className="h-6 w-6 text-[var(--primary)]"
+									className="h-6 w-6"
+									style={{ color: "#0072b1" }}
 									fill="currentColor"
 									viewBox="0 0 24 24"
 								>
@@ -149,7 +152,7 @@ const ContactSection = () => {
 										href="https://linkedin.com/in/lipan-ioan"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-muted hover:text-[var(--primary)] transition-colors"
+										className="text-muted hover:text-[var(--secondary)] transition-colors"
 									>
 										linkedin.com/in/lipan-ioan
 									</a>
@@ -198,7 +201,7 @@ const ContactSection = () => {
 										name="name"
 										value={formData.name}
 										onChange={handleChange}
-										className="w-full bg-secondary border border-primary rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors"
+										className="w-full bg-secondary border border-primary rounded-md py-3 px-4 text-[var(--secondary)] placeholder:text-[var(--secondary)] placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors"
 										placeholder="Your name"
 										required
 									/>
@@ -216,7 +219,7 @@ const ContactSection = () => {
 										name="email"
 										value={formData.email}
 										onChange={handleChange}
-										className="w-full bg-secondary border border-primary rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors"
+										className="w-full bg-secondary border border-primary rounded-md py-3 px-4 text-[var(--secondary)] placeholder:text-[var(--secondary)] placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors"
 										placeholder="your.email@example.com"
 										required
 									/>
@@ -236,7 +239,7 @@ const ContactSection = () => {
 									name="subject"
 									value={formData.subject}
 									onChange={handleChange}
-									className="w-full bg-secondary border border-primary rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors"
+									className="w-full bg-secondary border border-primary rounded-md py-3 px-4 text-[var(--secondary)] placeholder:text-[var(--secondary)] placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors"
 									placeholder="What's this about?"
 									required
 								/>
@@ -255,7 +258,7 @@ const ContactSection = () => {
 									rows={5}
 									value={formData.message}
 									onChange={handleChange}
-									className="w-full bg-secondary border border-primary rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors resize-vertical"
+									className="w-full bg-secondary border border-primary rounded-md py-3 px-4 text-[var(--secondary)] placeholder:text-[var(--secondary)] placeholder:opacity-50 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors resize-vertical"
 									placeholder="Tell me about your project or just say hello!"
 									required
 								></textarea>
@@ -263,7 +266,7 @@ const ContactSection = () => {
 
 							<motion.button
 								type="submit"
-								className="px-8 py-3 rounded-md bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)] text-white font-medium hover:opacity-90 transition-opacity w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+								className="px-8 py-3 rounded-sm border-2 border-[var(--secondary)] bg-[var(--secondary)] text-[var(--bg-primary)] font-bold uppercase tracking-widest text-sm hover:bg-transparent hover:text-[var(--secondary)] transition-all duration-200 w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
 								whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
 								whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
 								disabled={isSubmitting}

@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import '../styles/themes.css';
 
+/* Display font for all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display, var(--font-inter, sans-serif));
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -11,7 +16,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gradient);
+  background: var(--secondary);
   border-radius: 5px;
 }
 
@@ -181,10 +186,10 @@ body {
 .dot-grid-bg {
   background-image: radial-gradient(
     circle,
-    color-mix(in srgb, var(--text-muted) 25%, transparent) 1px,
-    transparent 1px
+    color-mix(in srgb, var(--text-muted) 55%, transparent) 2px,
+    transparent 2px
   );
-  background-size: 28px 28px;
+  background-size: 36px 36px;
 }
 
 /* ===========================
@@ -254,4 +259,17 @@ body {
 
 .animate-count-up {
   animation: count-up 0.4s ease-out forwards;
+}
+
+/* ===========================
+   Tech ticker marquee
+   =========================== */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker 30s linear infinite;
+  width: max-content;
 }

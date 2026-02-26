@@ -2,7 +2,7 @@ export const projects = [
 	{
 		id: 1,
 		title: 'GPS Car Tracking App',
-		description: 'Professional cleaning service management platform',
+		description: 'Professional street cleaning service management platform',
 		descriptionExpanded:
 			'A comprehensive cleaning service management platform built with React and MapLibre for interactive location mapping. Features include real-time scheduling, route optimization for cleaning teams, customer management with service history, and automated billing. Implemented Docker containerization for consistent deployment across environments and used TailwindCSS for responsive design.',
 		technologies: ['React', 'MapLibre', 'TailwindCSS', 'Docker'],
@@ -228,6 +228,8 @@ export const getFeaturedProjects = () => {
 		projects.find((p) => p.id === 1),
 		projects.find((p) => p.id === 2),
 		projects.find((p) => p.id === 3),
+		projects.find((p) => p.id === 4),
+		projects.find((p) => p.id === 5),
 	]
 }
 

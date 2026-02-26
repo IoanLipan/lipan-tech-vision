@@ -399,7 +399,7 @@ export default function ContactPage() {
 
 								<motion.button
 									type="submit"
-									className="px-8 py-3 rounded-md bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)] text-white font-medium hover:opacity-90 transition-opacity w-full disabled:opacity-50 disabled:cursor-not-allowed"
+									className="px-8 py-3 rounded-sm border-2 border-[var(--secondary)] bg-[var(--secondary)] text-[var(--bg-primary)] font-bold uppercase tracking-widest text-sm hover:bg-transparent hover:text-[var(--secondary)] transition-all duration-200 w-full disabled:opacity-50 disabled:cursor-not-allowed"
 									whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
 									whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
 									disabled={isSubmitting}
@@ -476,18 +476,12 @@ export default function ContactPage() {
 						transition={{ duration: 0.6, delay: 0.6 }}
 					>
 						<Link href="/">
-							<div className="inline-flex items-center text-[var(--primary)] hover:text-[#7FEAEF] transition-colors">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									className="h-5 w-5 mr-2"
-									viewBox="0 0 20 20"
-									fill="currentColor"
-								>
-									<path
-										fillRule="evenodd"
-										d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-										clipRule="evenodd"
-									/>
+							<div
+								className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest transition-colors"
+								style={{ color: "var(--secondary)" }}
+							>
+								<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+									<path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
 								</svg>
 								Back to Home
 							</div>
