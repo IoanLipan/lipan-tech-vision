@@ -151,3 +151,107 @@ body {
   border-radius: inherit;
   background: var(--gradient);
 }
+
+/* ===========================
+   Glassmorphism card
+   =========================== */
+.glass {
+  background: color-mix(in srgb, var(--bg-secondary) 80%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--border-secondary) 60%, transparent);
+}
+
+/* ===========================
+   Glow utilities
+   =========================== */
+.glow-primary {
+  box-shadow: 0 0 20px color-mix(in srgb, var(--primary) 40%, transparent),
+              0 0 40px color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 20px color-mix(in srgb, var(--secondary) 40%, transparent),
+              0 0 40px color-mix(in srgb, var(--secondary) 20%, transparent);
+}
+
+/* ===========================
+   Dot-grid background
+   =========================== */
+.dot-grid-bg {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--text-muted) 25%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* ===========================
+   Expertise card cursor spotlight
+   =========================== */
+.expertise-card {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+
+.expertise-card .card-spotlight {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(
+    320px circle at var(--mouse-x) var(--mouse-y),
+    color-mix(in srgb, var(--secondary) 12%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.expertise-card:hover .card-spotlight {
+  opacity: 1;
+}
+
+.expertise-card > *:not(.card-spotlight) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===========================
+   Keyframe animations
+   =========================== */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--primary) 30%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, #22c55e 50%, transparent); }
+  50% { box-shadow: 0 0 0 6px color-mix(in srgb, #22c55e 0%, transparent); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-count-up {
+  animation: count-up 0.4s ease-out forwards;
+}
