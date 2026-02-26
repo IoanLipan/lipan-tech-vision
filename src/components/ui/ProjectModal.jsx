@@ -152,7 +152,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 										</svg>
 									</a>
 								) : (
-									<div className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-gray-700 text-gray-300 font-medium">
+									<div className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-tertiary text-secondary font-medium">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											className="h-5 w-5 mr-2"

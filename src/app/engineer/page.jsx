@@ -109,11 +109,11 @@ export default function EngineerPage() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gray-900">
+		<div className="min-h-screen bg-primary">
 			{/* Hero Section */}
 			<section
 				ref={headerRef}
-				className="py-20 bg-gray-900 relative overflow-hidden"
+				className="py-20 bg-primary relative overflow-hidden"
 			>
 				<div className="container mx-auto px-4">
 					<motion.div
@@ -127,7 +127,7 @@ export default function EngineerPage() {
 						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]">
 							Academic Journey
 						</h1>
-						<p className="text-xl text-gray-300 mb-8">
+						<p className="text-xl text-secondary mb-8">
 							My educational path that shaped my engineering mindset and
 							technical expertise.
 						</p>
@@ -140,7 +140,7 @@ export default function EngineerPage() {
 			</section>
 
 			{/* Academic Timeline */}
-			<section ref={timelineRef} className="py-20 bg-gray-800">
+			<section ref={timelineRef} className="py-20 bg-secondary">
 				<div className="container mx-auto px-4">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
@@ -175,12 +175,12 @@ export default function EngineerPage() {
 										className="relative flex items-start"
 									>
 										{/* Icon */}
-										<div className="absolute left-0 flex items-center justify-center w-16 h-16 bg-gray-900 border-4 border-[var(--secondary)] rounded-full text-[var(--primary)]">
+										<div className="absolute left-0 flex items-center justify-center w-16 h-16 bg-primary border-4 border-[var(--secondary)] rounded-full text-[var(--primary)]">
 											{item.icon}
 										</div>
 
 										{/* Content */}
-										<div className="ml-24 bg-gray-900 p-6 rounded-lg border border-gray-700 hover:border-[var(--secondary)] transition-all w-full">
+										<div className="ml-24 bg-primary p-6 rounded-lg border border-primary hover:border-[var(--secondary)] transition-all w-full">
 											<div className="flex flex-wrap items-center justify-between mb-3">
 												<h3 className="text-xl font-bold text-white">
 													{item.title}
@@ -194,7 +194,7 @@ export default function EngineerPage() {
 												{item.institution}
 											</h4>
 
-											<p className="text-gray-300 leading-relaxed">
+											<p className="text-secondary leading-relaxed">
 												{item.description}
 											</p>
 										</div>
@@ -207,7 +207,7 @@ export default function EngineerPage() {
 			</section>
 
 			{/* Engineering Principles */}
-			<section ref={principlesRef} className="py-20 bg-gray-900">
+			<section ref={principlesRef} className="py-20 bg-primary">
 				<div className="container mx-auto px-4">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
@@ -234,12 +234,12 @@ export default function EngineerPage() {
 										: { opacity: 0, y: 20 }
 								}
 								transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-								className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-[var(--secondary)] transition-all"
+								className="bg-secondary p-6 rounded-lg border border-primary hover:border-[var(--secondary)] transition-all"
 								whileHover={{ y: -5, transition: { duration: 0.2 } }}
 							>
 								<div className="text-3xl mb-4">{principle.icon}</div>
 								<h3 className="text-xl font-bold mb-2">{principle.title}</h3>
-								<p className="text-gray-400">{principle.description}</p>
+								<p className="text-muted">{principle.description}</p>
 							</motion.div>
 						))}
 					</div>
@@ -247,7 +247,7 @@ export default function EngineerPage() {
 			</section>
 
 			{/* Back To Home Button */}
-			<section className="py-12 bg-gray-900">
+			<section className="py-12 bg-primary">
 				<div className="container mx-auto px-4 text-center">
 					<motion.div
 						initial={{ opacity: 0 }}

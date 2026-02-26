@@ -195,11 +195,11 @@ export default function TechKnowledgePage() {
 	})
 
 	return (
-		<div className="min-h-screen bg-gray-900">
+		<div className="min-h-screen bg-primary">
 			{/* Hero Section */}
 			<section
 				ref={headerRef}
-				className="py-20 bg-gray-900 relative overflow-hidden"
+				className="py-20 bg-primary relative overflow-hidden"
 			>
 				<div className="container mx-auto px-4">
 					<motion.div
@@ -213,7 +213,7 @@ export default function TechKnowledgePage() {
 						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]">
 							Tech Knowledge
 						</h1>
-						<p className="text-xl text-gray-300 mb-8">
+						<p className="text-xl text-secondary mb-8">
 							An overview of my technical skills and expertise in various
 							technologies.
 						</p>
@@ -226,7 +226,7 @@ export default function TechKnowledgePage() {
 			</section>
 
 			{/* Skills Section */}
-			<section ref={skillsRef} className="py-20 bg-gray-800">
+			<section ref={skillsRef} className="py-20 bg-secondary">
 				<div className="container mx-auto px-4">
 					<motion.div
 						variants={containerVariants}
@@ -248,7 +248,7 @@ export default function TechKnowledgePage() {
 									{category.skills.map((skill, skillIndex) => (
 										<motion.div
 											key={skillIndex}
-											className="bg-gray-900 p-6 rounded-lg border border-gray-700 flex flex-col items-center text-center hover:border-[var(--secondary)] transition-colors"
+											className="bg-primary p-6 rounded-lg border border-primary flex flex-col items-center text-center hover:border-[var(--secondary)] transition-colors"
 											variants={skillVariants}
 											whileHover={{ y: -5, transition: { duration: 0.2 } }}
 										>
@@ -264,7 +264,7 @@ export default function TechKnowledgePage() {
 			</section>
 
 			{/* Back To Home Button */}
-			<section className="py-12 bg-gray-900">
+			<section className="py-12 bg-primary">
 				<div className="container mx-auto px-4 text-center">
 					<motion.div
 						initial={{ opacity: 0 }}

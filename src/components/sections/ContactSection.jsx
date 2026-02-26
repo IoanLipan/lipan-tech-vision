@@ -53,7 +53,7 @@ const ContactSection = () => {
 	}
 
 	return (
-		<section ref={ref} className="py-20 bg-gray-900">
+		<section ref={ref} className="py-20 bg-primary">
 			<div className="container mx-auto px-4">
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
@@ -74,7 +74,7 @@ const ContactSection = () => {
 				>
 					<motion.div variants={itemVariants}>
 						<h3 className="text-2xl font-semibold mb-6">Let's Talk</h3>
-						<p className="text-gray-300 mb-8">
+						<p className="text-secondary mb-8">
 							Have a project in mind or want to discuss collaboration
 							opportunities? Fill out the form and I'll get back to you as soon
 							as possible.
@@ -100,7 +100,7 @@ const ContactSection = () => {
 									<h4 className="font-medium">Email</h4>
 									<a
 										href="mailto:ioanlipan1@gmail.com"
-										className="text-gray-400 hover:text-[var(--primary)] transition-colors"
+										className="text-muted hover:text-[var(--primary)] transition-colors"
 									>
 										ioanlipan1@gmail.com
 									</a>
@@ -130,7 +130,7 @@ const ContactSection = () => {
 								</svg>
 								<div>
 									<h4 className="font-medium">Location</h4>
-									<p className="text-gray-400">Bucharest, Romania</p>
+									<p className="text-muted">Bucharest, Romania</p>
 								</div>
 							</div>
 
@@ -149,7 +149,7 @@ const ContactSection = () => {
 										href="https://linkedin.com/in/lipan-ioan"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-gray-400 hover:text-[var(--primary)] transition-colors"
+										className="text-muted hover:text-[var(--primary)] transition-colors"
 									>
 										linkedin.com/in/lipan-ioan
 									</a>
@@ -188,7 +188,7 @@ const ContactSection = () => {
 								<div>
 									<label
 										htmlFor="name"
-										className="block text-sm font-medium text-gray-300 mb-1"
+										className="block text-sm font-medium text-secondary mb-1"
 									>
 										Name *
 									</label>
@@ -198,7 +198,7 @@ const ContactSection = () => {
 										name="name"
 										value={formData.name}
 										onChange={handleChange}
-										className="w-full bg-gray-800 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors"
+										className="w-full bg-secondary border border-primary rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors"
 										placeholder="Your name"
 										required
 									/>
@@ -206,7 +206,7 @@ const ContactSection = () => {
 								<div>
 									<label
 										htmlFor="email"
-										className="block text-sm font-medium text-gray-300 mb-1"
+										className="block text-sm font-medium text-secondary mb-1"
 									>
 										Email *
 									</label>
@@ -216,7 +216,7 @@ const ContactSection = () => {
 										name="email"
 										value={formData.email}
 										onChange={handleChange}
-										className="w-full bg-gray-800 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors"
+										className="w-full bg-secondary border border-primary rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors"
 										placeholder="your.email@example.com"
 										required
 									/>
@@ -226,7 +226,7 @@ const ContactSection = () => {
 							<div>
 								<label
 									htmlFor="subject"
-									className="block text-sm font-medium text-gray-300 mb-1"
+									className="block text-sm font-medium text-secondary mb-1"
 								>
 									Subject *
 								</label>
@@ -236,7 +236,7 @@ const ContactSection = () => {
 									name="subject"
 									value={formData.subject}
 									onChange={handleChange}
-									className="w-full bg-gray-800 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors"
+									className="w-full bg-secondary border border-primary rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors"
 									placeholder="What's this about?"
 									required
 								/>
@@ -245,7 +245,7 @@ const ContactSection = () => {
 							<div>
 								<label
 									htmlFor="message"
-									className="block text-sm font-medium text-gray-300 mb-1"
+									className="block text-sm font-medium text-secondary mb-1"
 								>
 									Message *
 								</label>
@@ -255,7 +255,7 @@ const ContactSection = () => {
 									rows={5}
 									value={formData.message}
 									onChange={handleChange}
-									className="w-full bg-gray-800 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors resize-vertical"
+									className="w-full bg-secondary border border-primary rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors resize-vertical"
 									placeholder="Tell me about your project or just say hello!"
 									required
 								></textarea>

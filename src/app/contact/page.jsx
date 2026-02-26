@@ -104,11 +104,11 @@ export default function ContactPage() {
 	})
 
 	return (
-		<div className="min-h-screen bg-gray-900">
+		<div className="min-h-screen bg-primary">
 			{/* Hero Section */}
 			<section
 				ref={headerRef}
-				className="py-20 bg-gray-900 relative overflow-hidden"
+				className="py-20 bg-primary relative overflow-hidden"
 			>
 				<div className="container mx-auto px-4">
 					<motion.div
@@ -122,7 +122,7 @@ export default function ContactPage() {
 						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]">
 							Get In Touch
 						</h1>
-						<p className="text-xl text-gray-300 mb-8">
+						<p className="text-xl text-secondary mb-8">
 							Have a project in mind or want to discuss collaboration
 							opportunities? I'd love to hear from you.
 						</p>
@@ -135,7 +135,7 @@ export default function ContactPage() {
 			</section>
 
 			{/* Contact Form and Info */}
-			<section ref={formRef} className="py-20 bg-gray-800">
+			<section ref={formRef} className="py-20 bg-secondary">
 				<div className="container mx-auto px-4">
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
 						{/* Info Column */}
@@ -147,7 +147,7 @@ export default function ContactPage() {
 							transition={{ duration: 0.6 }}
 						>
 							<h2 className="text-3xl font-bold mb-8">Let's Connect</h2>
-							<p className="text-gray-300 mb-12">
+							<p className="text-secondary mb-12">
 								Whether you have a question about my services, want to discuss a
 								potential project, or just want to say hello, I'm here to help.
 								Fill out the form and I'll get back to you as soon as possible.
@@ -170,7 +170,7 @@ export default function ContactPage() {
 											{method.href ? (
 												<a
 													href={method.href}
-													className="text-gray-400 hover:text-[var(--primary)] transition-colors"
+													className="text-muted hover:text-[var(--primary)] transition-colors"
 													target={
 														method.href.startsWith('http')
 															? '_blank'
@@ -185,7 +185,7 @@ export default function ContactPage() {
 													{method.value}
 												</a>
 											) : (
-												<p className="text-gray-400">{method.value}</p>
+												<p className="text-muted">{method.value}</p>
 											)}
 										</div>
 									</motion.div>
@@ -198,10 +198,10 @@ export default function ContactPage() {
 									formInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
 								}
 								transition={{ duration: 0.5, delay: 0.8 }}
-								className="mt-12 p-6 bg-gray-900 rounded-lg border border-gray-700"
+								className="mt-12 p-6 bg-primary rounded-lg border border-primary"
 							>
 								<h4 className="font-bold mb-2">Available for:</h4>
-								<ul className="space-y-2 text-gray-300">
+								<ul className="space-y-2 text-secondary">
 									<li className="flex items-center">
 										<svg
 											className="h-5 w-5 mr-2 text-green-400"
@@ -323,7 +323,7 @@ export default function ContactPage() {
 									<div>
 										<label
 											htmlFor="name"
-											className="block text-sm font-medium text-gray-300 mb-1"
+											className="block text-sm font-medium text-secondary mb-1"
 										>
 											Name *
 										</label>
@@ -333,7 +333,7 @@ export default function ContactPage() {
 											name="name"
 											value={formData.name}
 											onChange={handleChange}
-											className="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors"
+											className="w-full bg-primary border border-primary rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors"
 											placeholder="Your name"
 											required
 										/>
@@ -341,7 +341,7 @@ export default function ContactPage() {
 									<div>
 										<label
 											htmlFor="email"
-											className="block text-sm font-medium text-gray-300 mb-1"
+											className="block text-sm font-medium text-secondary mb-1"
 										>
 											Email *
 										</label>
@@ -351,7 +351,7 @@ export default function ContactPage() {
 											name="email"
 											value={formData.email}
 											onChange={handleChange}
-											className="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors"
+											className="w-full bg-primary border border-primary rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors"
 											placeholder="your.email@example.com"
 											required
 										/>
@@ -361,7 +361,7 @@ export default function ContactPage() {
 								<div>
 									<label
 										htmlFor="subject"
-										className="block text-sm font-medium text-gray-300 mb-1"
+										className="block text-sm font-medium text-secondary mb-1"
 									>
 										Subject *
 									</label>
@@ -371,7 +371,7 @@ export default function ContactPage() {
 										name="subject"
 										value={formData.subject}
 										onChange={handleChange}
-										className="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors"
+										className="w-full bg-primary border border-primary rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors"
 										placeholder="What's this about?"
 										required
 									/>
@@ -380,7 +380,7 @@ export default function ContactPage() {
 								<div>
 									<label
 										htmlFor="message"
-										className="block text-sm font-medium text-gray-300 mb-1"
+										className="block text-sm font-medium text-secondary mb-1"
 									>
 										Message *
 									</label>
@@ -391,7 +391,7 @@ export default function ContactPage() {
 										maxLength={1000}
 										value={formData.message}
 										onChange={handleChange}
-										className="w-full bg-gray-900 border border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors resize-vertical"
+										className="w-full bg-primary border border-primary rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors resize-vertical"
 										placeholder="Tell me about your project, ideas, or just say hello!"
 										required
 									></textarea>
@@ -468,7 +468,7 @@ export default function ContactPage() {
 			</section>
 
 			{/* Back To Home Button */}
-			<section className="py-12 bg-gray-900">
+			<section className="py-12 bg-primary">
 				<div className="container mx-auto px-4 text-center">
 					<motion.div
 						initial={{ opacity: 0 }}

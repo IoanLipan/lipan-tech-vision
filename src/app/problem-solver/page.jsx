@@ -100,11 +100,11 @@ export default function ProblemSolverPage() {
 	})
 
 	return (
-		<div className="min-h-screen bg-gray-900">
+		<div className="min-h-screen bg-primary">
 			{/* Hero Section */}
 			<section
 				ref={headerRef}
-				className="py-20 bg-gray-900 relative overflow-hidden"
+				className="py-20 bg-primary relative overflow-hidden"
 			>
 				<div className="container mx-auto px-4">
 					<motion.div
@@ -118,7 +118,7 @@ export default function ProblemSolverPage() {
 						<h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]">
 							Problem Solver
 						</h1>
-						<p className="text-xl text-gray-300 mb-8">
+						<p className="text-xl text-secondary mb-8">
 							Approaching complex challenges with analytical thinking and
 							creative solutions.
 						</p>
@@ -131,7 +131,7 @@ export default function ProblemSolverPage() {
 			</section>
 
 			{/* Methodology Section */}
-			<section ref={methodologyRef} className="py-20 bg-gray-800">
+			<section ref={methodologyRef} className="py-20 bg-secondary">
 				<div className="container mx-auto px-4">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
@@ -158,7 +158,7 @@ export default function ProblemSolverPage() {
 										: { opacity: 0, y: 20 }
 								}
 								transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-								className="bg-gray-900 p-6 rounded-lg border border-gray-700 hover:border-[var(--secondary)] transition-all"
+								className="bg-primary p-6 rounded-lg border border-primary hover:border-[var(--secondary)] transition-all"
 								whileHover={{ y: -5, transition: { duration: 0.2 } }}
 							>
 								<div className="flex items-center mb-4">
@@ -167,7 +167,7 @@ export default function ProblemSolverPage() {
 										{index + 1}. {step.step}
 									</h3>
 								</div>
-								<p className="text-gray-300">{step.description}</p>
+								<p className="text-secondary">{step.description}</p>
 							</motion.div>
 						))}
 					</div>
@@ -175,7 +175,7 @@ export default function ProblemSolverPage() {
 			</section>
 
 			{/* Case Studies Section */}
-			<section ref={caseStudiesRef} className="py-20 bg-gray-900">
+			<section ref={caseStudiesRef} className="py-20 bg-primary">
 				<div className="container mx-auto px-4">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
@@ -202,7 +202,7 @@ export default function ProblemSolverPage() {
 										: { opacity: 0, y: 20 }
 								}
 								transition={{ duration: 0.5, delay: 0.2 + index * 0.2 }}
-								className="bg-gray-800 p-8 rounded-lg border border-gray-700"
+								className="bg-secondary p-8 rounded-lg border border-primary"
 							>
 								<h3 className="text-2xl font-bold mb-6 text-[var(--primary)]">
 									{study.title}
@@ -213,28 +213,28 @@ export default function ProblemSolverPage() {
 										<h4 className="font-bold text-[var(--secondary)] mb-1">
 											Challenge:
 										</h4>
-										<p className="text-gray-300">{study.challenge}</p>
+										<p className="text-secondary">{study.challenge}</p>
 									</div>
 
 									<div>
 										<h4 className="font-bold text-[var(--secondary)] mb-1">
 											Approach:
 										</h4>
-										<p className="text-gray-300">{study.approach}</p>
+										<p className="text-secondary">{study.approach}</p>
 									</div>
 
 									<div>
 										<h4 className="font-bold text-[var(--secondary)] mb-1">
 											Solution:
 										</h4>
-										<p className="text-gray-300">{study.solution}</p>
+										<p className="text-secondary">{study.solution}</p>
 									</div>
 
 									<div>
 										<h4 className="font-bold text-[var(--secondary)] mb-1">
 											Result:
 										</h4>
-										<p className="text-gray-300">{study.result}</p>
+										<p className="text-secondary">{study.result}</p>
 									</div>
 								</div>
 							</motion.div>
@@ -244,7 +244,7 @@ export default function ProblemSolverPage() {
 			</section>
 
 			{/* Back To Home Button */}
-			<section className="py-12 bg-gray-900">
+			<section className="py-12 bg-primary">
 				<div className="container mx-auto px-4 text-center">
 					<motion.div
 						initial={{ opacity: 0 }}

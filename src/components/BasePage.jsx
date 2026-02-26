@@ -11,9 +11,9 @@ export default function SectionPage({
 	colorAccent = 'from-[var(--secondary)] to-[var(--primary)]',
 }) {
 	return (
-		<div className="min-h-screen bg-gray-900">
+		<div className="min-h-screen bg-primary">
 			{/* Hero Section */}
-			<section className="py-20 bg-gray-900 relative overflow-hidden">
+			<section className="py-20 bg-primary relative overflow-hidden">
 				<div className="container mx-auto px-4">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
@@ -26,7 +26,7 @@ export default function SectionPage({
 						>
 							{title}
 						</h1>
-						<p className="text-xl text-gray-300 mb-8">{description}</p>
+						<p className="text-xl text-secondary mb-8">{description}</p>
 					</motion.div>
 				</div>
 
@@ -36,7 +36,7 @@ export default function SectionPage({
 			</section>
 
 			{/* Content Section */}
-			<section className="py-12 bg-gray-800">
+			<section className="py-12 bg-secondary">
 				<div className="container mx-auto px-4">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
@@ -50,7 +50,7 @@ export default function SectionPage({
 			</section>
 
 			{/* Back To Home Button */}
-			<section className="py-12 bg-gray-900">
+			<section className="py-12 bg-primary">
 				<div className="container mx-auto px-4 text-center">
 					<motion.div
 						initial={{ opacity: 0 }}
@@ -58,7 +58,7 @@ export default function SectionPage({
 						transition={{ duration: 0.6, delay: 0.6 }}
 					>
 						<Link href="/">
-							<div className="inline-flex items-center text-[var(--primary)] hover:text-[#7FEAEF] transition-colors">
+							<div className="inline-flex items-center text-[var(--primary)] hover:text-[var(--primary-light)] transition-colors">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									className="h-5 w-5 mr-2"

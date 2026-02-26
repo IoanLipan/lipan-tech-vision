@@ -59,7 +59,7 @@ const Footer = () => {
 	]
 
 	return (
-		<footer className="bg-gray-900 border-t border-gray-800 py-12">
+		<footer className="bg-primary border-t border-primary py-12">
 			<div className="container mx-auto px-4">
 				<div className="flex flex-col md:flex-row justify-between items-center">
 					<motion.div
@@ -84,7 +84,7 @@ const Footer = () => {
 								</span>
 							</div>
 						</Link>
-						<p className="text-gray-400 mt-2">
+						<p className="text-muted mt-2">
 							Engineering the future through innovation
 						</p>
 					</motion.div>
@@ -102,7 +102,7 @@ const Footer = () => {
 								href={social.url}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="text-gray-400 hover:text-white transition-colors"
+								className="text-muted hover:text-white transition-colors"
 								aria-label={social.name}
 							>
 								{social.icon}
@@ -112,13 +112,13 @@ const Footer = () => {
 				</div>
 
 				<motion.div
-					className="border-t border-gray-800 mt-8 pt-8 text-center"
+					className="border-t border-primary mt-8 pt-8 text-center"
 					initial={{ opacity: 0 }}
 					whileInView={{ opacity: 1 }}
 					transition={{ duration: 0.5, delay: 0.4 }}
 					viewport={{ once: true }}
 				>
-					<p className="text-gray-400">
+					<p className="text-muted">
 						© {new Date().getFullYear()} Lipan Tech Vision. All rights reserved.
 					</p>
 				</motion.div>
