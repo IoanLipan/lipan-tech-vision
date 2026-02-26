@@ -58,9 +58,9 @@ const FeaturedProjects = () => {
 					{projects.map((project) => (
 						<motion.div
 							key={project.id}
-							className="bg-secondary rounded-lg overflow-hidden border border-primary hover:border-[var(--secondary)] transition-all group"
+							className="glass rounded-lg overflow-hidden border border-primary hover:border-[var(--secondary)] transition-all group"
 							variants={itemVariants}
-							whileHover={{ y: -10 }}
+							whileHover={{ y: -8 }}
 						>
 							<div className="aspect-video relative overflow-hidden bg-tertiary">
 								<Image

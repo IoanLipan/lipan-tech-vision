@@ -212,7 +212,7 @@ const Expertise = () => {
 	}
 
 	return (
-		<section ref={ref} className="py-20 bg-gray-800">
+		<section ref={ref} className="py-20 bg-secondary">
 			<div className="container mx-auto px-4">
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
@@ -234,14 +234,23 @@ const Expertise = () => {
 					{expertiseAreas.map((expertise, index) => (
 						<motion.div
 							key={index}
-							className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-lg border border-gray-700 hover:border-[var(--secondary)] transform hover:-translate-y-2 transition-all"
+							className="expertise-card glass p-6 rounded-lg border border-primary hover:border-[var(--secondary)] transform hover:-translate-y-2 transition-all relative overflow-hidden"
 							variants={itemVariants}
 							whileHover={{ scale: 1.03 }}
 							transition={{ type: 'spring', stiffness: 30 }}
+							onMouseMove={(e) => {
+								const rect = e.currentTarget.getBoundingClientRect()
+								const x = e.clientX - rect.left
+								const y = e.clientY - rect.top
+								e.currentTarget.style.setProperty('--mouse-x', `${x}px`)
+								e.currentTarget.style.setProperty('--mouse-y', `${y}px`)
+							}}
 						>
+							{/* Spotlight glow that follows cursor */}
+							<div className="card-spotlight" />
 							<div className="mb-4">{expertise.icon}</div>
 							<h3 className="text-xl font-semibold mb-2">{expertise.title}</h3>
-							<p className="text-gray-300">{expertise.description}</p>
+							<p className="text-secondary">{expertise.description}</p>
 						</motion.div>
 					))}
 				</motion.div>
