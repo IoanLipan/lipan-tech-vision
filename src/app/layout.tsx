@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Script from 'next/script'
+import { ThemeProvider } from '@/context/ThemeContext'
+import ScrollProgress from '@/components/ui/ScrollProgress'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -35,10 +37,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					</>
 				)}
 			</head>
-			<body className="bg-gray-900 text-white">
-				<Header />
-				<main>{children}</main>
-				<Footer />
+			<body className="bg-primary text-primary">
+				<ThemeProvider>
+					<ScrollProgress />
+					<Header />
+					<main>{children}</main>
+					<Footer />
+				</ThemeProvider>
 			</body>
 		</html>
 	)
