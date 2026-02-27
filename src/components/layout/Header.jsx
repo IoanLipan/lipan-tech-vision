@@ -6,8 +6,10 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import ThemeSwitcher from '../ui/ThemeSwitcher'
+import { useTheme } from '@/context/ThemeContext'
 
 const Header = () => {
+	const { theme } = useTheme()
 	const [isScrolled, setIsScrolled] = useState(false)
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 	const pathname = usePathname()
@@ -61,7 +63,7 @@ const Header = () => {
 						<div className="flex items-center gap-2.5">
 							<div className="relative w-9 h-9">
 								<Image
-									src="/images/logo.png"
+									src={theme === 'light' ? '/images/logo-ltv-light.png' : '/images/logo-ltv-dark.png'}
 									alt="Lipan Tech Vision Logo"
 									fill
 									priority

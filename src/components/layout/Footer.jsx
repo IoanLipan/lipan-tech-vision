@@ -3,8 +3,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useTheme } from '@/context/ThemeContext'
 
 const Footer = () => {
+	const { theme } = useTheme()
 	// Brand colors from logo
 	const brandMagenta = 'var(--secondary)'
 	const brandCyan = 'var(--primary)'
@@ -73,7 +75,7 @@ const Footer = () => {
 							<div className="flex items-center space-x-2">
 								<div className="relative w-8 h-8">
 									<Image
-										src="/images/logo.png"
+										src={theme === 'light' ? '/images/logo-ltv-light.png' : '/images/logo-ltv-dark.png'}
 										alt="Lipan Tech Vision Logo"
 										fill
 										className="object-contain"
