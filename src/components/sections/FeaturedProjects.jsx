@@ -1,14 +1,29 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { getFeaturedProjects } from '@/data/projects'
+import ProjectModal from '@/components/ui/ProjectModal'
 
 const FeaturedProjects = () => {
 	const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 	const projects = getFeaturedProjects()
+
+	const [selectedProject, setSelectedProject] = useState(null)
+	const [isModalOpen, setIsModalOpen] = useState(false)
+
+	const openModal = (project) => {
+		setSelectedProject(project)
+		setIsModalOpen(true)
+	}
+
+	const closeModal = () => {
+		setIsModalOpen(false)
+		setTimeout(() => setSelectedProject(null), 300)
+	}
 
 	const itemVariants = {
 		hidden: { y: 50, opacity: 0 },
@@ -19,6 +34,7 @@ const FeaturedProjects = () => {
 
 	return (
 		<section ref={ref} className="py-20 lg:py-28 bg-primary">
+			<ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={closeModal} />
 			<div className="container mx-auto px-4 lg:px-8">
 				{/* Section heading */}
 				<motion.div
@@ -61,10 +77,11 @@ const FeaturedProjects = () => {
 					{featured && (
 						<motion.div
 							key={featured.id}
-							className="lg:col-span-2 glass rounded-xl overflow-hidden border border-primary hover:border-[var(--secondary)] transition-colors group"
+							className="lg:col-span-2 glass rounded-xl overflow-hidden border border-primary hover:border-[var(--secondary)] transition-colors group cursor-pointer"
 							style={{ willChange: "transform" }}
 							variants={itemVariants}
 							whileHover={{ y: -4 }}
+							onClick={() => openModal(featured)}
 						>
 							<div className="flex flex-col md:flex-row h-full">
 								{/* Image — left half on md+ */}
@@ -118,11 +135,10 @@ const FeaturedProjects = () => {
 										</div>
 									</div>
 									<div className="mt-6">
-										<a
-											href={featured.url}
-											target="_blank"
-											rel="noopener noreferrer"
+										<button
+											type="button"
 											className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm border-2 border-[var(--secondary)] bg-transparent text-[var(--secondary)] text-xs font-bold uppercase tracking-widest hover:bg-[var(--secondary)] hover:text-[var(--bg-primary)] transition-all duration-200"
+											onClick={(e) => { e.stopPropagation(); openModal(featured) }}
 										>
 											View project
 											<svg
@@ -137,7 +153,7 @@ const FeaturedProjects = () => {
 													clipRule="evenodd"
 												/>
 											</svg>
-										</a>
+										</button>
 									</div>
 								</div>
 							</div>
@@ -148,10 +164,11 @@ const FeaturedProjects = () => {
 					{rest.map((project) => (
 						<motion.div
 							key={project.id}
-							className="glass rounded-xl overflow-hidden border border-primary hover:border-[var(--secondary)] transition-colors group"
+							className="glass rounded-xl overflow-hidden border border-primary hover:border-[var(--secondary)] transition-colors group cursor-pointer"
 							style={{ willChange: "transform" }}
 							variants={itemVariants}
 							whileHover={{ y: -4 }}
+							onClick={() => openModal(project)}
 						>
 							<div className="aspect-video relative overflow-hidden bg-tertiary">
 								<Image
@@ -191,11 +208,10 @@ const FeaturedProjects = () => {
 										</span>
 									))}
 								</div>
-								<a
-									href={project.url}
-									target="_blank"
-									rel="noopener noreferrer"
+								<button
+									type="button"
 									className="text-[var(--secondary)] hover:text-[var(--secondary-light)] inline-flex items-center text-sm font-medium"
+									onClick={(e) => { e.stopPropagation(); openModal(project) }}
 								>
 									View project
 									<svg
@@ -210,7 +226,7 @@ const FeaturedProjects = () => {
 											clipRule="evenodd"
 										/>
 									</svg>
-								</a>
+								</button>
 							</div>
 						</motion.div>
 					))}

@@ -1,12 +1,22 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	// Enable SVG imports as React components
+	// Enable SVG imports as React components (webpack — production builds)
 	webpack(config) {
 		config.module.rules.push({
 			test: /\.svg$/,
 			use: ['@svgr/webpack'],
 		})
 		return config
+	},
+
+	// Enable SVG imports as React components (Turbopack — dev server)
+	turbopack: {
+		rules: {
+			'*.svg': {
+				loaders: ['@svgr/webpack'],
+				as: '*.js',
+			},
+		},
 	},
 
 	// Image optimization for Vercel's built-in edge CDN
