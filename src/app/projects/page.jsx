@@ -118,32 +118,28 @@ export default function ProjectsPage() {
 			/>
 
 			{/* Hero Section */}
-			<section
-				ref={headerRef}
-				className="py-20 bg-primary relative overflow-hidden"
-			>
-				<div className="container mx-auto px-4">
+			<section ref={headerRef} className="py-24 bg-primary relative overflow-hidden">
+				<div className="absolute inset-0 dot-grid-bg opacity-40 pointer-events-none" />
+				<div className="absolute -top-24 -right-24 w-96 h-96 rounded-full filter blur-3xl opacity-10" style={{ background: 'var(--secondary)' }} />
+				<div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full filter blur-3xl opacity-10" style={{ background: 'var(--primary)' }} />
+				<div className="container mx-auto px-4 lg:px-8 relative z-10">
 					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						animate={
-							headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-						}
+						initial={{ opacity: 0, y: 24 }}
+						animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
 						transition={{ duration: 0.6 }}
-						className="max-w-4xl mx-auto text-center"
+						className="max-w-3xl"
 					>
-						<h1 className="text-4xl md:text-6xl font-bold mb-6 text-gradient">
+						<p className="text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: 'var(--secondary)' }}>
+							— Portfolio
+						</p>
+						<h1 className="text-5xl md:text-7xl font-black leading-none mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[var(--secondary)] to-[var(--primary)]">
 							My Projects
 						</h1>
-						<p className="text-xl text-secondary mb-8">
-							Explore my portfolio of innovative solutions across various
-							technologies and domains.
+						<p className="text-lg md:text-xl text-secondary max-w-xl leading-relaxed">
+							Innovative solutions built across industries, stacks, and scales.
 						</p>
 					</motion.div>
 				</div>
-
-				{/* Background decoration */}
-				<div className="absolute -top-24 -right-24 w-96 h-96 bg-[var(--primary)] rounded-full filter blur-3xl opacity-10"></div>
-				<div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[var(--secondary)] rounded-full filter blur-3xl opacity-10"></div>
 			</section>
 
 			{/* Filters */}

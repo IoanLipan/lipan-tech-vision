@@ -26,7 +26,8 @@ import LivekitIcon from '../../assets/icons/livekit.svg'
 import MaplibreIcon from '../../assets/icons/maplibre.svg'
 import PageflyIcon from '../../assets/icons/pagefly.svg'
 import StorybookIcon from '../../assets/icons/storybook.svg'
-import TanstackIcon from '../../assets/icons/tanstack.svg'
+import TanstackDarkIcon from '../../assets/icons/tanstack-dark.svg'
+import TanstackLightIcon from '../../assets/icons/tanstack-light.svg'
 
 const TechIcon = ({ src, alt, className = 'h-16 w-16' }) => {
 	return (
@@ -61,5 +62,6 @@ export {
 	KonvaIcon,
 	CMSPayloadIcon,
 	LivekitIcon,
-	TanstackIcon,
+	TanstackDarkIcon,
+	TanstackLightIcon,
 }
