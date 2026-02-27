@@ -49,7 +49,7 @@ const ContactSection = () => {
 
 					<motion.div variants={itemVariants}>
 						<ContactForm
-							redirectPath="/?contact=success"
+							redirectPath="/thank-you"
 							successParam="contact"
 							successParamValue="success"
 						/>

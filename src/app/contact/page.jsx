@@ -102,7 +102,7 @@ export default function ContactPage() {
 							transition={{ duration: 0.6 }}
 						>
 							<ContactForm
-								redirectPath="/contact?success=true"
+								redirectPath="/thank-you"
 								successParam="success"
 								successParamValue="true"
 								buttonFullWidth
