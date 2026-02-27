@@ -83,7 +83,7 @@ const Hero = () => {
 						<motion.h1
 							className="font-black mb-6 leading-none"
 							style={{
-								background: 'linear-gradient(135deg, var(--primary) 20%, var(--secondary) 100%)',
+								background: 'linear-gradient(135deg, var(--primary) 25%, var(--secondary) 40%)',
 								WebkitBackgroundClip: 'text',
 								WebkitTextFillColor: 'transparent',
 								backgroundClip: 'text',
