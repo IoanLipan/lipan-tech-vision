@@ -38,14 +38,8 @@ const Header = () => {
 
 	return (
 		<>
-			{/* Thin gradient accent bar pinned to very top */}
-			<div
-				className="fixed top-0 left-0 right-0 h-[3px] z-[60] pointer-events-none"
-				style={{ background: 'var(--gradient)' }}
-			/>
-
 			<motion.header
-				className={`sticky top-[3px] z-50 backdrop-blur-md transition-all duration-300 ${
+				className={`sticky top-0 z-50 backdrop-blur-md transition-all duration-300 ${
 					isScrolled ? 'bg-primary/90' : 'bg-primary/50'
 				}`}
 				style={{

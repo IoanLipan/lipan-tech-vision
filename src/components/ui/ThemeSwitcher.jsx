@@ -10,8 +10,10 @@ const ThemeSwitcher = () => {
 	return (
 		<motion.button
 			onClick={toggleTheme}
-			className="relative flex items-center justify-center w-10 h-10 rounded-full focus:outline-none overflow-hidden"
+			className="relative flex items-center justify-center w-10 h-10 rounded-full focus:outline-none overflow-hidden transition-colors hover:bg-[var(--secondary)]/10"
+			whileHover={{ scale: 1.15 }}
 			whileTap={{ scale: 0.9 }}
+			transition={{ type: 'spring', stiffness: 400, damping: 20 }}
 			aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
 			title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
 		>

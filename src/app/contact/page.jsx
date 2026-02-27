@@ -104,8 +104,6 @@ export default function ContactPage() {
 						>
 							<ContactForm
 								redirectPath="/thank-you"
-								successParam="success"
-								successParamValue="true"
 								buttonFullWidth
 							/>
 						</motion.div>

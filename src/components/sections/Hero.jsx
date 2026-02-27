@@ -171,8 +171,6 @@ const Hero = () => {
 
 							{/* Code body */}
 							<div className="p-6 font-mono text-sm leading-7">
-								<p className="text-muted">{'// Ioan Lipan'}</p>
-								<br />
 								<p>
 									<span style={{ color: 'var(--secondary)' }}>const </span>
 									<span className="text-primary">developer</span>
@@ -234,7 +232,7 @@ const Hero = () => {
 								</p>
 								<p>
 									<span className="text-primary">{'}'}</span>
-									<span className="inline-block w-2 h-5 bg-[var(--secondary)] opacity-70 ml-1 animate-pulse align-middle" />
+									<span className="inline-block w-2 h-5 bg-[var(--secondary)] opacity-70 ml-1 animate-cursor-blink align-middle" />
 								</p>
 							</div>
 						</div>

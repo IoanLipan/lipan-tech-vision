@@ -85,7 +85,6 @@ export default function TechKnowledgePage() {
 					name: 'CMS Payload',
 					icon: <CMSPayloadIcon width={40} height={40} />,
 				},
-				{ name: 'GraphQL', icon: <GraphQLIcon width={40} height={40} /> },
 			],
 		},
 		{

@@ -1,7 +1,7 @@
 'use client'
 
 const inputBase =
-	'w-full bg-secondary border border-primary rounded-md py-3 px-4 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] placeholder:opacity-60 focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors'
+	'w-full bg-secondary border rounded-md py-3 px-4 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] placeholder:opacity-60 focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors'
 
 const FormField = ({
 	label,
@@ -10,9 +10,11 @@ const FormField = ({
 	type = 'text',
 	value,
 	onChange,
+	onBlur,
 	placeholder,
 	required = true,
 	rows,
+	error,
 }) => (
 	<div>
 		<label htmlFor={id} className="block text-sm font-medium text-secondary mb-1">
@@ -25,7 +27,8 @@ const FormField = ({
 				rows={rows}
 				value={value}
 				onChange={onChange}
-				className={`${inputBase} resize-vertical`}
+				onBlur={onBlur}
+				className={`${inputBase} resize-vertical ${error ? 'border-red-500' : 'border-primary'}`}
 				placeholder={placeholder}
 				required={required}
 			/>
@@ -36,10 +39,14 @@ const FormField = ({
 				name={name}
 				value={value}
 				onChange={onChange}
-				className={inputBase}
+				onBlur={onBlur}
+				className={`${inputBase} ${error ? 'border-red-500' : 'border-primary'}`}
 				placeholder={placeholder}
 				required={required}
 			/>
+		)}
+		{error && (
+			<p className="mt-1 text-xs text-red-400">{error}</p>
 		)}
 	</div>
 )

@@ -1,50 +1,87 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import FormField from '@/components/ui/FormField'
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+const validate = (data) => {
+	const errs = {}
+	if (!data.name.trim()) errs.name = 'Name is required'
+	if (!data.email.trim()) {
+		errs.email = 'Email is required'
+	} else if (!emailRegex.test(data.email)) {
+		errs.email = 'Please enter a valid email address'
+	}
+	if (!data.subject.trim()) errs.subject = 'Subject is required'
+	if (!data.message.trim()) errs.message = 'Message is required'
+	return errs
+}
+
 const ContactForm = ({
 	redirectPath,
-	successParam,
-	successParamValue,
 	buttonFullWidth = false,
 }) => {
+	const router = useRouter()
 	const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
+	const [errors, setErrors] = useState({})
+	const [touched, setTouched] = useState({})
 	const [isSubmitting, setIsSubmitting] = useState(false)
-	const [showSuccess, setShowSuccess] = useState(false)
-
-	useEffect(() => {
-		setShowSuccess(
-			new URLSearchParams(window.location.search).get(successParam) === successParamValue
-		)
-	}, [successParam, successParamValue])
+	const [submitError, setSubmitError] = useState('')
 
 	const handleChange = (e) => {
 		const { name, value } = e.target
 		setFormData((prev) => ({ ...prev, [name]: value }))
+		if (touched[name]) {
+			setErrors((prev) => ({ ...prev, ...validate({ ...formData, [name]: value }) }))
+		}
 	}
 
-	const handleSubmit = () => setIsSubmitting(true)
+	const handleBlur = (e) => {
+		const { name } = e.target
+		setTouched((prev) => ({ ...prev, [name]: true }))
+		setErrors(validate({ ...formData }))
+	}
+
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		const errs = validate(formData)
+		if (Object.keys(errs).length > 0) {
+			setErrors(errs)
+			setTouched({ name: true, email: true, subject: true, message: true })
+			return
+		}
+		setIsSubmitting(true)
+		setSubmitError('')
+		try {
+			const res = await fetch('https://formsubmit.co/ajax/ioanlipan1@gmail.com', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+				body: JSON.stringify({
+					name: formData.name,
+					email: formData.email,
+					subject: formData.subject,
+					message: formData.message,
+					_subject: 'New Portfolio Contact Form Message!',
+					_template: 'table',
+					_captcha: 'false',
+				}),
+			})
+			if (res.ok) {
+				router.push(redirectPath)
+			} else {
+				throw new Error('Submission failed')
+			}
+		} catch {
+			setSubmitError('Something went wrong. Please try again or email me directly.')
+			setIsSubmitting(false)
+		}
+	}
 
 	return (
-		<form
-			action="https://formsubmit.co/ioanlipan1@gmail.com"
-			method="POST"
-			className="space-y-6"
-			onSubmit={handleSubmit}
-		>
-			<input type="hidden" name="_captcha" value="false" />
-			<input type="hidden" name="_template" value="table" />
-			<input type="hidden" name="_subject" value="New Portfolio Contact Form Message!" />
-			<input
-				type="hidden"
-				name="_next"
-				value={
-					typeof window !== 'undefined' ? `${window.location.origin}${redirectPath}` : ''
-				}
-			/>
-
+		<form className="space-y-6" onSubmit={handleSubmit} noValidate>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 				<FormField
 					label="Name"
@@ -52,7 +89,9 @@ const ContactForm = ({
 					name="name"
 					value={formData.name}
 					onChange={handleChange}
+					onBlur={handleBlur}
 					placeholder="Your name"
+					error={touched.name ? errors.name : undefined}
 				/>
 				<FormField
 					label="Email"
@@ -61,7 +100,9 @@ const ContactForm = ({
 					type="email"
 					value={formData.email}
 					onChange={handleChange}
+					onBlur={handleBlur}
 					placeholder="your.email@example.com"
+					error={touched.email ? errors.email : undefined}
 				/>
 			</div>
 
@@ -71,7 +112,9 @@ const ContactForm = ({
 				name="subject"
 				value={formData.subject}
 				onChange={handleChange}
+				onBlur={handleBlur}
 				placeholder="What's this about?"
+				error={touched.subject ? errors.subject : undefined}
 			/>
 
 			<FormField
@@ -80,8 +123,10 @@ const ContactForm = ({
 				name="message"
 				value={formData.message}
 				onChange={handleChange}
+				onBlur={handleBlur}
 				placeholder="Tell me about your project or just say hello!"
 				rows={5}
+				error={touched.message ? errors.message : undefined}
 			/>
 
 			<motion.button
@@ -120,24 +165,14 @@ const ContactForm = ({
 				)}
 			</motion.button>
 
-			{showSuccess && (
-				<motion.div
-					className="mt-4 p-3 bg-green-800/20 border border-green-500 text-green-400 rounded-md"
-					initial={{ opacity: 0, y: 10 }}
-					animate={{ opacity: 1, y: 0 }}
+			{submitError && (
+				<motion.p
+					className="text-sm text-red-400"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
 				>
-					<div className="flex items-center">
-						<svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M5 13l4 4L19 7"
-							/>
-						</svg>
-						Thanks for your message! I'll get back to you soon.
-					</div>
-				</motion.div>
+					{submitError}
+				</motion.p>
 			)}
 		</form>
 	)
