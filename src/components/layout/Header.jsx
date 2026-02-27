@@ -43,11 +43,14 @@ const Header = () => {
 			/>
 
 			<motion.header
-				className={`sticky top-[3px] z-50 backdrop-blur-md border-b transition-all duration-300 ${
-					isScrolled
-						? 'bg-primary/90 border-primary'
-						: 'bg-primary/50 border-primary/30'
+				className={`sticky top-[3px] z-50 backdrop-blur-md transition-all duration-300 ${
+					isScrolled ? 'bg-primary/90' : 'bg-primary/50'
 				}`}
+				style={{
+					boxShadow: isScrolled
+						? '0 8px 32px 0 rgba(0,0,0,0.30)'
+						: '0 4px 18px 0 rgba(0,0,0,0.15)',
+				}}
 				initial={{ y: -100, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.5 }}
