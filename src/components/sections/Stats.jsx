@@ -8,7 +8,7 @@ const stats = [
 	{ value: 5, suffix: '+', label: 'Years Experience' },
 	{ value: 18, suffix: '+', label: 'Projects Built' },
 	{ value: 24, suffix: '+', label: 'Technologies' },
-	{ value: 3, suffix: '', label: 'Continents Worked' },
+	{ value: 10, suffix: '+', label: 'Happy Clients' },
 ]
 
 function AnimatedCounter({ target, suffix, isVisible }) {
