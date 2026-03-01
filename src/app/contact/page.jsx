@@ -8,7 +8,6 @@ import ContactInfo from '@/components/contact/ContactInfo'
 
 const availableFor = [
 	'Full-Stack Web Development',
-	'Front-End Web Development',
 	'Technical Consulting',
 	'Project Collaboration',
 	'Freelance Opportunities',

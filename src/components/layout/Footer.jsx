@@ -81,7 +81,7 @@ const Footer = () => {
 										className="object-contain"
 									/>
 								</div>
-								<span className="text-lg font-black">
+								<span className="text-lg font-black uppercase tracking-wider">
 									<span style={{ color: 'var(--primary)' }}>Lipan</span>{' '}
 									<span className="text-gradient">Tech Vision</span>
 								</span>
@@ -105,7 +105,7 @@ const Footer = () => {
 								href={social.url}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="text-muted hover:text-white transition-colors"
+								className="text-muted hover:text-[var(--secondary)] transition-colors"
 								aria-label={social.name}
 							>
 								{social.icon}
