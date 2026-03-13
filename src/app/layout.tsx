@@ -18,6 +18,16 @@ export const metadata = {
 	title: 'Ioan Lipan - Full Stack Developer & Engineer',
 	description:
 		'Full-stack developer and engineer specializing in React, Next.js, Vue.js, and modern web technologies. Based in Bucharest, Romania.',
+	openGraph: {
+		title: 'Ioan Lipan - Full Stack Developer & Engineer',
+		description:
+			'Full-stack developer and engineer specializing in React, Next.js, Vue.js, and modern web technologies. Based in Bucharest, Romania.',
+		images: [{ url: '/images/logo-ltv-dark.png' }],
+	},
+	twitter: {
+		card: 'summary',
+		images: ['/images/logo-ltv-dark.png'],
+	},
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
