@@ -1,5 +1,3 @@
-'use client'
-
 import Hero from '@/components/sections/Hero'
 import Stats from '@/components/sections/Stats'
 import TechTicker from '@/components/ui/TechTicker'
@@ -11,8 +9,8 @@ export default function Home() {
 	return (
 		<>
 			<Hero />
-			<Stats />
 			<TechTicker />
+			<Stats />
 			<FeaturedProjects />
 			<Expertise />
 			<ContactSection />

@@ -1,67 +1,48 @@
-/* src/styles/themes.css */
+/* src/styles/themes.css
+   Brand tokens. Dark (default): ink navy + gold + royal blue.
+   Light: parchment + deep royal blue + velvet red. */
 
-/* ============================================================
-   DARK MODE (default) — Royal Navy + Gold
-   Deep navy backgrounds, warm gold primary, royal blue accent
-   ============================================================ */
 :root {
-  /* Brand colors */
-  --primary: #C9A84C;         /* Warm gold — primary brand color */
-  --secondary: #4472CA;       /* Royal blue (lightened for dark bg) */
-  --primary-light: #E0BC6A;   /* Lighter gold for hover states */
-  --secondary-light: #6B90D9; /* Lighter blue for hover states */
+	--primary: #d4b05c; /* gold — highlights and accents */
+	--secondary: #6a90e0; /* royal blue — links, buttons, focus */
+	--primary-light: #e4c57a;
+	--secondary-light: #8aa9ea;
 
-  /* Accent palette */
-  --accent-red: #8B1A2C;      /* Velvet red */
-  --accent-gray: #9B9B8E;     /* Cobblestone gray */
+	--bg-primary: #0a0e1a;
+	--bg-secondary: #10162a;
+	--bg-tertiary: #1a2238;
 
-  /* Background colors */
-  --bg-primary: #0B0F1E;      /* Very dark navy — main background */
-  --bg-secondary: #131829;    /* Dark navy — secondary background */
-  --bg-tertiary: #1C2540;     /* Medium navy — cards, form fields */
+	--text-primary: #f2ece0;
+	--text-secondary: #c9c3b6;
+	--text-muted: #8c92a3;
 
-  /* Text colors */
-  --text-primary: #F5F0E8;    /* Warm cream white — main text */
-  --text-secondary: #D8D0C0;  /* Warm off-white — secondary text */
-  --text-muted: #9B9B8E;      /* Cobblestone gray — muted text */
+	--border-primary: #1c2440;
+	--border-secondary: #2a3556;
 
-  /* Border colors */
-  --border-primary: #1C2540;  /* Navy border */
-  --border-secondary: #28365A;/* Lighter navy border */
-
-  /* Gradient: gold → royal blue */
-  --gradient: linear-gradient(to right, #C9A84C, #4472CA);
+	--on-accent: #0a0e1a;
+	--live: #34d399; /* status green: live sites, availability */
+	--gradient: linear-gradient(135deg, var(--primary) 20%, var(--secondary) 100%);
+	color-scheme: dark;
 }
 
-/* ============================================================
-   LIGHT MODE — Parchment Cream + Deep Royal Blue
-   Warm cream backgrounds, deep blue primary, velvet red accent
-   ============================================================ */
-[data-theme="light"] {
-  /* Brand colors */
-  --primary: #1B2B8C;         /* Deep royal blue — primary brand color */
-  --secondary: #8B1A2C;       /* Velvet red — secondary brand color */
-  --primary-light: #2D3FB5;   /* Lighter blue for hover states */
-  --secondary-light: #A52035; /* Lighter red for hover states */
+[data-theme='light'] {
+	--primary: #1b2b8c;
+	--secondary: #8b1a2c;
+	--primary-light: #2d3fb5;
+	--secondary-light: #a52035;
 
-  /* Accent palette */
-  --accent-gold: #C9A84C;     /* Gold accent */
-  --accent-gray: #7A7A6E;     /* Darker cobblestone for light bg */
+	--bg-primary: #f5f0e8;
+	--bg-secondary: #ece6da;
+	--bg-tertiary: #e0d9cb;
 
-  /* Background colors */
-  --bg-primary: #F5F0E8;      /* Parchment cream — main background */
-  --bg-secondary: #EDE8DC;    /* Slightly darker cream — secondary */
-  --bg-tertiary: #DDD8CC;     /* Warm medium tone — cards, fields */
+	--text-primary: #0b0f1e;
+	--text-secondary: #2a3045;
+	--text-muted: #5f6273;
 
-  /* Text colors */
-  --text-primary: #0B0F1E;    /* Very dark navy — main text */
-  --text-secondary: #1C2540;  /* Dark navy — secondary text */
-  --text-muted: #6B6B5E;      /* Dark cobblestone — muted text */
+	--border-primary: #d9d2c4;
+	--border-secondary: #c2bbad;
 
-  /* Border colors */
-  --border-primary: #CCC8BC;  /* Warm light border */
-  --border-secondary: #B8B4A8;/* Warm medium border */
-
-  /* Gradient: deep blue → velvet red */
-  --gradient: linear-gradient(to right, #1B2B8C, #8B1A2C);
+	--on-accent: #f5f0e8;
+	--live: #065f46;
+	color-scheme: light;
 }

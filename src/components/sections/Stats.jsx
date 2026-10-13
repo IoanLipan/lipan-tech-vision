@@ -1,88 +1,65 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import { animate, onScroll, stagger, utils } from 'animejs'
+import { useAnime } from '@/lib/anime'
+import { projects } from '@/data/projects'
 
-const stats = [
-	{ value: 5, suffix: '+', label: 'Years Experience' },
-	{ value: 10, suffix: '+', label: 'Projects Built' },
-	{ value: 24, suffix: '+', label: 'Technologies' },
-	{ value: 10, suffix: '+', label: 'Happy Clients' },
+const statement =
+	'Online stores, real-time video calls, live fleet tracking, habit apps. Different industries, same obsession: the parts people feel, like speed, motion and clarity, so your product feels as good as it works.'
+
+const facts = [
+	{ value: 5, suffix: '+', label: 'years in production' },
+	{ value: projects.length, suffix: '', label: 'projects shipped' },
+	{ value: 10, suffix: '+', label: 'happy clients' },
 ]
 
-function AnimatedCounter({ target, suffix, isVisible }) {
-	const [count, setCount] = useState(0)
-	const hasRun = useRef(false)
-
-	useEffect(() => {
-		if (!isVisible || hasRun.current) return
-		hasRun.current = true
-
-		const duration = 1400
-		const steps = 40
-		const increment = target / steps
-		const stepTime = duration / steps
-		let current = 0
-
-		const timer = setInterval(() => {
-			current += increment
-			if (current >= target) {
-				setCount(target)
-				clearInterval(timer)
-			} else {
-				setCount(Math.floor(current))
-			}
-		}, stepTime)
-
-		return () => clearInterval(timer)
-	}, [isVisible, target])
-
-	return (
-		<span>
-			{count}
-			{suffix}
-		</span>
-	)
-}
-
+// The statement lights up word by word, scrubbed to scroll position.
 export default function Stats() {
-	const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 })
+	const root = useAnime((self) => {
+		if (self.matches.reduce) return
+		animate('.st-word', {
+			opacity: [0.45, 1], // 45% keeps unlit words above AA contrast for large text
+			duration: 200,
+			delay: stagger(60),
+			ease: 'linear',
+			autoplay: onScroll({ target: '.st-text', enter: 'bottom-=5% top', leave: 'center+=10% bottom', sync: 0.5 }),
+		})
+		// Numbers count up once when the row arrives (server HTML already holds the final values)
+		utils.$('.st-num').forEach((el) =>
+			animate(el, {
+				innerHTML: [0, +el.dataset.value],
+				modifier: utils.round(0),
+				duration: 1600,
+				ease: 'out(3)',
+				autoplay: onScroll({ target: '.st-facts', enter: 'bottom-=10% top', sync: 'play', repeat: false }),
+			}),
+		)
+	})
 
 	return (
-		<section ref={ref} className="py-16 lg:py-24 bg-secondary border-y border-primary">
-			<div className="container mx-auto px-4 lg:px-8">
-				<motion.div
-					className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-0 divide-x-0 md:divide-x md:divide-[var(--border-primary)]"
-					initial={{ opacity: 0, y: 20 }}
-					animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-					transition={{ duration: 0.6 }}
-				>
-					{stats.map((stat, index) => (
-						<motion.div
-							key={stat.label}
-							className="text-center px-4 lg:px-8"
-							initial={{ opacity: 0, y: 20 }}
-							animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-							transition={{ duration: 0.5, delay: index * 0.12 }}
-						>
-							{/* Big number */}
-							<div
-								className="font-black text-gradient leading-none mb-3"
-								style={{ fontSize: 'clamp(3rem, 6vw, 6rem)' }}
-							>
-								<AnimatedCounter
-									target={stat.value}
-									suffix={stat.suffix}
-									isVisible={inView}
-								/>
-							</div>
-							<p className="text-muted text-xs lg:text-sm uppercase tracking-[0.2em] font-semibold">
-								{stat.label}
-							</p>
-						</motion.div>
+		<section ref={root} className="px-5 py-24 md:px-8 md:py-40">
+			<div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:items-end lg:gap-8">
+				<p className="st-text max-w-[22ch] lg:col-span-8 text-[1.85rem] font-semibold leading-[1.15] tracking-[-0.02em] md:text-6xl">
+					{statement.split(' ').map((word, i) => (
+						<span key={i} className="st-word">
+							{word}{' '}
+						</span>
 					))}
-				</motion.div>
+				</p>
+
+				<dl data-reveal="stagger" className="st-facts mt-14 grid grid-cols-3 gap-4 border-t border-line pt-6 md:mt-20 md:max-w-3xl lg:col-span-4 lg:mt-0 lg:grid-cols-1 lg:gap-0 lg:border-t-0 lg:pt-0">
+					{facts.map(({ value, suffix, label }) => (
+						<div key={label} className="flex flex-col-reverse lg:border-t lg:border-line lg:py-6">
+							<dt className="mt-1 text-sm leading-snug text-muted md:text-base">{label}</dt>
+							<dd className="text-3xl font-bold tabular-nums tracking-tight text-gold md:text-5xl">
+								<span className="st-num" data-value={value}>
+									{value}
+								</span>
+								{suffix}
+							</dd>
+						</div>
+					))}
+				</dl>
 			</div>
 		</section>
 	)

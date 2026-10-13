@@ -1,284 +1,260 @@
-@import "tailwindcss";
+/* Explicit order so .btn & co. (components) never beat utilities like `hidden` */
+@layer theme, base, components, utilities;
+@import 'tailwindcss';
 @import '../styles/themes.css';
 
-/* Display font for all headings */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display, var(--font-inter, sans-serif));
+@custom-variant light (&:where([data-theme='light'], [data-theme='light'] *));
+
+/* Theme tokens → Tailwind utilities (bg-page, text-muted, border-line, text-accent/50 …) */
+@theme inline {
+	--color-page: var(--bg-primary);
+	--color-surface: var(--bg-secondary);
+	--color-raised: var(--bg-tertiary);
+	--color-fg: var(--text-primary);
+	--color-fg-2: var(--text-secondary);
+	--color-muted: var(--text-muted);
+	--color-line: var(--border-primary);
+	--color-line-2: var(--border-secondary);
+	--color-gold: var(--primary);
+	--color-accent: var(--secondary);
+	--color-on-accent: var(--on-accent);
+	--color-live: var(--live);
+	--font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--secondary);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, var(--primary-light), var(--secondary-light));
-}
-
-/* Enhanced focus styles */
-*:focus-visible {
-  outline: 2px solid var(--secondary);
-  outline-offset: 2px;
-}
-
-/* Smooth scrolling */
 html {
-  scroll-behavior: smooth;
+	scroll-padding-top: 5rem;
+	-webkit-text-size-adjust: 100%;
 }
 
-/* Better font rendering */
 body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+	background: var(--bg-primary);
+	color: var(--text-primary);
+	font-size: 1.0625rem;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-tap-highlight-color: transparent;
+	transition: background-color 0.4s, color 0.4s;
 }
 
-@layer utilities {
-
-  /* Theme background utilities */
-  .bg-primary {
-    background-color: var(--bg-primary);
-  }
-
-  .bg-secondary {
-    background-color: var(--bg-secondary);
-  }
-
-  .bg-tertiary {
-    background-color: var(--bg-tertiary);
-  }
-
-  /* Theme text utilities */
-  .text-primary {
-    color: var(--text-primary);
-  }
-
-  .text-secondary {
-    color: var(--text-secondary);
-  }
-
-  .text-muted {
-    color: var(--text-muted);
-  }
-
-  /* Border utilities */
-  .border-primary {
-    border-color: var(--border-primary);
-  }
-
-  .border-secondary {
-    border-color: var(--border-secondary);
-  }
-
-  /* Gradient background */
-  .bg-gradient {
-    background-image: var(--gradient);
-  }
-
-  /* Custom gradient text utility */
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: var(--gradient);
-  }
-
-  /* Custom hover effects */
-  .hover-lift {
-    @apply transition-transform duration-300;
-  }
-
-  .hover-lift:hover {
-    @apply -translate-y-1;
-  }
+h1,
+h2,
+h3 {
+	line-height: 1.05;
+	letter-spacing: -0.025em;
+	text-wrap: balance;
 }
 
-/* Animated underline */
-.animated-underline {
-  position: relative;
+p {
+	text-wrap: pretty;
 }
 
-.animated-underline::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background: var(--gradient);
-  transform: scaleX(0);
-  transform-origin: bottom right;
-  transition: transform 0.3s ease-out;
+::selection {
+	background: var(--primary);
+	color: var(--bg-primary);
 }
 
-.animated-underline:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+:focus-visible {
+	outline: 2px solid var(--secondary);
+	outline-offset: 3px;
+	border-radius: 4px;
 }
 
-/* Image hover effects */
-.img-hover-zoom {
-  overflow: hidden;
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
 }
 
-.img-hover-zoom img {
-  transition: transform 0.5s ease;
+/* Bottom nav clearance on phones */
+@media (max-width: 767px) {
+	body {
+		padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+	}
 }
 
-.img-hover-zoom:hover img {
-  transform: scale(1.05);
+/* ── Reveal system (driven by components/Motion.jsx) ──
+   .motion is added before paint by the boot script in layout.tsx (never for reduced-motion visitors),
+   so targets start hidden and anime.js reveals them without a flash. */
+.motion [data-reveal]:not([data-reveal='stagger']):not([data-reveal='morph']),
+.motion [data-reveal='stagger'] > *,
+.motion [data-intro] {
+	opacity: 0;
+}
+/* Above-the-fold heroes stay visible (they are the page's largest paint) and start from a pose instead:
+   letters narrow and light, phone and project cards slightly low. anime.js animates them into place. */
+.motion .hl-char {
+	--wdth: 62;
+	--wght: 200;
+}
+.motion .showcase,
+.motion .p-card {
+	transform: translateY(40px);
 }
 
-/* Gradient border utility */
-.gradient-border {
-  position: relative;
-  border: 1px solid transparent;
-  background-clip: padding-box;
+/* Word-reveal masks (splitText wrappers): room for descenders so g/j/p/y aren't clipped */
+[data-reveal='words'] > span {
+	padding-bottom: 0.14em;
+	margin-bottom: -0.14em;
 }
 
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  margin: -1px;
-  border-radius: inherit;
-  background: var(--gradient);
+@layer components {
+	/* ── Buttons ── */
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		min-height: 3rem;
+		padding: 0 1.5rem;
+		border-radius: 999px;
+		font-weight: 600;
+		font-size: 1rem;
+		white-space: nowrap;
+		transition:
+			transform 0.25s var(--ease-out-expo),
+			background-color 0.2s,
+			color 0.2s,
+			border-color 0.2s;
+	}
+	.btn:active {
+		transform: scale(0.96);
+	}
+	.btn-primary {
+		background: var(--secondary);
+		color: var(--on-accent);
+	}
+	.btn-primary:hover {
+		background: var(--secondary-light);
+	}
+	.btn-ghost {
+		border: 1px solid var(--border-secondary);
+		color: var(--text-primary);
+	}
+	.btn-ghost:hover {
+		border-color: var(--secondary);
+		color: var(--secondary);
+	}
+
+	/* Arrow nudges on hover for any link/button containing .nudge */
+	.nudge {
+		transition: transform 0.3s var(--ease-out-expo);
+	}
+	a:hover .nudge,
+	button:hover .nudge {
+		transform: translateX(4px);
+	}
 }
 
-/* ===========================
-   Glassmorphism card
-   =========================== */
-.glass {
-  background: color-mix(in srgb, var(--bg-secondary) 80%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid color-mix(in srgb, var(--border-secondary) 60%, transparent);
+/* ── Hero headline: Archivo variable, width + weight axes driven by anime.js ── */
+.headline {
+	line-height: 0.95;
+	letter-spacing: -0.035em;
+}
+.hl-char {
+	--wdth: 100;
+	--wght: 800;
+	display: inline-block;
+	font-variation-settings:
+		'wdth' var(--wdth),
+		'wght' var(--wght);
 }
 
-/* ===========================
-   Glow utilities
-   =========================== */
-.glow-primary {
-  box-shadow: 0 0 20px color-mix(in srgb, var(--primary) 40%, transparent),
-              0 0 40px color-mix(in srgb, var(--primary) 20%, transparent);
+/* Hero dot field (canvas) fades out toward the edges */
+.dot-field {
+	mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 35%, transparent 100%);
 }
 
-.glow-secondary {
-  box-shadow: 0 0 20px color-mix(in srgb, var(--secondary) 40%, transparent),
-              0 0 40px color-mix(in srgb, var(--secondary) 20%, transparent);
+/* ── Marquee ── */
+@keyframes marquee {
+	to {
+		transform: translateX(-50%);
+	}
+}
+.marquee {
+	display: flex;
+	width: max-content;
+	animation: marquee 40s linear infinite;
+}
+/* Auto-moving content gets a way to stop it (WCAG 2.2.2) */
+.marquee:hover {
+	animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+	.marquee {
+		animation: none;
+	}
 }
 
-/* ===========================
-   Dot-grid background
-   =========================== */
-.dot-grid-bg {
-  background-image: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--text-muted) 55%, transparent) 2px,
-    transparent 2px
-  );
-  background-size: 36px 36px;
+/* ── Scroll progress: native scroll-driven animation, hidden where unsupported ── */
+.scroll-progress {
+	display: none;
+}
+@supports (animation-timeline: scroll()) {
+	.scroll-progress {
+		display: block;
+		position: fixed;
+		inset: 0 0 auto;
+		height: 2px;
+		z-index: 70;
+		background: var(--gradient);
+		transform-origin: left;
+		animation: progress linear both;
+		animation-timeline: scroll(root);
+		pointer-events: none;
+	}
+}
+@keyframes progress {
+	from {
+		transform: scaleX(0);
+	}
 }
 
-/* ===========================
-   Expertise card cursor spotlight
-   =========================== */
-.expertise-card {
-  --mouse-x: 50%;
-  --mouse-y: 50%;
+/* ── Project sheet (<dialog>) ── */
+.sheet {
+	margin: auto auto 0;
+	width: 100%;
+	max-width: 100%;
+	max-height: 92dvh;
+	padding: 0;
+	border: 0;
+	border-radius: 1.5rem 1.5rem 0 0;
+	background: var(--bg-secondary);
+	color: var(--text-primary);
+	overflow-y: auto;
+	overscroll-behavior: contain;
+}
+html:has(.sheet[open]) {
+	overflow: hidden;
+}
+@media (min-width: 768px) {
+	.sheet {
+		margin: auto;
+		max-width: 56rem;
+		max-height: 88dvh;
+		border-radius: 1.5rem;
+	}
+}
+.sheet::backdrop {
+	background: rgb(3 5 12 / 0.7);
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+}
+.sheet[open]::backdrop {
+	animation: fade-in 0.3s ease-out;
+}
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
 }
 
-.expertise-card .card-spotlight {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.3s;
-  background: radial-gradient(
-    320px circle at var(--mouse-x) var(--mouse-y),
-    color-mix(in srgb, var(--secondary) 12%, transparent),
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 0;
+/* Horizontal scroller without visible scrollbar (filter chips) */
+.no-scrollbar {
+	scrollbar-width: none;
 }
-
-.expertise-card:hover .card-spotlight {
-  opacity: 1;
-}
-
-.expertise-card > *:not(.card-spotlight) {
-  position: relative;
-  z-index: 1;
-}
-
-/* ===========================
-   Keyframe animations
-   =========================== */
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-.animate-shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    color-mix(in srgb, var(--primary) 30%, transparent) 50%,
-    transparent 100%
-  );
-  background-size: 200% auto;
-  animation: shimmer 2s linear infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, #22c55e 50%, transparent); }
-  50% { box-shadow: 0 0 0 6px color-mix(in srgb, #22c55e 0%, transparent); }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-@keyframes cursor-blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-
-.animate-cursor-blink {
-  animation: cursor-blink 1s steps(1, end) infinite;
-}
-
-@keyframes count-up {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-count-up {
-  animation: count-up 0.4s ease-out forwards;
-}
-
-/* ===========================
-   Tech ticker marquee
-   =========================== */
-@keyframes ticker {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.animate-ticker {
-  animation: ticker 30s linear infinite;
-  width: max-content;
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
 }

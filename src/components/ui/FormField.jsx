@@ -1,53 +1,31 @@
-'use client'
-
+// 16px text keeps iOS Safari from zooming into fields on focus
 const inputBase =
-	'w-full bg-secondary border rounded-md py-3 px-4 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] placeholder:opacity-60 focus:outline-none focus:ring-2 focus:ring-[var(--secondary)] transition-colors'
+	'w-full rounded-2xl border bg-page px-4 py-3.5 text-base text-fg placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none'
 
-const FormField = ({
-	label,
-	id,
-	name,
-	type = 'text',
-	value,
-	onChange,
-	onBlur,
-	placeholder,
-	required = true,
-	rows,
-	error,
-}) => (
+const FormField = ({ label, id, rows, error, required = true, ...props }) => (
 	<div>
-		<label htmlFor={id} className="block text-sm font-medium text-secondary mb-1">
-			{label} *
+		<label htmlFor={id} className="mb-2 block text-sm font-medium text-fg-2">
+			{label}
 		</label>
 		{rows ? (
 			<textarea
 				id={id}
-				name={name}
 				rows={rows}
-				value={value}
-				onChange={onChange}
-				onBlur={onBlur}
-				className={`${inputBase} resize-vertical ${error ? 'border-red-500' : 'border-primary'}`}
-				placeholder={placeholder}
 				required={required}
+				aria-invalid={!!error}
+				className={`${inputBase} resize-y ${error ? 'border-red-400' : 'border-line-2'}`}
+				{...props}
 			/>
 		) : (
 			<input
-				type={type}
 				id={id}
-				name={name}
-				value={value}
-				onChange={onChange}
-				onBlur={onBlur}
-				className={`${inputBase} ${error ? 'border-red-500' : 'border-primary'}`}
-				placeholder={placeholder}
 				required={required}
+				aria-invalid={!!error}
+				className={`${inputBase} ${error ? 'border-red-400' : 'border-line-2'}`}
+				{...props}
 			/>
 		)}
-		{error && (
-			<p className="mt-1 text-xs text-red-400">{error}</p>
-		)}
+		{error && <p className="mt-1.5 text-sm text-red-400">{error}</p>}
 	</div>
 )
 

@@ -7,6 +7,13 @@ import JavaScriptIcon from '../../assets/icons/javascript.svg'
 import TypeScriptIcon from '../../assets/icons/typescript.svg'
 import TailwindIcon from '../../assets/icons/tailwind.svg'
 import FramerIcon from '../../assets/icons/framer.svg'
+import AnimeIcon from '../../assets/icons/animejs.svg'
+import RiveIcon from '../../assets/icons/rive.svg'
+import ClaudeIcon from '../../assets/icons/claude.svg'
+import CapacitorIcon from '../../assets/icons/capacitor.svg'
+import GithubIcon from '../../assets/icons/github.svg'
+import GitlabIcon from '../../assets/icons/gitlab.svg'
+import BitbucketIcon from '../../assets/icons/bitbucket.svg'
 import NodeIcon from '../../assets/icons/nodejs.svg'
 import ExpressIcon from '../../assets/icons/express.svg'
 import MongoIcon from '../../assets/icons/mongo.svg'
@@ -43,6 +50,13 @@ export {
 	TypeScriptIcon,
 	TailwindIcon,
 	FramerIcon,
+	AnimeIcon,
+	RiveIcon,
+	ClaudeIcon,
+	CapacitorIcon,
+	GithubIcon,
+	GitlabIcon,
+	BitbucketIcon,
 	NodeIcon,
 	ExpressIcon,
 	MongoIcon,

@@ -2,261 +2,118 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import { getFeaturedProjects } from '@/data/projects'
-import ProjectModal from '@/components/ui/ProjectModal'
+import { animate, onScroll } from 'animejs'
+import { ArrowRight } from 'lucide-react'
+import { useAnime } from '@/lib/anime'
+import { getFeaturedProjects, projects, isLive } from '@/data/projects'
+import ProjectSheet from '@/components/ui/ProjectSheet'
+import ProjectShot from '@/components/ui/ProjectShot'
 
+const featured = getFeaturedProjects()
+
+/**
+ * Sticky card stack: each card pins near the top and the next one slides over it.
+ * anime.js scrubs the buried card's scale/dim and each screenshot's zoom to scroll position.
+ */
 const FeaturedProjects = () => {
-	const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
-	const projects = getFeaturedProjects()
+	const [selected, setSelected] = useState(null)
 
-	const [selectedProject, setSelectedProject] = useState(null)
-	const [isModalOpen, setIsModalOpen] = useState(false)
-
-	const openModal = (project) => {
-		setSelectedProject(project)
-		setIsModalOpen(true)
-	}
-
-	const closeModal = () => {
-		setIsModalOpen(false)
-		setTimeout(() => setSelectedProject(null), 300)
-	}
-
-	const itemVariants = {
-		hidden: { y: 50, opacity: 0 },
-		visible: { y: 0, opacity: 1, transition: { duration: 0.6 } },
-	}
-
-	const [featured, ...rest] = projects
+	const root = useAnime((self) => {
+		if (self.matches.reduce) return
+		const cards = [...root.current.querySelectorAll('.stack-card')]
+		const scrub = (target) => {
+			const top = parseFloat(getComputedStyle(target).top)
+			return onScroll({ target, enter: 'end start', leave: `start+=${top} start`, sync: true })
+		}
+		cards.forEach((card, i) => {
+			animate(card.querySelector('.stack-img'), { scale: [1.15, 1], ease: 'linear', autoplay: scrub(card) })
+			const phone = card.querySelector('.stack-phone')
+			if (phone) animate(phone, { y: ['35%', '0%'], ease: 'linear', autoplay: scrub(card) })
+			const next = cards[i + 1]
+			if (!next) return
+			animate(card.querySelector('.stack-inner'), { scale: [1, 0.9], ease: 'linear', autoplay: scrub(next) })
+			animate(card.querySelector('.stack-dim'), { opacity: [0, 0.55], ease: 'linear', autoplay: scrub(next) })
+		})
+	})
 
 	return (
-		<section ref={ref} className="py-20 lg:py-28 bg-primary">
-			<ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={closeModal} />
-			<div className="container mx-auto px-4 lg:px-8">
-				{/* Section heading */}
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-					transition={{ duration: 0.6 }}
-					className="flex items-end justify-between mb-12"
-				>
-					<h2 className="text-3xl lg:text-5xl xl:text-6xl font-black leading-tight">
-						<span className="font-light text-muted">Featured </span>
-						<span style={{ color: 'var(--secondary)' }}>Projects</span>
-					</h2>
-					<Link href="/projects">
-						<div className="hidden md:inline-flex items-center text-[var(--secondary)] hover:text-[var(--secondary-light)] group text-sm font-medium">
-							View all
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform"
-								viewBox="0 0 20 20"
-								fill="currentColor"
-							>
-								<path
-									fillRule="evenodd"
-									d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-									clipRule="evenodd"
-								/>
-							</svg>
-						</div>
+		<section id="work" ref={root} className="scroll-mt-4 px-5 py-20 md:px-8 md:py-32">
+			<ProjectSheet project={selected} onClose={() => setSelected(null)} />
+
+			<div className="mx-auto max-w-7xl">
+				<div className="flex items-end justify-between gap-6">
+					<div>
+						<h2 data-reveal="words" className="text-[2.6rem] font-bold md:text-7xl">
+							Selected work
+						</h2>
+						<p data-reveal className="mt-4 max-w-md text-fg-2 md:text-lg">
+							Recent products I designed and built. Open any of them for the story and the stack.
+						</p>
+					</div>
+					<Link href="/projects" className="btn btn-ghost hidden shrink-0 md:inline-flex">
+						All {projects.length} projects
 					</Link>
-				</motion.div>
+				</div>
 
-				{/* Grid: featured card (2 cols) + rest (1 col each) */}
-				<motion.div
-					className="grid grid-cols-1 lg:grid-cols-3 gap-6"
-					initial="hidden"
-					animate={inView ? 'visible' : 'hidden'}
-					transition={{ staggerChildren: 0.15 }}
-				>
-					{/* ── Featured card — spans 2 columns, horizontal layout ── */}
-					{featured && (
-						<motion.div
-							key={featured.id}
-							className="lg:col-span-2 glass rounded-xl overflow-hidden border border-primary hover:border-[var(--secondary)] transition-colors group cursor-pointer"
-							style={{ willChange: "transform" }}
-							variants={itemVariants}
-							whileHover={{ y: -4 }}
-							onClick={() => openModal(featured)}
-						>
-							<div className="flex flex-col md:flex-row h-full">
-								{/* Image — left half on md+ */}
-								<div className="md:w-1/2 relative overflow-hidden bg-tertiary min-h-[220px]">
-									<Image
-										src={featured.image}
-										alt={featured.title}
-										fill
-										className="object-cover transition-transform group-hover:scale-105"
-										sizes="(max-width: 768px) 100vw, 50vw"
-										priority
-									/>
-									<div className="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--bg-secondary)]/60 opacity-0 group-hover:opacity-100 transition-opacity" />
-								</div>
-
-								{/* Content — right half */}
-								<div className="md:w-1/2 p-7 lg:p-9 flex flex-col justify-between">
-									<div>
-										<div className="flex items-center gap-2 mb-4">
-											{featured.workRelated && (
-												<span className="px-2.5 py-1 text-xs bg-[var(--primary)]/20 border border-[var(--primary)] rounded-full text-[var(--primary)]">
-													Work Related
-												</span>
-											)}
-											{featured.freelance && (
-												<span className="px-2.5 py-1 text-xs bg-[var(--secondary)]/20 border border-[var(--secondary)] rounded-full text-[var(--secondary)]">
-													Freelance
-												</span>
-											)}
-										</div>
-										<h3 className="text-2xl lg:text-3xl font-bold mb-3 leading-tight">
-											{featured.title}
-										</h3>
-										<p className="text-muted mb-5 leading-relaxed">
-											{featured.description}
-										</p>
-										<div className="flex flex-wrap gap-2">
-											{featured.technologies.slice(0, 5).map((tech, i) => (
-												<span
-													key={i}
-													className="px-2.5 py-1 bg-tertiary rounded-md text-xs font-medium"
-												>
-													{tech}
-												</span>
-											))}
-											{featured.technologies.length > 5 && (
-												<span className="px-2.5 py-1 text-xs text-muted">
-													+{featured.technologies.length - 5} more
-												</span>
-											)}
-										</div>
-									</div>
-									<div className="mt-6">
-										<button
-											type="button"
-											className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm border-2 border-[var(--secondary)] bg-transparent text-[var(--secondary)] text-xs font-bold uppercase tracking-widest hover:bg-[var(--secondary)] hover:text-[var(--bg-primary)] transition-all duration-200"
-											onClick={(e) => { e.stopPropagation(); openModal(featured) }}
-										>
-											View project
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												className="h-4 w-4"
-												viewBox="0 0 20 20"
-												fill="currentColor"
-											>
-												<path
-													fillRule="evenodd"
-													d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-													clipRule="evenodd"
-												/>
-											</svg>
-										</button>
-									</div>
-								</div>
-							</div>
-						</motion.div>
-					)}
-
-					{/* ── Regular cards ── */}
-					{rest.map((project) => (
-						<motion.div
+				<ol className="mt-10 [--stack-top:1rem] md:mt-16 md:[--stack-top:6.5rem]">
+					{featured.map((project, i) => (
+						<li
 							key={project.id}
-							className="glass rounded-xl overflow-hidden border border-primary hover:border-[var(--secondary)] transition-colors group cursor-pointer"
-							style={{ willChange: "transform" }}
-							variants={itemVariants}
-							whileHover={{ y: -4 }}
-							onClick={() => openModal(project)}
+							className="stack-card sticky mb-6 md:mb-12"
+							style={{ top: `calc(var(--stack-top) + ${i * 12}px)` }}
 						>
-							<div className="aspect-video relative overflow-hidden bg-tertiary">
-								<Image
-									src={project.image}
-									alt={project.title}
-									width={400}
-									height={225}
-									className="object-cover w-full h-full transition-transform group-hover:scale-105"
-									sizes="(max-width: 1024px) 100vw, 33vw"
+							<article className="stack-inner group relative origin-top overflow-hidden rounded-[1.75rem] border border-line bg-surface md:grid md:grid-cols-12 md:items-center">
+								<ProjectShot
+									project={project}
+									sizes="(max-width: 768px) 100vw, 60vw"
+									priority={i < 2}
+									className="md:col-span-7"
+									imgClassName="stack-img"
+									phoneClassName="stack-phone"
 								/>
-								<div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/20 to-[var(--secondary)]/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-							</div>
-							<div className="p-6">
-								<div className="flex justify-between items-start mb-3">
-									<h3 className="text-xl font-bold">{project.title}</h3>
-									{project.workRelated && (
-										<span className="px-2 py-1 text-xs bg-[var(--primary)]/20 border border-[var(--primary)] rounded-full text-[var(--primary)] shrink-0 ml-2">
-											Work
-										</span>
-									)}
-									{project.freelance && (
-										<span className="px-2 py-1 text-xs bg-[var(--secondary)]/20 border border-[var(--secondary)] rounded-full text-[var(--secondary)] shrink-0 ml-2">
-											Freelance
-										</span>
-									)}
-								</div>
-								<p className="text-muted mb-4 text-sm leading-relaxed">
-									{project.description}
-								</p>
-								<div className="flex flex-wrap gap-1.5 mb-5">
-									{project.technologies.slice(0, 4).map((tech, i) => (
-										<span
-											key={i}
-											className="px-2 py-0.5 bg-tertiary rounded text-xs"
-										>
-											{tech}
-										</span>
-									))}
-								</div>
-								<button
-									type="button"
-									className="text-[var(--secondary)] hover:text-[var(--secondary-light)] inline-flex items-center text-sm font-medium"
-									onClick={(e) => { e.stopPropagation(); openModal(project) }}
-								>
-									View project
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										className="h-4 w-4 ml-1"
-										viewBox="0 0 20 20"
-										fill="currentColor"
-									>
-										<path
-											fillRule="evenodd"
-											d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-											clipRule="evenodd"
-										/>
-									</svg>
-								</button>
-							</div>
-						</motion.div>
-					))}
-				</motion.div>
 
-				{/* Mobile "view all" link */}
-				<motion.div
-					className="mt-10 text-center md:hidden"
-					initial={{ opacity: 0 }}
-					animate={inView ? { opacity: 1 } : { opacity: 0 }}
-					transition={{ duration: 0.6, delay: 0.6 }}
-				>
-					<Link href="/projects">
-						<div className="inline-flex items-center text-[var(--secondary)] hover:text-[var(--secondary-light)] group font-medium">
-							View all projects
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								className="h-5 w-5 ml-1 group-hover:translate-x-1 transition-transform"
-								viewBox="0 0 20 20"
-								fill="currentColor"
-							>
-								<path
-									fillRule="evenodd"
-									d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-									clipRule="evenodd"
-								/>
-							</svg>
-						</div>
-					</Link>
-				</motion.div>
+								<div className="flex flex-col p-5 pb-6 md:col-span-5 md:p-10">
+									<div className="flex items-center justify-between text-sm text-muted">
+										<span>{project.category}</span>
+										{isLive(project) && (
+											<span className="inline-flex items-center gap-1.5 font-medium text-live">
+												<span className="h-1.5 w-1.5 rounded-full bg-live" />
+												Live
+											</span>
+										)}
+									</div>
+									<h3 className="mt-2 text-[1.75rem] font-bold md:mt-4 md:text-5xl">
+										{/* Stretched button: the whole card opens the sheet */}
+										<button
+											onClick={() => setSelected(project)}
+											className="text-left after:absolute after:inset-0 after:z-10 after:content-['']"
+										>
+											{project.title}
+										</button>
+									</h3>
+									<p className="mt-2 text-fg-2 md:mt-4 md:text-lg">{project.description}</p>
+									<ul className="mt-4 flex flex-wrap gap-2">
+										{project.technologies.slice(0, 3).map((tech) => (
+											<li key={tech} className="rounded-full bg-raised px-3 py-1 text-sm text-fg-2">
+												{tech}
+											</li>
+										))}
+									</ul>
+									<span className="mt-auto inline-flex items-center gap-2 pt-6 font-semibold text-accent">
+										View details
+										<ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+									</span>
+								</div>
+
+								<div className="stack-dim pointer-events-none absolute inset-0 bg-black opacity-0" />
+							</article>
+						</li>
+					))}
+				</ol>
+
+				<Link href="/projects" className="btn btn-ghost mt-4 w-full md:hidden">
+					See all {projects.length} projects
+				</Link>
 			</div>
 		</section>
 	)

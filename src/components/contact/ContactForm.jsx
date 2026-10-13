@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
+import { LoaderCircle } from 'lucide-react'
 import FormField from '@/components/ui/FormField'
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -81,12 +81,13 @@ const ContactForm = ({
 	}
 
 	return (
-		<form className="space-y-6" onSubmit={handleSubmit} noValidate>
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+		<form className="space-y-5" onSubmit={handleSubmit} noValidate>
+			<div className="grid grid-cols-1 gap-5 md:grid-cols-2">
 				<FormField
 					label="Name"
 					id="name"
 					name="name"
+					autoComplete="name"
 					value={formData.name}
 					onChange={handleChange}
 					onBlur={handleBlur}
@@ -98,10 +99,12 @@ const ContactForm = ({
 					id="email"
 					name="email"
 					type="email"
+					inputMode="email"
+					autoComplete="email"
 					value={formData.email}
 					onChange={handleChange}
 					onBlur={handleBlur}
-					placeholder="your.email@example.com"
+					placeholder="you@company.com"
 					error={touched.email ? errors.email : undefined}
 				/>
 			</div>
@@ -113,7 +116,7 @@ const ContactForm = ({
 				value={formData.subject}
 				onChange={handleChange}
 				onBlur={handleBlur}
-				placeholder="What's this about?"
+				placeholder="New app, redesign, a quick question…"
 				error={touched.subject ? errors.subject : undefined}
 			/>
 
@@ -124,55 +127,30 @@ const ContactForm = ({
 				value={formData.message}
 				onChange={handleChange}
 				onBlur={handleBlur}
-				placeholder="Tell me about your project or just say hello!"
+				placeholder="What are you building, and when do you need it?"
 				rows={5}
 				error={touched.message ? errors.message : undefined}
 			/>
 
-			<motion.button
+			<button
 				type="submit"
-				className={`px-8 py-3 rounded-sm border-2 border-[var(--secondary)] bg-[var(--secondary)] text-[var(--bg-primary)] font-bold uppercase tracking-widest text-sm hover:bg-transparent hover:text-[var(--secondary)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${buttonFullWidth ? 'w-full' : 'w-full md:w-auto'}`}
-				whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-				whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+				className={`btn btn-primary disabled:cursor-not-allowed disabled:opacity-60 ${buttonFullWidth ? 'w-full' : 'w-full md:w-auto'}`}
 				disabled={isSubmitting}
 			>
 				{isSubmitting ? (
-					<span className="flex items-center justify-center">
-						<svg
-							className="animate-spin -ml-1 mr-3 h-5 w-5"
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-						>
-							<circle
-								className="opacity-25"
-								cx="12"
-								cy="12"
-								r="10"
-								stroke="currentColor"
-								strokeWidth="4"
-							/>
-							<path
-								className="opacity-75"
-								fill="currentColor"
-								d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-							/>
-						</svg>
-						Sending...
-					</span>
+					<>
+						<LoaderCircle size={18} className="animate-spin" />
+						Sending…
+					</>
 				) : (
-					'Send Message'
+					'Send message'
 				)}
-			</motion.button>
+			</button>
 
 			{submitError && (
-				<motion.p
-					className="text-sm text-red-400"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-				>
+				<p role="alert" className="text-sm text-red-400">
 					{submitError}
-				</motion.p>
+				</p>
 			)}
 		</form>
 	)

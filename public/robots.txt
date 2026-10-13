@@ -1,12 +1,4 @@
-export async function GET() {
-  const robots = `User-agent: *
+User-agent: *
 Allow: /
 
-Sitemap: https://ioanlipan.com/sitemap.xml`
-
-  return new Response(robots, {
-    headers: {
-      'Content-Type': 'text/plain',
-    },
-  })
-}
+Sitemap: https://ioanlipan.com/sitemap.xml

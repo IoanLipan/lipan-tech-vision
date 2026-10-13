@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { animate, createTimeline, spring, svg } from 'animejs'
+import { ArrowLeft } from 'lucide-react'
+import { useAnime } from '@/lib/anime'
 
 const TOTAL = 10
 const RADIUS = 44
@@ -22,166 +24,64 @@ export default function ThankYouPage() {
 		return () => clearTimeout(t)
 	}, [count, router])
 
-	const progress = count / TOTAL
-	const dashOffset = CIRCUMFERENCE * (1 - progress)
+	// Badge pops, check draws itself, then the copy rises in
+	const root = useAnime((self) => {
+		if (self.matches.reduce) return
+		createTimeline()
+			.add('.ty-badge', { scale: [0, 1], ease: spring({ bounce: 0.45, duration: 700 }) })
+			.add(svg.createDrawable('.ty-check'), { draw: ['0 0', '0 1'], duration: 500, ease: 'out(3)' }, 250)
+			.add('[data-intro]', { opacity: [0, 1], y: [20, 0], duration: 800, ease: 'out(4)', delay: (_, i) => i * 90 }, 350)
+	})
+
+	// Countdown ring eases toward each new second
+	useEffect(() => {
+		animate('.ty-ring', { strokeDashoffset: CIRCUMFERENCE * (1 - count / TOTAL), duration: 900, ease: 'linear' })
+	}, [count])
 
 	return (
-		<div className="min-h-screen bg-primary flex items-center justify-center px-4">
-			<motion.div
-				className="text-center max-w-lg w-full"
-				initial={{ opacity: 0, y: 32 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.6 }}
-			>
-				{/* Checkmark circle */}
-				<motion.div
-					className="mx-auto mb-10 flex items-center justify-center w-24 h-24 rounded-full"
-					style={{ background: 'color-mix(in srgb, var(--secondary) 15%, transparent)', border: '2px solid var(--secondary)' }}
-					initial={{ scale: 0 }}
-					animate={{ scale: 1 }}
-					transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 0.15 }}
-				>
-					<motion.svg
-						className="w-12 h-12"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						style={{ color: 'var(--secondary)' }}
-						initial={{ pathLength: 0, opacity: 0 }}
-						animate={{ pathLength: 1, opacity: 1 }}
-						transition={{ duration: 0.5, delay: 0.4 }}
-					>
-						<motion.path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2.5}
-							d="M5 13l4 4L19 7"
-							initial={{ pathLength: 0 }}
-							animate={{ pathLength: 1 }}
-							transition={{ duration: 0.5, delay: 0.4 }}
-						/>
-					</motion.svg>
-				</motion.div>
+		<div ref={root} className="flex min-h-[100svh] items-center justify-center px-5 py-28">
+			<div className="w-full max-w-lg text-center">
+				<div className="ty-badge mx-auto mb-10 flex h-24 w-24 items-center justify-center rounded-full border-2 border-accent bg-accent/15">
+					<svg className="h-12 w-12 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+						<path className="ty-check" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+					</svg>
+				</div>
 
-				{/* Headline */}
-				<motion.h1
-					className="text-4xl md:text-5xl font-black mb-4 leading-tight"
-					initial={{ opacity: 0, y: 16 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5, delay: 0.3 }}
-					style={{
-						background: 'linear-gradient(135deg, var(--primary) 20%, var(--secondary) 100%)',
-						WebkitBackgroundClip: 'text',
-						WebkitTextFillColor: 'transparent',
-						backgroundClip: 'text',
-					}}
-				>
-					Message Sent!
-				</motion.h1>
+				<h1 data-intro className="text-4xl font-bold md:text-5xl">
+					Message sent
+				</h1>
+				<p data-intro className="mx-auto mt-4 max-w-sm text-lg text-fg-2">
+					Thanks for reaching out. I&apos;ll get back to you as soon as I can.
+				</p>
 
-				<motion.p
-					className="text-secondary text-lg mb-12"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					transition={{ duration: 0.5, delay: 0.45 }}
-				>
-					Thanks for reaching out — I'll get back to you as soon as possible.
-				</motion.p>
-
-				{/* Countdown ring */}
-				<motion.div
-					className="mx-auto mb-8 relative flex items-center justify-center"
-					style={{ width: 120, height: 120 }}
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					transition={{ duration: 0.4, delay: 0.6 }}
-				>
-					{/* Track */}
-					<svg width="120" height="120" className="absolute inset-0 -rotate-90">
+				<div data-intro className="relative mx-auto mt-12 flex h-[120px] w-[120px] items-center justify-center">
+					<svg width="120" height="120" className="absolute inset-0 -rotate-90" aria-hidden="true">
+						<circle cx="60" cy="60" r={RADIUS} fill="none" strokeWidth="4" className="stroke-line-2" />
 						<circle
-							cx="60"
-							cy="60"
-							r={RADIUS}
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="4"
-							className="text-primary"
-							style={{ color: 'color-mix(in srgb, var(--secondary) 15%, transparent)' }}
-						/>
-						{/* Progress arc */}
-						<motion.circle
+							className="ty-ring stroke-accent"
 							cx="60"
 							cy="60"
 							r={RADIUS}
 							fill="none"
 							strokeWidth="4"
-							stroke="var(--secondary)"
 							strokeLinecap="round"
 							strokeDasharray={CIRCUMFERENCE}
-							animate={{ strokeDashoffset: dashOffset }}
-							transition={{ duration: 0.9, ease: 'linear' }}
+							strokeDashoffset={0}
 						/>
 					</svg>
-					{/* Number */}
-					<div className="relative flex flex-col items-center">
-						<span
-							className="text-3xl font-black tabular-nums leading-none"
-							style={{ color: 'var(--secondary)' }}
-						>
-							{count}
-						</span>
-						<span className="text-xs font-bold uppercase tracking-widest text-muted mt-1">
-							sec
-						</span>
-					</div>
-				</motion.div>
+					<span className="text-3xl font-bold tabular-nums text-accent">{count}</span>
+				</div>
+				<p data-intro className="mt-4 text-sm text-muted">
+					Taking you back home automatically
+				</p>
 
-				<motion.p
-					className="text-sm text-muted mb-10 uppercase tracking-widest font-bold"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					transition={{ duration: 0.4, delay: 0.7 }}
-				>
-					Redirecting to home automatically&hellip;
-				</motion.p>
-
-				{/* Back to Home button */}
-				<motion.div
-					initial={{ opacity: 0, y: 12 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.4, delay: 0.8 }}
-				>
-					<Link href="/">
-						<motion.div
-							className="inline-flex items-center gap-2 px-8 py-3 rounded-sm border-2 font-bold uppercase tracking-widest text-sm transition-all duration-200"
-							style={{
-								borderColor: 'var(--secondary)',
-								background: 'var(--secondary)',
-								color: 'var(--bg-primary)',
-							}}
-							whileHover={{
-								background: 'transparent',
-								color: 'var(--secondary)',
-							}}
-							whileTap={{ scale: 0.97 }}
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								className="h-4 w-4"
-								viewBox="0 0 20 20"
-								fill="currentColor"
-							>
-								<path
-									fillRule="evenodd"
-									d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-									clipRule="evenodd"
-								/>
-							</svg>
-							Back to Home
-						</motion.div>
+				<div data-intro className="mt-10">
+					<Link href="/" className="btn btn-primary">
+						<ArrowLeft size={18} />
+						Back to home
 					</Link>
-				</motion.div>
-			</motion.div>
+				</div>
+			</div>
 		</div>
 	)
 }

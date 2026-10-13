@@ -1,268 +1,96 @@
 'use client'
 
 import Link from 'next/link'
-import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { useEffect } from 'react'
+import { useRef } from 'react'
+import { animate, createTimeline, onScroll, stagger } from 'animejs'
+import { useAnime } from '@/lib/anime'
+import HeroShowcase from './HeroShowcase'
+import DotField from '@/components/ui/DotField'
+
+// Fixed line breaks: letters change width while animating, so lines must never reflow.
+const LINES = ['Fast, fluid', 'apps for web', 'and mobile.']
 
 const Hero = () => {
-	const mouseX = useMotionValue(0.5)
-	const mouseY = useMotionValue(0.5)
+	const dots = useRef(null)
 
-	const blob1X = useTransform(mouseX, [0, 1], [-18, 18])
-	const blob1Y = useTransform(mouseY, [0, 1], [-18, 18])
-	const blob2X = useTransform(mouseX, [0, 1], [12, -12])
-	const blob2Y = useTransform(mouseY, [0, 1], [12, -12])
-	const blob3X = useTransform(mouseX, [0, 1], [-8, 8])
-	const blob3Y = useTransform(mouseY, [0, 1], [8, -8])
+	const root = useAnime((self) => {
+		if (self.matches.reduce) return
+		const section = root.current
 
-	useEffect(() => {
-		const handleMouseMove = (e) => {
-			mouseX.set(e.clientX / window.innerWidth)
-			mouseY.set(e.clientY / window.innerHeight)
-		}
-		window.addEventListener('mousemove', handleMouseMove)
-		return () => window.removeEventListener('mousemove', handleMouseMove)
-	}, [mouseX, mouseY])
+		// ── Intro: dots ripple out from the centre while the letters widen into place ──
+		dots.current.ripple()
+		createTimeline({ defaults: { ease: 'out(4)' } })
+			.add('.hl-char', { '--wdth': [62, 100], '--wght': [200, 800], duration: 1300, delay: stagger(28) })
+			.add('[data-intro]', { opacity: [0, 1], y: [28, 0], duration: 1100, delay: stagger(110) }, 400)
+			.add('.showcase', { y: [40, 0], duration: 1400 }, 300)
 
-	const containerVariants = {
-		hidden: { opacity: 0 },
-		show: { opacity: 1, transition: { staggerChildren: 0.15 } },
-	}
+		// ── Scroll out: lines drift up at different speeds, the phone lags behind, dots sink ──
+		const scrollOut = () => onScroll({ target: section, enter: 'start start', leave: 'start end', sync: 0.5 })
+		animate('.hl-line', { y: (_, i) => `${-(15 + i * 22)}%`, ease: 'linear', autoplay: scrollOut() })
+		animate('.hero-visual', { y: '12%', ease: 'linear', autoplay: scrollOut() })
+		animate('.dot-field', { y: '25%', opacity: 0, ease: 'linear', autoplay: scrollOut() })
 
-	const itemVariants = {
-		hidden: { opacity: 0, y: 30 },
-		show: {
-			opacity: 1,
-			y: 0,
-			transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] },
-		},
-	}
-
-	const cardVariants = {
-		hidden: { opacity: 0, x: 40 },
-		show: {
-			opacity: 1,
-			x: 0,
-			transition: { duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1.0] },
-		},
-	}
-
-	const blobVariants = {
-		initial: { scale: 0.8, opacity: 0.15 },
-		animate: {
-			scale: 1,
-			opacity: 0.25,
-			transition: { duration: 8, repeat: Infinity, repeatType: 'reverse' },
-		},
-	}
+		// ── Tap the background: ripple from that point ──
+		const onDown = (e) => !e.target.closest('a, button, .showcase') && dots.current.ripple(e.clientX, e.clientY)
+		section.addEventListener('pointerdown', onDown)
+		return () => section.removeEventListener('pointerdown', onDown)
+	})
 
 	return (
-		<section className="relative py-20 lg:py-28 min-h-[90vh] flex items-center overflow-hidden">
-			{/* Dot-grid background */}
-			<div className="absolute inset-0 dot-grid-bg opacity-60 pointer-events-none" />
+		<section
+			ref={root}
+			className="relative overflow-hidden px-5 pb-16 pt-24 md:px-8 md:pt-32 lg:flex lg:min-h-[100svh] lg:items-center lg:pb-20 lg:pt-28"
+		>
+			<DotField ref={dots} className="dot-field" />
 
-			<div className="container mx-auto px-4 lg:px-8 relative z-10 w-full">
-				{/* 2-column on xl: text left, terminal card right */}
-				<div className="grid grid-cols-1 xl:grid-cols-5 gap-8 xl:gap-16 items-center">
-					{/* ── Left: text content ── */}
-					<motion.div
-						className="xl:col-span-3"
-						variants={containerVariants}
-						initial="hidden"
-						animate="show"
-					>
-						{/* Available badge */}
-						<motion.div className="mb-6" variants={itemVariants}>
-							<span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--border-secondary)] bg-[var(--bg-secondary)] text-sm font-medium text-secondary">
-								<span className="w-2 h-2 rounded-full bg-green-400 animate-pulse-glow inline-block" />
-								Available for work
-							</span>
-						</motion.div>
+			<div className="relative mx-auto grid w-full max-w-7xl gap-14 lg:grid-cols-12 lg:items-center lg:gap-8">
+				<div className="lg:col-span-7">
+					<p data-intro className="mb-6 inline-flex items-center gap-2.5 text-[15px] text-fg-2">
+						<span className="relative flex h-2 w-2">
+							<span className="absolute h-full w-full animate-ping rounded-full bg-live opacity-60" />
+							<span className="relative h-2 w-2 rounded-full bg-live" />
+						</span>
+						Available for new projects
+					</p>
 
-						{/* Main headline — 2-line hierarchy */}
-						<motion.h1
-							className="font-black mb-6 leading-none"
-							style={{
-								background: 'linear-gradient(135deg, var(--primary) 25%, var(--secondary) 40%)',
-								WebkitBackgroundClip: 'text',
-								WebkitTextFillColor: 'transparent',
-								backgroundClip: 'text',
-							}}
-							variants={itemVariants}
-						>
-							<span
-								className="block"
-								style={{ fontSize: 'clamp(4rem, 8.5vw, 9rem)' }}
-							>
-								Lipan
-							</span>
-							<span
-								className="block"
-								style={{ fontSize: 'clamp(1.6rem, 3.2vw, 3.5rem)', letterSpacing: '0.14em' }}
-							>
-								TECH VISION
-							</span>
-						</motion.h1>
-
-						<motion.p
-							className="text-lg md:text-xl lg:text-2xl text-secondary mb-4 max-w-xl"
-							variants={itemVariants}
-						>
-							Engineering the future through innovation and problem-solving
-						</motion.p>
-
-						<motion.p
-							className="text-lg md:text-xl lg:text-2xl text-secondary mb-10 max-w-xl"
-							variants={itemVariants}
-						>
-							<strong style={{ color: 'var(--secondary)', fontSize: '1.7rem' }}>5+ years</strong> of
-							experience with international teams.
-						</motion.p>
-
-						<motion.div
-							className="flex flex-wrap gap-4"
-							variants={itemVariants}
-						>
-							<Link href="/projects">
-								<motion.div
-									className="px-8 py-3.5 rounded-sm border-2 border-[var(--secondary)] bg-[var(--secondary)] text-[var(--bg-primary)] font-bold uppercase tracking-widest text-sm hover:bg-transparent hover:text-[var(--secondary)] transition-all duration-200"
-									whileHover={{ scale: 1.05 }}
-									whileTap={{ scale: 0.98 }}
-								>
-									View Projects
-								</motion.div>
-							</Link>
-							<Link href="/contact">
-								<motion.div
-									className="px-8 py-3.5 rounded-sm border-2 border-[var(--secondary)] bg-transparent text-[var(--secondary)] font-bold uppercase tracking-widest text-sm hover:bg-[var(--secondary)] hover:text-[var(--bg-primary)] transition-all duration-200"
-									whileHover={{ scale: 1.05 }}
-									whileTap={{ scale: 0.98 }}
-								>
-									Get In Touch
-								</motion.div>
-							</Link>
-						</motion.div>
-					</motion.div>
-
-					{/* ── Right: terminal card (xl only) ── */}
-					<motion.div
-						className="hidden xl:block xl:col-span-2"
-						variants={cardVariants}
-						initial="hidden"
-						animate="show"
-					>
-						<div
-							className="rounded-xl border border-[var(--border-secondary)] overflow-hidden shadow-2xl"
-							style={{
-								background: 'var(--bg-tertiary)',
-								boxShadow:
-									'0 0 60px color-mix(in srgb, var(--primary) 15%, transparent)',
-							}}
-						>
-							{/* Window chrome */}
-							<div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--border-primary)] bg-[var(--bg-secondary)]">
-								<span className="w-3 h-3 rounded-full bg-red-500/80" />
-								<span className="w-3 h-3 rounded-full bg-yellow-400/80" />
-								<span className="w-3 h-3 rounded-full bg-green-400/80" />
-								<span className="ml-4 text-xs text-muted font-mono">
-									about.ts
-								</span>
-							</div>
-
-							{/* Code body */}
-							<div className="p-6 font-mono text-sm leading-7">
-								<p>
-									<span style={{ color: 'var(--secondary)' }}>const </span>
-									<span className="text-primary">developer</span>
-									<span className="text-primary"> = {'{'}</span>
-								</p>
-								<p className="pl-6">
-									<span className="text-muted">name</span>
-									<span className="text-primary">: </span>
-									<span style={{ color: 'var(--primary)' }}>"Ioan Lipan"</span>
-									<span className="text-primary">,</span>
-								</p>
-								<p className="pl-6">
-									<span className="text-muted">role</span>
-									<span className="text-primary">: </span>
-									<span style={{ color: 'var(--primary)' }}>
-										"Full Stack Dev"
+					<h1 className="headline text-[12.8vw] md:text-[min(10vw,6.5rem)] lg:text-[min(6.6vw,7rem)]">
+						<span className="sr-only">{LINES.join(' ')}</span>
+						{LINES.map((line) => (
+							<span key={line} aria-hidden="true" className="hl-line block whitespace-nowrap">
+								{line.split(' ').map((word, w) => (
+									<span key={w}>
+										{w > 0 && ' '}
+										<span className="inline-block">
+											{[...word].map((char, c) => (
+												<span key={c} className="hl-char">
+													{char}
+												</span>
+											))}
+										</span>
 									</span>
-									<span className="text-primary">,</span>
-								</p>
-								<p className="pl-6">
-									<span className="text-muted">exp</span>
-									<span className="text-primary">: </span>
-									<span style={{ color: 'var(--primary)' }}>"5+ years"</span>
-									<span className="text-primary">,</span>
-								</p>
-								<p className="pl-6">
-									<span className="text-muted">location</span>
-									<span className="text-primary">: </span>
-									<span style={{ color: 'var(--primary)' }}>
-										"Bucharest, RO"
-									</span>
-									<span className="text-primary">,</span>
-								</p>
-								<p className="pl-6">
-									<span className="text-muted">available</span>
-									<span className="text-primary">: </span>
-									<span className="text-green-400">true</span>
-									<span className="text-primary">,</span>
-								</p>
-								<p className="pl-6">
-									<span className="text-muted">stack</span>
-									<span className="text-primary">: [</span>
-								</p>
-								<p className="pl-12">
-									<span style={{ color: 'var(--primary)' }}>"React"</span>
-									<span className="text-primary">, </span>
-									<span style={{ color: 'var(--primary)' }}>"Vue.js"</span>
-									<span className="text-primary">, </span>
-									<span style={{ color: 'var(--primary)' }}>"Next.js"</span>
-									<span className="text-primary">,</span>
-								</p>
-								<p className="pl-12">
-									<span style={{ color: 'var(--primary)' }}>"Node.js"</span>
-									<span className="text-primary">, </span>
-									<span style={{ color: 'var(--primary)' }}>"TypeScript"</span>
-								</p>
-								<p className="pl-6">
-									<span className="text-primary">]</span>
-								</p>
-								<p>
-									<span className="text-primary">{'}'}</span>
-									<span className="inline-block w-2 h-5 bg-[var(--secondary)] opacity-70 ml-1 animate-cursor-blink align-middle" />
-								</p>
-							</div>
-						</div>
-					</motion.div>
+								))}
+							</span>
+						))}
+					</h1>
+
+					<p data-intro className="mt-7 max-w-[40ch] text-lg text-fg-2 md:text-xl">
+						I&apos;m <span className="font-semibold text-fg">Ioan Lipan</span>, a front-end and full-stack
+						developer in Bucharest. For five years I&apos;ve built products people enjoy using, with teams around
+						the world.
+					</p>
+					<div data-intro className="mt-8 flex flex-wrap gap-3">
+						<Link href="#work" className="btn btn-primary">
+							See my work
+						</Link>
+						<Link href="/contact" className="btn btn-ghost">
+							Start a project
+						</Link>
+					</div>
 				</div>
-			</div>
 
-			{/* Parallax blobs */}
-			<div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
-				<motion.div
-					className="absolute top-1/4 right-1/4 w-72 h-72 rounded-full bg-[var(--secondary)] filter blur-3xl"
-					variants={blobVariants}
-					initial="initial"
-					animate="animate"
-					style={{ x: blob1X, y: blob1Y }}
-				/>
-				<motion.div
-					className="absolute bottom-1/4 right-1/3 w-96 h-96 rounded-full bg-[var(--primary)] filter blur-3xl"
-					variants={blobVariants}
-					initial="initial"
-					animate="animate"
-					style={{ x: blob2X, y: blob2Y }}
-				/>
-				<motion.div
-					className="absolute top-1/2 right-[10%] w-56 h-56 rounded-full filter blur-3xl"
-					variants={blobVariants}
-					initial="initial"
-					animate="animate"
-					style={{ x: blob3X, y: blob3Y, backgroundColor: '#8B1A2C' }}
-				/>
+				<div className="hero-visual lg:col-span-5 lg:justify-self-center">
+					<HeroShowcase />
+				</div>
 			</div>
 		</section>
 	)
