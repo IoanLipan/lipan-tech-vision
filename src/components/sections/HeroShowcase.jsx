@@ -8,7 +8,7 @@ import { projects, isLive } from '@/data/projects'
 import { REDUCE } from '@/lib/anime'
 import ProjectSheet from '@/components/ui/ProjectSheet'
 
-const reel = projects.filter((p) => p.imageScroll)
+const reel = projects.slice(0, 5) // top five projects; each needs imageMobile + imageScroll
 const HOLD = 900 // ms resting at the top and bottom of each page
 
 /**

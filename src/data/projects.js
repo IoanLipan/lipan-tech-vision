@@ -13,58 +13,6 @@ export const projects = [
 		url: 'https://guitar-rot.vercel.app/',
 	},
 	{
-		id: 15,
-		title: 'IG Tracker',
-		description: 'See who unfollowed you, straight from your Instagram export',
-		descriptionExpanded:
-			"A follower tracker that works with Instagram's official data export instead of risky logins. Drop in the followers and following files and it lists who doesn't follow you back and who unfollowed you since your last check, with a history of previous checks. Guided steps walk users through getting their data, and the upload flow stays clear on both desktop and phone.",
-		technologies: ['React', 'Vite', 'TailwindCSS', 'Vercel'],
-		category: 'Web Development',
-		image: '/images/projects/ig_tracker_cover.webp',
-		imageMobile: '/images/projects/ig_tracker_mobile.webp',
-		imageScroll: '/images/projects/ig_tracker_scroll.webp',
-		url: 'https://ig-tracker-two.vercel.app/',
-	},
-	{
-		id: 1,
-		title: 'Iron Will',
-		description: 'Cross-platform discipline & habit tracking app',
-		descriptionExpanded:
-			'A cross-platform mobile and web application built with Capacitor and React, allowing users to build and track daily habits, streaks, and personal goals. The backend is powered by Node.js and Express.js with a MongoDB database, handling user accounts, progress history, and push notifications. TailwindCSS ensures a clean, consistent UI across both iOS, Android, and browser.',
-		technologies: ['Capacitor', 'React', 'TailwindCSS', 'MongoDB', 'Node.js', 'Express.js'],
-		category: 'Mobile App',
-		image: '/images/projects/iron_will_cover.webp',
-		screenshot: '/images/projects/iron_will.webp',
-		url: '#',
-		freelance: true,
-	},
-	{
-		id: 2,
-		title: 'Noelina',
-		description: 'Custom Shopify storefront for a jewelry brand',
-		descriptionExpanded:
-			'A tailored Shopify e-commerce store for a jewelry brand, focused on delivering a premium shopping experience. The theme was customized to reflect the brand identity with refined typography, curated product presentation, and a streamlined checkout flow. Built entirely within the Shopify ecosystem with attention to mobile responsiveness and page load performance.',
-		technologies: ['Shopify'],
-		category: 'E-commerce',
-		image: '/images/projects/noelina_cover.webp',
-		screenshot: '/images/projects/noelina.webp',
-		url: '#',
-		freelance: true,
-	},
-	{
-		id: 3,
-		title: 'SwiperMaster',
-		description: 'Live tracking for street-cleaning fleets',
-		descriptionExpanded:
-			"A fleet platform built for a city's street-cleaning service. Dispatchers follow every sweeper on a live map, see each route as it's driven, and watch the day's plan fill up with a completion percentage per area. Built with React and MapLibre for a fast, responsive operator dashboard, and shipped with Docker.",
-		technologies: ['React', 'MapLibre', 'TailwindCSS', 'Docker'],
-		category: 'Web Development',
-		image: '/images/projects/swipermaster_cover.webp',
-		screenshot: '/images/projects/dustbusters.webp',
-		url: '#',
-		workRelated: true,
-	},
-	{
 		id: 4,
 		title: 'ComaromTrade',
 		description: 'B2B e-commerce platform for construction materials',
@@ -80,6 +28,77 @@ export const projects = [
 		freelance: true,
 	},
 	{
+		id: 6,
+		title: 'Calculator SRL',
+		description: 'Romanian business financial calculator tool',
+		descriptionExpanded:
+			'A financial calculator web app tailored for Romanian entrepreneurs setting up or managing an SRL (limited liability company). The tool helps users estimate net salary, dividend taxes, social contributions, and overall tax burden under different company configurations. Built with React for reactive calculations and deployed on Vercel for instant availability.',
+		technologies: ['React', 'TailwindCSS', 'Vercel'],
+		category: 'Web Development',
+		image: '/images/projects/calculator_srl_cover.webp',
+		screenshot: '/images/projects/calculator_srl.webp',
+		imageMobile: '/images/projects/calculator_srl_mobile.webp',
+		imageScroll: '/images/projects/calculator_srl_scroll.webp',
+		url: 'https://www.calculator-srl.com/',
+		freelance: true,
+	},
+	{
+		id: 2,
+		title: 'Noelina',
+		description: 'Custom Shopify storefront for a jewelry brand',
+		descriptionExpanded:
+			'A tailored Shopify e-commerce store for a jewelry brand, focused on delivering a premium shopping experience. The theme was customized to reflect the brand identity with refined typography, curated product presentation, and a streamlined checkout flow. Built entirely within the Shopify ecosystem with attention to mobile responsiveness and page load performance.',
+		technologies: ['Shopify'],
+		category: 'E-commerce',
+		image: '/images/projects/noelina_cover.webp',
+		screenshot: '/images/projects/noelina.webp',
+		imageMobile: '/images/projects/noelina_mobile.webp',
+		imageScroll: '/images/projects/noelina_scroll.webp',
+		url: 'https://noelina.ro/',
+		freelance: true,
+	},
+	{
+		id: 11,
+		title: 'The Loupes Company',
+		description: 'E-commerce platform for dental loupes and accessories',
+		descriptionExpanded:
+			'A high-performance e-commerce platform for a dental optics company selling custom-fit loupes and accessories to dental professionals. Built with React, the store features product configuration flows, optimized image delivery, and fast page loads prioritized for Core Web Vitals. The project involved close collaboration with the client to translate a specialist product catalog into a clear, conversion-focused shopping experience.',
+		technologies: ['React', 'TailwindCSS'],
+		category: 'E-commerce',
+		image: '/images/projects/tlc_commerce_cover.webp',
+		screenshot: '/images/projects/tlc_commerce.webp',
+		imageMobile: '/images/projects/tlc_commerce_mobile.webp',
+		imageScroll: '/images/projects/tlc_commerce_scroll.webp',
+		url: 'https://theloupescompany.com/',
+		workRelated: true,
+	},
+	{
+		id: 3,
+		title: 'SwiperMaster',
+		description: 'Live tracking for street-cleaning fleets',
+		descriptionExpanded:
+			"A fleet platform built for a city's street-cleaning service. Dispatchers follow every sweeper on a live map, see each route as it's driven, and watch the day's plan fill up with a completion percentage per area. Built with React and MapLibre for a fast, responsive operator dashboard, and shipped with Docker.",
+		technologies: ['React', 'MapLibre', 'TailwindCSS', 'Docker'],
+		category: 'Web Development',
+		image: '/images/projects/swipermaster_cover.webp',
+		screenshot: '/images/projects/dustbusters.webp',
+		url: '#',
+		workRelated: true,
+	},
+	{
+		id: 15,
+		title: 'IG Tracker',
+		description: 'See who unfollowed you, straight from your Instagram export',
+		descriptionExpanded:
+			"A follower tracker that works with Instagram's official data export instead of risky logins. Drop in the followers and following files and it lists who doesn't follow you back and who unfollowed you since your last check, with a history of previous checks. Guided steps walk users through getting their data, and the upload flow stays clear on both desktop and phone.",
+		technologies: ['React', 'Vite', 'TailwindCSS', 'Vercel'],
+		category: 'Web Development',
+		image: '/images/projects/ig_tracker_cover.webp',
+		imageMobile: '/images/projects/ig_tracker_mobile.webp',
+		imageScroll: '/images/projects/ig_tracker_scroll.webp',
+		url: 'https://ig-tracker-two.vercel.app/',
+	},
+	{
 		id: 5,
 		title: 'MetalFrameHouses',
 		description: 'Corporate website for a steel frame construction company',
@@ -93,18 +112,16 @@ export const projects = [
 		workRelated: true,
 	},
 	{
-		id: 6,
-		title: 'Calculator SRL',
-		description: 'Romanian business financial calculator tool',
+		id: 1,
+		title: 'Iron Will',
+		description: 'Cross-platform discipline & habit tracking app',
 		descriptionExpanded:
-			'A financial calculator web app tailored for Romanian entrepreneurs setting up or managing an SRL (limited liability company). The tool helps users estimate net salary, dividend taxes, social contributions, and overall tax burden under different company configurations. Built with React for reactive calculations and deployed on Vercel for instant availability.',
-		technologies: ['React', 'TailwindCSS', 'Vercel'],
-		category: 'Web Development',
-		image: '/images/projects/calculator_srl_cover.webp',
-		screenshot: '/images/projects/calculator_srl.webp',
-		imageMobile: '/images/projects/calculator_srl_mobile.webp',
-		imageScroll: '/images/projects/calculator_srl_scroll.webp',
-		url: 'https://www.calculator-srl.com/',
+			'A cross-platform mobile and web application built with Capacitor and React, allowing users to build and track daily habits, streaks, and personal goals. The backend is powered by Node.js and Express.js with a MongoDB database, handling user accounts, progress history, and push notifications. TailwindCSS ensures a clean, consistent UI across both iOS, Android, and browser.',
+		technologies: ['Capacitor', 'React', 'TailwindCSS', 'MongoDB', 'Node.js', 'Express.js'],
+		category: 'Mobile App',
+		image: '/images/projects/iron_will_cover.webp',
+		screenshot: '/images/projects/iron_will.webp',
+		url: '#',
 		freelance: true,
 	},
 	{
@@ -168,21 +185,6 @@ export const projects = [
 		workRelated: true,
 	},
 	{
-		id: 11,
-		title: 'The Loupes Company',
-		description: 'E-commerce platform for dental loupes and accessories',
-		descriptionExpanded:
-			'A high-performance e-commerce platform for a dental optics company selling custom-fit loupes and accessories to dental professionals. Built with React, the store features product configuration flows, optimized image delivery, and fast page loads prioritized for Core Web Vitals. The project involved close collaboration with the client to translate a specialist product catalog into a clear, conversion-focused shopping experience.',
-		technologies: ['React', 'TailwindCSS'],
-		category: 'E-commerce',
-		image: '/images/projects/tlc_commerce_cover.webp',
-		screenshot: '/images/projects/tlc_commerce.webp',
-		imageMobile: '/images/projects/tlc_commerce_mobile.webp',
-		imageScroll: '/images/projects/tlc_commerce_scroll.webp',
-		url: 'https://theloupescompany.com/',
-		workRelated: true,
-	},
-	{
 		id: 12,
 		title: 'AVM Assistant',
 		description: 'Accessibility web app for users with sensory and motor impairments',
@@ -210,7 +212,7 @@ export const projects = [
 
 export const isLive = (project) => Boolean(project.url) && project.url !== '#'
 
-const featuredIds = [14, 15, 1, 2, 3, 4]
+const featuredIds = [14, 4, 6, 2, 11, 3]
 
 export const getFeaturedProjects = () => featuredIds.map((id) => projects.find((p) => p.id === id))
 
