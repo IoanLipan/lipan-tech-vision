@@ -47,7 +47,7 @@ export default function Stats() {
 					))}
 				</p>
 
-				<dl data-reveal="stagger" className="st-facts mt-14 grid grid-cols-3 gap-4 border-t border-line pt-6 md:mt-20 md:max-w-3xl lg:col-span-4 lg:mt-0 lg:grid-cols-1 lg:gap-0 lg:border-t-0 lg:pt-0">
+				<dl data-reveal="stagger" className="st-facts mt-14 grid grid-cols-3 items-start gap-4 border-t border-line pt-6 md:mt-20 md:max-w-3xl lg:col-span-4 lg:mt-0 lg:grid-cols-1 lg:gap-0 lg:border-t-0 lg:pt-0">
 					{facts.map(({ value, suffix, label }) => (
 						<div key={label} className="flex flex-col-reverse lg:border-t lg:border-line lg:py-6">
 							<dt className="mt-1 text-sm leading-snug text-muted md:text-base">{label}</dt>

@@ -149,7 +149,7 @@ export default function HeroShowcase() {
 											alt=""
 											width={0}
 											height={0}
-											sizes="(max-width: 1024px) 236px, 300px"
+											sizes="(min-width: 1024px) 21vw, 218px"
 											priority={i === 0}
 											className="h-auto w-full"
 										/>
