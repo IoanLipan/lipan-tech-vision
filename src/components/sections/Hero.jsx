@@ -73,10 +73,11 @@ const Hero = () => {
 						))}
 					</h1>
 
-					<p data-intro className="mt-7 max-w-[40ch] text-lg text-fg-2 md:text-xl">
+					{/* No intro fade: this paragraph is the largest thing on a phone screen (LCP) */}
+					<p className="mt-7 max-w-[40ch] text-lg text-fg-2 md:text-xl">
 						I&apos;m <span className="font-semibold text-fg">Ioan Lipan</span>, a front-end and full-stack
-						developer in Bucharest. For five years I&apos;ve built products people enjoy using, with teams around
-						the world.
+						developer in Bucharest. I build for the web, iOS and Android from one codebase, and for five years
+						I&apos;ve shipped products people enjoy using.
 					</p>
 					<div data-intro className="mt-8 flex flex-wrap gap-3">
 						<Link href="#work" className="btn btn-primary">

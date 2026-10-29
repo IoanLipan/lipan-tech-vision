@@ -1,7 +1,7 @@
 'use client'
 
 import { animate, onScroll, stagger, utils } from 'animejs'
-import { Check, Layers, MousePointerClick, Target, TrendingUp } from 'lucide-react'
+import { Check, Layers, MousePointerClick, Smartphone, Target } from 'lucide-react'
 import { useAnime } from '@/lib/anime'
 
 // This site's home page, Google Lighthouse (mobile), Oct 2026. Re-measure after big changes.
@@ -15,7 +15,7 @@ const scores = [
 const points = [
 	{ Icon: Layers, title: 'Whole product', text: 'Frontend to database, no hand-offs.' },
 	{ Icon: MousePointerClick, title: 'Motion with purpose', text: 'Feels alive, never in the way.' },
-	{ Icon: TrendingUp, title: 'Built to grow', text: 'New features without rewrites.' },
+	{ Icon: Smartphone, title: 'Web, iOS & Android', text: 'One codebase, real native apps.' },
 	{ Icon: Target, title: 'Product thinking', text: 'Your goals first, then the code.' },
 ]
 

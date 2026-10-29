@@ -1,11 +1,25 @@
 export const projects = [
 	{
+		id: 16,
+		title: 'CeFacem',
+		description: 'Small local meetups, on web, iOS and Android',
+		descriptionExpanded:
+			'A social app I built with a friend for meeting new people at small events nearby: coffee, football, hikes, concerts. Pick a city and a day, browse the feed or the map, and join in two taps. One React codebase runs on the web and, through Capacitor, as native iOS and Android apps.',
+		technologies: ['React', 'Capacitor', 'Vite', 'TailwindCSS', 'MapLibre'],
+		category: 'Mobile App',
+		image: '/images/projects/cefacem_cover.webp',
+		screenshot: '/images/projects/cefacem.webp',
+		imageMobile: '/images/projects/cefacem_mobile.webp',
+		imageScroll: '/images/projects/cefacem_scroll.webp',
+		url: 'https://cefacem.com/',
+	},
+	{
 		id: 14,
 		title: 'guitarRot',
-		description: 'Mobile-first guitar trainer with a playable fretboard',
+		description: 'Guitar lessons and a riff feed, on web, iOS and Android',
 		descriptionExpanded:
-			'A mobile-first guitar learning app that turns a phone into a practice companion. Tap any fret on the interactive fretboard to hear the note, open the chord library where every shape strums on tap, and study scale positions box by box. Sound is synthesized live with the Web Audio API, and an app-style tab bar splits the experience into Feed, Songs, Learn and Quiz.',
-		technologies: ['React', 'Vite', 'TailwindCSS', 'Web Audio API', 'Vercel'],
+			"A guitar app that swaps doomscrolling for practice: a vertical feed of riffs, scales and chords with animated tab you can slow down, a 28-lesson course from your first string to your first song, a tuner and quick quizzes. Sound is synthesized live with the Web Audio API, and Capacitor ships the same React codebase as native iOS and Android apps.",
+		technologies: ['React', 'Capacitor', 'Vite', 'TailwindCSS', 'Web Audio API'],
 		category: 'Mobile App',
 		image: '/images/projects/guitar_rot_cover.webp',
 		imageMobile: '/images/projects/guitar_rot_mobile.webp',
@@ -212,7 +226,7 @@ export const projects = [
 
 export const isLive = (project) => Boolean(project.url) && project.url !== '#'
 
-const featuredIds = [14, 4, 6, 2, 11, 3]
+const featuredIds = [16, 14, 4, 6, 2, 11, 3]
 
 export const getFeaturedProjects = () => featuredIds.map((id) => projects.find((p) => p.id === id))
 
